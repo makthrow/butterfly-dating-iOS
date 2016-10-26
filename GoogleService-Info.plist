@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>861340327923-bb4n2p9g7v9r25mcin9ricjjqnhqpnv4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.861340327923-bb4n2p9g7v9r25mcin9ricjjqnhqpnv4</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAiGZkkCZSjNhy2YVLGrEifjQsmqr6vVLc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>861340327923</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>AJK.butterfly2</string>
+	<key>PROJECT_ID</key>
+	<string>butterfly2-ac0f9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>butterfly2-ac0f9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:861340327923:ios:17807364f6c1e812</string>
+	<key>DATABASE_URL</key>
+	<string>https://butterfly2-ac0f9.firebaseio.com</string>
+</dict>
+</plist>

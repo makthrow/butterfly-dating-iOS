@@ -1,0 +1,768 @@
+//
+//  SendMeetCamViewController.swift
+//  butterfly2
+//
+//  Created by Alan Jaw on 9/12/16.
+//  Copyright © 2016 Alan Jaw. All rights reserved.
+//
+
+
+import UIKit
+import AVFoundation
+import AssetsLibrary
+import Photos
+import RecordButton
+
+var SessionRunningAndDeviceAuthorizedContext_SendMeet = "SessionRunningAndDeviceAuthorizedContext"
+var CapturingStillImageContext_SendMeet = "CapturingStillImageContext"
+var RecordingContext_SendMeet = "RecordingContext"
+
+
+class SendMeetCamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate {
+
+    //
+    var toUserID: String?
+    
+    // MARK: property
+    
+    var sessionQueue: DispatchQueue!
+    var session: AVCaptureSession?
+    var videoDeviceInput: AVCaptureDeviceInput?
+    var movieFileOutput: AVCaptureMovieFileOutput?
+    var stillImageOutput: AVCaptureStillImageOutput?
+    
+    var deviceAuthorized: Bool  = false
+    var backgroundRecordId: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+    var sessionRunningAndDeviceAuthorized: Bool {
+        get {
+            return (self.session?.isRunning != nil && self.deviceAuthorized )
+        }
+    }
+    
+    var runtimeErrorHandlingObserver: AnyObject?
+    var lockInterfaceRotation: Bool = false
+    
+    var fileToUploadURL: URL!
+    var fileToUploadDATA: Data!
+    var currentMediaTypeToUpload: String?
+    var uploadMediaTitle: String?
+    
+    @IBOutlet weak var previewView: AVCamPreviewView!
+    
+    // TAKE PICTURE
+    @IBOutlet weak var snapButton: UIButton!
+    
+    // RECORD VIDEO
+    @IBOutlet weak var recordButton: UIButton!
+    
+    // REVERSE CAM
+    @IBOutlet weak var cameraButton: UIButton!
+    
+    var customRecordButton : RecordButton!
+    var progressTimer : Timer!
+    var progress : CGFloat! = 0
+    
+    var recordButtonSeconds: CGFloat! = 0
+    var recordButtonTimer: Timer!
+    var isRecording: Bool = false
+    var inProcessOfRecordingOrSaving: Bool = false
+    
+    // MARK: Override methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // custom recordButton https://github.com/samuelbeek/recordbutton
+        let recordButtonRect = CGRect(x: 0, y: 0, width: 70, height: 70)
+        customRecordButton = RecordButton(frame: recordButtonRect)
+        customRecordButton.center.y = self.view.bounds.height - 70
+        customRecordButton.progressColor = UIColor.red
+        customRecordButton.closeWhenFinished = false
+        customRecordButton.center.x = self.view.center.x
+        customRecordButton.addTarget(self, action: #selector(record), for: .touchDown)
+        customRecordButton.addTarget(self, action: #selector(stop), for: UIControlEvents.touchUpInside)
+        
+        self.view.addSubview(customRecordButton)
+
+        // check that toUserID is saved
+        print ("toUserID: \(toUserID)")
+        
+        let session: AVCaptureSession = AVCaptureSession()
+        self.session = session
+        
+        self.previewView.session = session
+        
+        self.checkDeviceAuthorizationStatus()
+      
+        let sessionQueue: DispatchQueue = DispatchQueue(label: "session queue",attributes: [])
+        
+        self.sessionQueue = sessionQueue
+        sessionQueue.async(execute: {
+            self.backgroundRecordId = UIBackgroundTaskInvalid
+            
+            let videoDevice: AVCaptureDevice! = SendMeetCamViewController.deviceWithMediaType(AVMediaTypeVideo, preferringPosition: AVCaptureDevicePosition.front)
+            var error: NSError? = nil
+            
+            
+            
+            var videoDeviceInput: AVCaptureDeviceInput?
+            do {
+                videoDeviceInput = try AVCaptureDeviceInput(device: videoDevice)
+            } catch let error1 as NSError {
+                error = error1
+                videoDeviceInput = nil
+            } catch {
+                fatalError()
+            }
+            
+            if (error != nil) {
+                print(error)
+                let alert = UIAlertController(title: "Error", message: error!.localizedDescription
+                    , preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+            if session.canAddInput(videoDeviceInput){
+                session.addInput(videoDeviceInput)
+                self.videoDeviceInput = videoDeviceInput
+                
+                DispatchQueue.main.async(execute: {
+                    // Why are we dispatching this to the main queue?
+                    // Because AVCaptureVideoPreviewLayer is the backing layer for AVCamPreviewView and UIView can only be manipulated on main thread.
+                    // Note: As an exception to the above rule, it is not necessary to serialize video orientation changes on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
+                    
+                    let orientation: AVCaptureVideoOrientation =  AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)!
+                    
+                    
+                    (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation = orientation
+                    
+                })
+                
+            }
+            
+            
+            let audioDevice: AVCaptureDevice = AVCaptureDevice.devices(withMediaType: AVMediaTypeAudio).first as! AVCaptureDevice
+            
+            var audioDeviceInput: AVCaptureDeviceInput?
+            
+            do {
+                audioDeviceInput = try AVCaptureDeviceInput(device: audioDevice)
+            } catch let error2 as NSError {
+                error = error2
+                audioDeviceInput = nil
+            } catch {
+                fatalError()
+            }
+            
+            if error != nil{
+                print(error)
+                let alert = UIAlertController(title: error!.localizedDescription, message: "Butterfly needs access to the microphone! You can allow access in Settings -> Butterfly -> Microphone"
+                    , preferredStyle: .alert)
+                
+                let action: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                    (action2: UIAlertAction) in
+                    self.dismiss(animated: true, completion: nil)
+                } )
+                
+                alert.addAction(action)
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+            if session.canAddInput(audioDeviceInput){
+                session.addInput(audioDeviceInput)
+            }
+            
+            
+            
+            let movieFileOutput: AVCaptureMovieFileOutput = AVCaptureMovieFileOutput()
+            if session.canAddOutput(movieFileOutput){
+                session.addOutput(movieFileOutput)
+                
+                
+                let connection: AVCaptureConnection? = movieFileOutput.connection(withMediaType: AVMediaTypeVideo)
+                let stab = connection?.isVideoStabilizationSupported
+                if (stab != nil) {
+                    //deprecated in iOS 8.0
+                    //connection!.enablesVideoStabilizationWhenAvailable = true
+                    connection!.preferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.auto                }
+                
+                self.movieFileOutput = movieFileOutput
+                
+            }
+            
+            let stillImageOutput: AVCaptureStillImageOutput = AVCaptureStillImageOutput()
+            if session.canAddOutput(stillImageOutput){
+                stillImageOutput.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
+                session.addOutput(stillImageOutput)
+                
+                self.stillImageOutput = stillImageOutput
+            }
+            
+            
+        })
+        
+        
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.sessionQueue.async(execute: {
+            
+            
+            
+            self.addObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized", options: [.old , .new] , context: &SessionRunningAndDeviceAuthorizedContext_SendMeet)
+            self.addObserver(self, forKeyPath: "stillImageOutput.capturingStillImage", options:[.old , .new], context: &CapturingStillImageContext_SendMeet)
+            self.addObserver(self, forKeyPath: "movieFileOutput.recording", options: [.old , .new], context: &RecordingContext_SendMeet)
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(self.subjectAreaDidChange(_:)), name: NSNotification.Name.AVCaptureDeviceSubjectAreaDidChange, object: self.videoDeviceInput?.device)
+            
+            
+            weak var weakSelf = self
+            
+            self.runtimeErrorHandlingObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.AVCaptureSessionRuntimeError, object: self.session, queue: nil, using: {
+                (note: Notification?) in
+                let strongSelf: SendMeetCamViewController = weakSelf!
+                strongSelf.sessionQueue.async(execute: {
+                    //                    strongSelf.session?.startRunning()
+                    if let sess = strongSelf.session{
+                        sess.startRunning()
+                    }
+                    //                    strongSelf.recordButton.title  = NSLocalizedString("Record", "Recording button record title")
+                })
+                
+            })
+            
+            self.session?.startRunning()
+            
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        self.sessionQueue.async(execute: {
+            
+            if let sess = self.session{
+                sess.stopRunning()
+                
+                NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVCaptureDeviceSubjectAreaDidChange, object: self.videoDeviceInput?.device)
+                NotificationCenter.default.removeObserver(self.runtimeErrorHandlingObserver!)
+                
+                self.removeObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized", context: &SessionRunningAndDeviceAuthorizedContext_SendMeet)
+                
+                self.removeObserver(self, forKeyPath: "stillImageOutput.capturingStillImage", context: &CapturingStillImageContext_SendMeet)
+                self.removeObserver(self, forKeyPath: "movieFileOutput.recording", context: &RecordingContext_SendMeet)
+                
+                
+            }
+            
+            
+            
+        })
+        
+        
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        
+        (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation = AVCaptureVideoOrientation(rawValue: toInterfaceOrientation.rawValue)!
+        
+        //        if let layer = self.previewView.layer as? AVCaptureVideoPreviewLayer{
+        //            layer.connection.videoOrientation = self.convertOrientation(toInterfaceOrientation)
+        //        }
+        
+    }
+    
+    override var shouldAutorotate : Bool {
+        return !self.lockInterfaceRotation
+    }
+    //    observeValueForKeyPath:ofObject:change:context:
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        
+        
+        if context == &CapturingStillImageContext_SendMeet{
+            let isCapturingStillImage: Bool = (change![NSKeyValueChangeKey.newKey]! as AnyObject).boolValue
+            if isCapturingStillImage {
+                self.runStillImageCaptureAnimation()
+            }
+            
+        }else if context  == &RecordingContext_SendMeet{
+            let isRecording: Bool = (change![NSKeyValueChangeKey.newKey]! as AnyObject).boolValue
+            
+            DispatchQueue.main.async(execute: {
+                
+                if isRecording {
+//                    self.recordButton.titleLabel!.text = "Stop"
+//                    self.recordButton.isEnabled = true
+                    //                    self.snapButton.enabled = false
+                    self.cameraButton.isEnabled = false
+                    
+                }else{
+                    //                    self.snapButton.enabled = true
+                    
+//                    self.recordButton.titleLabel!.text = "Record"
+//                    self.recordButton.isEnabled = true
+                    self.cameraButton.isEnabled = true
+                    
+                }
+                
+                
+            })
+            
+            
+        }
+            
+        else{
+            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
+        
+    }
+    
+    
+    // MARK: Selector
+    func subjectAreaDidChange(_ notification: Notification){
+        let devicePoint: CGPoint = CGPoint(x: 0.5, y: 0.5)
+        self.focusWithMode(AVCaptureFocusMode.continuousAutoFocus, exposureMode: AVCaptureExposureMode.continuousAutoExposure, point: devicePoint, monitorSubjectAreaChange: false)
+    }
+    
+    // MARK:  Custom Function
+    
+    func focusWithMode(_ focusMode:AVCaptureFocusMode, exposureMode:AVCaptureExposureMode, point:CGPoint, monitorSubjectAreaChange:Bool){
+        
+        self.sessionQueue.async(execute: {
+            let device: AVCaptureDevice! = self.videoDeviceInput!.device
+            
+            do {
+                try device.lockForConfiguration()
+                
+                if device.isFocusPointOfInterestSupported && device.isFocusModeSupported(focusMode){
+                    device.focusMode = focusMode
+                    device.focusPointOfInterest = point
+                }
+                if device.isExposurePointOfInterestSupported && device.isExposureModeSupported(exposureMode){
+                    device.exposurePointOfInterest = point
+                    device.exposureMode = exposureMode
+                }
+                device.isSubjectAreaChangeMonitoringEnabled = monitorSubjectAreaChange
+                device.unlockForConfiguration()
+                
+            }catch{
+                print(error)
+            }
+            
+            
+            
+            
+        })
+        
+    }
+    
+    
+    
+    class func setFlashMode(_ flashMode: AVCaptureFlashMode, device: AVCaptureDevice){
+        
+        if device.hasFlash && device.isFlashModeSupported(flashMode) {
+            var error: NSError? = nil
+            do {
+                try device.lockForConfiguration()
+                device.flashMode = flashMode
+                device.unlockForConfiguration()
+                
+            } catch let error1 as NSError {
+                error = error1
+                print(error)
+            }
+        }
+        
+    }
+    
+    func runStillImageCaptureAnimation(){
+        DispatchQueue.main.async(execute: {
+            self.previewView.layer.opacity = 0.0
+            print("opacity 0")
+            UIView.animate(withDuration: 0.25, animations: {
+                self.previewView.layer.opacity = 1.0
+                print("opacity 1")
+            })
+        })
+    }
+    
+    class func deviceWithMediaType(_ mediaType: String, preferringPosition:AVCaptureDevicePosition)->AVCaptureDevice{
+        
+        var devices = AVCaptureDevice.devices(withMediaType: mediaType);
+        var captureDevice: AVCaptureDevice = devices![0] as! AVCaptureDevice;
+        
+        for device in devices!{
+            if (device as AnyObject).position == preferringPosition{
+                captureDevice = device as! AVCaptureDevice
+                break
+            }
+        }
+        
+        return captureDevice
+        
+        
+    }
+    
+    func checkDeviceAuthorizationStatus(){
+        let mediaType:String = AVMediaTypeVideo;
+        
+        AVCaptureDevice.requestAccess(forMediaType: mediaType, completionHandler: { (granted: Bool) in
+            if granted{
+                self.deviceAuthorized = true;
+            }else{
+                
+                DispatchQueue.main.async(execute: {
+                    let alert: UIAlertController = UIAlertController(
+                        title: "Butterfly needs access to the camera so we can show you off!",
+                        message: "Go to Settings -> Butterfly and Allow Access To Camera and Microphone",
+                        preferredStyle: UIAlertControllerStyle.alert);
+                    
+                    let action: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                        (action2: UIAlertAction) in
+                        self.dismiss(animated: true, completion: nil)
+                    } )
+                    
+                    alert.addAction(action);
+
+                    self.present(alert, animated: true, completion: nil);
+                })
+                
+                self.deviceAuthorized = false;
+            }
+        })
+        
+    }
+    
+    
+    // MARK: File Output Delegate
+    //captureOutput only runs for video recordings
+    func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
+        
+        if(error != nil){
+            print(error)
+        }
+        
+        self.lockInterfaceRotation = false
+        
+        // Note the backgroundRecordingID for use in the ALAssetsLibrary completion handler to end the background task associated with this recording. This allows a new recording to be started, associated with a new UIBackgroundTaskIdentifier, once the movie file output's -isRecording is back to NO — which happens sometime after this method returns.
+        
+        let backgroundRecordId: UIBackgroundTaskIdentifier = self.backgroundRecordId
+        self.backgroundRecordId = UIBackgroundTaskInvalid
+        
+        self.fileToUploadURL = outputFileURL
+        self.presentAddCommentAlert()
+    }
+    
+    func saveVideo(outputFileURL: URL) {
+        PHPhotoLibrary.shared().performChanges({
+            let request = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
+            }, completionHandler: { (success, error) in
+                
+                if !success { NSLog("error creating asset: \(error)") }
+                else {
+                    DispatchQueue.main.async(execute: {
+                        self.presentFinishedSavingAlert()
+                    })
+                }
+        })
+    }
+
+    
+    // MARK: Actions
+    
+    func startMovieRecord() {
+        self.sessionQueue.async(execute: {
+            if !self.movieFileOutput!.isRecording{
+                self.lockInterfaceRotation = true
+                
+                if UIDevice.current.isMultitaskingSupported {
+                    self.backgroundRecordId = UIApplication.shared.beginBackgroundTask(expirationHandler: {})
+                    
+                }
+                
+                self.movieFileOutput!.connection(withMediaType: AVMediaTypeVideo).videoOrientation =
+                    AVCaptureVideoOrientation(rawValue: (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation.rawValue )!
+                
+                // Turning OFF flash for video recording
+                CamViewController.setFlashMode(AVCaptureFlashMode.off, device: self.videoDeviceInput!.device)
+                
+                let outputFilePath  =
+                    URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("movie.mov")
+                
+                //NSTemporaryDirectory().stringByAppendingPathComponent( "movie".stringByAppendingPathExtension("mov")!)
+                
+                self.movieFileOutput!.startRecording( toOutputFileURL: outputFilePath, recordingDelegate: self)
+                
+                
+            }
+        })
+    }
+    
+    func stopMovieRecord() {
+        self.sessionQueue.async(execute: {
+            self.movieFileOutput!.stopRecording()
+        })
+    }
+    /*
+    @IBAction func snapStillImage(_ sender: AnyObject) {
+        print("snapStillImage")
+        self.sessionQueue.async(execute: {
+            // Update the orientation on the still image output video connection before capturing.
+            
+            let videoOrientation =  (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation
+            
+            self.stillImageOutput!.connection(withMediaType: AVMediaTypeVideo).videoOrientation = videoOrientation
+            
+            // Flash set to Auto for Still Capture
+            CamViewController.setFlashMode(AVCaptureFlashMode.auto, device: self.videoDeviceInput!.device)
+            
+            
+            
+            self.stillImageOutput!.captureStillImageAsynchronously(from: self.stillImageOutput!.connection(withMediaType: AVMediaTypeVideo), completionHandler: {
+                (imageDataSampleBuffer: CMSampleBuffer?, error: Error?) in
+                
+                if error == nil {
+                    let data:Data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
+                    let image:UIImage = UIImage( data: data)!
+                    
+                    let library:ALAssetsLibrary = ALAssetsLibrary()
+                    let orientation: ALAssetOrientation = ALAssetOrientation(rawValue: image.imageOrientation.rawValue)!
+                    library.writeImage(toSavedPhotosAlbum: image.cgImage, orientation: orientation, completionBlock: nil)
+                    
+                    // TODO: rewrite using library2 . new Photos framework
+                    
+                    print("save to album")
+                    
+                    
+                    
+                }else{
+                    //                    print("Did not capture still image")
+                    print(error)
+                }
+                
+                
+            })
+            
+            
+        })
+    }
+ */
+    
+    @IBAction func changeCamera(_ sender: AnyObject) {
+        
+        
+        
+        print("change camera")
+        
+        self.cameraButton.isEnabled = false
+//        self.recordButton.isEnabled = false
+//        self.snapButton.isEnabled = false
+        
+        self.sessionQueue.async(execute: {
+            
+            let currentVideoDevice:AVCaptureDevice = self.videoDeviceInput!.device
+            let currentPosition: AVCaptureDevicePosition = currentVideoDevice.position
+            var preferredPosition: AVCaptureDevicePosition = AVCaptureDevicePosition.unspecified
+            
+            switch currentPosition{
+            case AVCaptureDevicePosition.front:
+                preferredPosition = AVCaptureDevicePosition.back
+            case AVCaptureDevicePosition.back:
+                preferredPosition = AVCaptureDevicePosition.front
+            case AVCaptureDevicePosition.unspecified:
+                preferredPosition = AVCaptureDevicePosition.back
+                
+            }
+            
+            
+            
+            let device:AVCaptureDevice = CamViewController.deviceWithMediaType(AVMediaTypeVideo, preferringPosition: preferredPosition)
+            
+            var videoDeviceInput: AVCaptureDeviceInput?
+            
+            do {
+                videoDeviceInput = try AVCaptureDeviceInput(device: device)
+            } catch _ as NSError {
+                videoDeviceInput = nil
+            } catch {
+                fatalError()
+            }
+            
+            self.session!.beginConfiguration()
+            
+            self.session!.removeInput(self.videoDeviceInput)
+            
+            if self.session!.canAddInput(videoDeviceInput){
+                
+                NotificationCenter.default.removeObserver(self, name:NSNotification.Name.AVCaptureDeviceSubjectAreaDidChange, object:currentVideoDevice)
+                
+                CamViewController.setFlashMode(AVCaptureFlashMode.auto, device: device)
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(self.subjectAreaDidChange(_:)), name: NSNotification.Name.AVCaptureDeviceSubjectAreaDidChange, object: device)
+                
+                self.session!.addInput(videoDeviceInput)
+                self.videoDeviceInput = videoDeviceInput
+                
+            }else{
+                self.session!.addInput(self.videoDeviceInput)
+            }
+            
+            self.session!.commitConfiguration()
+            
+            
+            
+            DispatchQueue.main.async(execute: {
+//                self.recordButton.isEnabled = true
+//                self.snapButton.isEnabled = true
+                self.cameraButton.isEnabled = true
+            })
+            
+        })
+    }
+    
+    @IBAction func focusAndExposeTap(_ gestureRecognizer: UIGestureRecognizer) {
+        
+        print("focusAndExposeTap")
+        let devicePoint: CGPoint = (self.previewView.layer as! AVCaptureVideoPreviewLayer).captureDevicePointOfInterest(for: gestureRecognizer.location(in: gestureRecognizer.view))
+        
+        print(devicePoint)
+        
+        self.focusWithMode(AVCaptureFocusMode.autoFocus, exposureMode: AVCaptureExposureMode.autoExpose, point: devicePoint, monitorSubjectAreaChange: true)
+        
+    }
+    
+    
+    @IBAction func backButton(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // Mark: RECORD BUTTON
+    func countSecondsOfButtonPressed () {
+        recordButtonSeconds = recordButtonSeconds + (CGFloat(0.05))
+        print ("record button seconds: \(recordButtonSeconds)")
+    }
+    // Mark: RECORD BUTTON
+    func record() {
+        recordButtonTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(countSecondsOfButtonPressed), userInfo: nil, repeats: true)
+        
+        self.progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
+        
+    }
+    
+    func updateProgress() {
+        
+        let maxDuration = CGFloat(5) // max duration of the recordButton
+        
+        // only start video recording after 1 second of hold down button. this prevents recording on accidental taps. DO NOT change this unless you have good reason to.
+        if recordButtonSeconds >= 1 {
+            
+            progress = progress + (CGFloat(0.05) / maxDuration)
+            customRecordButton.setProgress(progress)
+            
+            if !isRecording && !inProcessOfRecordingOrSaving {
+                print ("Started Recording")
+                isRecording = true
+                inProcessOfRecordingOrSaving = true
+                startMovieRecord()
+            }
+        }
+        
+        if progress >= 1 {
+            stop()
+        }
+        
+    }
+    
+    func stop() {
+        self.progressTimer.invalidate()
+        progress = 0
+        
+        recordButtonTimer.invalidate()
+        recordButtonSeconds = 0
+        
+        stopMovieRecord()
+        isRecording = false
+    }
+    
+    // MARK: ALERTS
+    func presentAddCommentAlert() {
+        
+        let alertController = UIAlertController(title: "Enter Title", message: nil, preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save",
+                                       style: .default) { [unowned self](action: UIAlertAction) -> Void in
+                                        
+                                        self.uploadMediaTitle = alertController.textFields![0].text ?? "untitled"
+                                        uploadVideoToMeetMedia(self.fileToUploadURL, title: self.uploadMediaTitle!, toUserID: self.toUserID!, currentMediaTypeToUpload: "video")
+                                        self.uploadAlert()
+                                        
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            self.fileToUploadURL = nil
+            self.inProcessOfRecordingOrSaving = false
+        }
+        
+        alertController.addTextField {
+            (comment) -> Void in
+            comment.placeholder = "Add a Comment"
+        }
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        topMostController().present(alertController, animated: true, completion: nil)
+    }
+    
+    func uploadAlert() {
+        
+        let alertController = UIAlertController(title: "Sent!", message: "Your introduction will be viewable for 24 hours", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) -> Void in
+            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+            self.inProcessOfRecordingOrSaving = false
+        }
+        
+        alertController.addAction(okAction)
+        topMostController().present(alertController, animated: true, completion: nil)
+    }
+    func presentFinishedSavingAlert() {
+        let alertController = UIAlertController(title: "Successfully Saved to Phone", message: nil, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) -> Void in
+            self.dismiss(animated: true, completion: nil)
+            self.inProcessOfRecordingOrSaving = false
+        }
+        
+        alertController.addAction(okAction)
+        topMostController().present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func presentSaveErrorAlert() {
+        let alertController = UIAlertController(title: "We had trouble saving to your phone", message: "Enable Photos Access in Settings", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) -> Void in
+            self.inProcessOfRecordingOrSaving = false
+        }
+        
+        alertController.addAction(okAction)
+        topMostController().present(alertController, animated: true, completion: nil)
+    }
+    
+}
+

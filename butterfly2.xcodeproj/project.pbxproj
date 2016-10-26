@@ -7,21 +7,102 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6C93BBEC2F4BF3EBA241E9E /* Pods_butterfly2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D99771D1E5261BC101BF20F6 /* Pods_butterfly2.framework */; };
+		ED0694421DADFCB100384BFB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0694411DADFCB100384BFB /* SettingsViewController.swift */; };
+		ED0795F91D4A8CA600FA206E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0795F81D4A8CA600FA206E /* LoginViewController.swift */; };
+		ED0795FB1D4A8CEE00FA206E /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0795FA1D4A8CEE00FA206E /* CreateAccountViewController.swift */; };
+		ED0795FD1D4A8D2200FA206E /* CamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0795FC1D4A8D2200FA206E /* CamViewController.swift */; };
+		ED0795FF1D4A8D3900FA206E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0795FE1D4A8D3900FA206E /* HomeViewController.swift */; };
+		ED0796011D4A8D5900FA206E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0796001D4A8D5900FA206E /* User.swift */; };
+		ED0796041D4A8D8500FA206E /* FacebookSDKMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0796031D4A8D8500FA206E /* FacebookSDKMethods.swift */; };
+		ED0796071D4A8DA500FA206E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0796061D4A8DA500FA206E /* Constants.swift */; };
+		ED07960A1D4A97CE00FA206E /* AVCamPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0796091D4A97CE00FA206E /* AVCamPreviewView.swift */; };
+		ED07960C1D4A99D500FA206E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED07960B1D4A99D500FA206E /* GoogleService-Info.plist */; };
 		ED0FD0F31D4A894B00761730 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0FD0F21D4A894B00761730 /* AppDelegate.swift */; };
-		ED0FD0F51D4A894B00761730 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0FD0F41D4A894B00761730 /* ViewController.swift */; };
 		ED0FD0F81D4A894B00761730 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED0FD0F61D4A894B00761730 /* Main.storyboard */; };
-		ED0FD0FA1D4A894B00761730 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED0FD0F91D4A894B00761730 /* Assets.xcassets */; };
 		ED0FD0FD1D4A894B00761730 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED0FD0FB1D4A894B00761730 /* LaunchScreen.storyboard */; };
+		ED37ED5F1D90D61400FF707C /* ChatsMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED37ED5E1D90D61400FF707C /* ChatsMeta.swift */; };
+		ED3F82CA1D8DBB6E00F58E83 /* currentPodversions in Resources */ = {isa = PBXBuildFile; fileRef = ED3F82C91D8DBB6E00F58E83 /* currentPodversions */; };
+		ED75A3E41D91D6C100906379 /* ChatsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED75A3E31D91D6C100906379 /* ChatsMessage.swift */; };
+		ED86E5C21D80BC6800628CB5 /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5B81D80BC6800628CB5 /* GeoFire.m */; };
+		ED86E5C31D80BC6800628CB5 /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5BB1D80BC6800628CB5 /* GFBase32Utils.m */; };
+		ED86E5C41D80BC6800628CB5 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5BD1D80BC6800628CB5 /* GFGeoHash.m */; };
+		ED86E5C51D80BC6800628CB5 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5BF1D80BC6800628CB5 /* GFGeoHashQuery.m */; };
+		ED86E5C61D80BC6800628CB5 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5C01D80BC6800628CB5 /* GFQuery.m */; };
+		ED86E5C81D810E4F00628CB5 /* GeoFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5C71D810E4F00628CB5 /* GeoFire.swift */; };
+		ED86E5CA1D81315F00628CB5 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5C91D81315F00628CB5 /* Helper.swift */; };
+		ED9125021DB2B3E70038B546 /* MeetMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9125011DB2B3E70038B546 /* MeetMedia.swift */; };
+		ED93CE831D8B5275006A53BE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CE821D8B5275006A53BE /* ChatViewController.swift */; };
+		ED93CE851D8B5847006A53BE /* MatchesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CE841D8B5847006A53BE /* MatchesTableViewController.swift */; };
+		ED93CE871D8B5E4F006A53BE /* ChatUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CE861D8B5E4F006A53BE /* ChatUserCell.swift */; };
+		ED93CE891D8B79E9006A53BE /* FirebaseMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED93CE881D8B79E9006A53BE /* FirebaseMethods.swift */; };
+		EDB83C511D9C6C7F00133451 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDB83C501D9C6C7F00133451 /* Assets.xcassets */; };
+		EDC3080E1D87604C000A1C16 /* SendMeetCamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC3080D1D87604C000A1C16 /* SendMeetCamViewController.swift */; };
+		EDC64C431D88AF0E007A2C16 /* IntroTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC64C421D88AF0E007A2C16 /* IntroTableViewController.swift */; };
+		EDE906C41DB7F8AC003EE699 /* NotificationMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE906C31DB7F8AC003EE699 /* NotificationMethods.swift */; };
+		EDE906C81DB80A89003EE699 /* AppDelegateExtensionNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE906C71DB80A89003EE699 /* AppDelegateExtensionNotifications.swift */; };
+		EDEFB5681D99965700AE45EC /* FirebaseUploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEFB5671D99965700AE45EC /* FirebaseUploads.swift */; };
+		EDF63FF61DBEB7C300838954 /* FAQContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF63FF51DBEB7C300838954 /* FAQContactViewController.swift */; };
+		EDF63FF81DBEB99500838954 /* PrivacyTOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF63FF71DBEB99500838954 /* PrivacyTOSViewController.swift */; };
+		EDF63FFD1DBED56C00838954 /* PrivacyPolicy_Oct242016_.html in Resources */ = {isa = PBXBuildFile; fileRef = EDF63FFC1DBED56C00838954 /* PrivacyPolicy_Oct242016_.html */; };
+		EDFD95B91D4FCEFA007CB80D /* MeetVideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFD95B81D4FCEFA007CB80D /* MeetVideoTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		56243998E18F752DD604A208 /* Pods-butterfly2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-butterfly2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-butterfly2/Pods-butterfly2.debug.xcconfig"; sourceTree = "<group>"; };
+		68E7639395300BE5BBA7DF0C /* Pods-butterfly2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-butterfly2.release.xcconfig"; path = "Pods/Target Support Files/Pods-butterfly2/Pods-butterfly2.release.xcconfig"; sourceTree = "<group>"; };
+		D99771D1E5261BC101BF20F6 /* Pods_butterfly2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_butterfly2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED0694411DADFCB100384BFB /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		ED0795F81D4A8CA600FA206E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		ED0795FA1D4A8CEE00FA206E /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		ED0795FC1D4A8D2200FA206E /* CamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CamViewController.swift; sourceTree = "<group>"; };
+		ED0795FE1D4A8D3900FA206E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		ED0796001D4A8D5900FA206E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		ED0796031D4A8D8500FA206E /* FacebookSDKMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookSDKMethods.swift; sourceTree = "<group>"; };
+		ED0796061D4A8DA500FA206E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ED0796091D4A97CE00FA206E /* AVCamPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCamPreviewView.swift; sourceTree = "<group>"; };
+		ED07960B1D4A99D500FA206E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED0FD0EF1D4A894B00761730 /* butterfly2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = butterfly2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED0FD0F21D4A894B00761730 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ED0FD0F41D4A894B00761730 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ED0FD0F71D4A894B00761730 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		ED0FD0F91D4A894B00761730 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED0FD0FC1D4A894B00761730 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED0FD0FE1D4A894B00761730 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED37ED5E1D90D61400FF707C /* ChatsMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsMeta.swift; sourceTree = "<group>"; };
+		ED3F82C91D8DBB6E00F58E83 /* currentPodversions */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = currentPodversions; sourceTree = "<group>"; };
+		ED75A3E31D91D6C100906379 /* ChatsMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsMessage.swift; sourceTree = "<group>"; };
+		ED86E5B01D80B8BE00628CB5 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		ED86E5B31D80BC6100628CB5 /* GeoFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
+		ED86E5B41D80BC6100628CB5 /* GFCircleQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GFCircleQuery.h; sourceTree = "<group>"; };
+		ED86E5B51D80BC6100628CB5 /* GFQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GFQuery.h; sourceTree = "<group>"; };
+		ED86E5B61D80BC6100628CB5 /* GFRegionQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
+		ED86E5B71D80BC6100628CB5 /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
+		ED86E5B81D80BC6800628CB5 /* GeoFire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFire.m; sourceTree = "<group>"; };
+		ED86E5B91D80BC6800628CB5 /* GeoFire+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire+Private.h"; sourceTree = "<group>"; };
+		ED86E5BA1D80BC6800628CB5 /* GFBase32Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFBase32Utils.h; sourceTree = "<group>"; };
+		ED86E5BB1D80BC6800628CB5 /* GFBase32Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFBase32Utils.m; sourceTree = "<group>"; };
+		ED86E5BC1D80BC6800628CB5 /* GFGeoHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHash.h; sourceTree = "<group>"; };
+		ED86E5BD1D80BC6800628CB5 /* GFGeoHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHash.m; sourceTree = "<group>"; };
+		ED86E5BE1D80BC6800628CB5 /* GFGeoHashQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFGeoHashQuery.h; sourceTree = "<group>"; };
+		ED86E5BF1D80BC6800628CB5 /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
+		ED86E5C01D80BC6800628CB5 /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
+		ED86E5C11D80BC6800628CB5 /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
+		ED86E5C71D810E4F00628CB5 /* GeoFire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoFire.swift; sourceTree = "<group>"; };
+		ED86E5C91D81315F00628CB5 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		ED9125011DB2B3E70038B546 /* MeetMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetMedia.swift; sourceTree = "<group>"; };
+		ED93CE821D8B5275006A53BE /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		ED93CE841D8B5847006A53BE /* MatchesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesTableViewController.swift; sourceTree = "<group>"; };
+		ED93CE861D8B5E4F006A53BE /* ChatUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatUserCell.swift; sourceTree = "<group>"; };
+		ED93CE881D8B79E9006A53BE /* FirebaseMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseMethods.swift; sourceTree = "<group>"; };
+		EDB83C501D9C6C7F00133451 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EDC3080D1D87604C000A1C16 /* SendMeetCamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMeetCamViewController.swift; sourceTree = "<group>"; };
+		EDC64C421D88AF0E007A2C16 /* IntroTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroTableViewController.swift; sourceTree = "<group>"; };
+		EDE906C31DB7F8AC003EE699 /* NotificationMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationMethods.swift; sourceTree = "<group>"; };
+		EDE906C71DB80A89003EE699 /* AppDelegateExtensionNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateExtensionNotifications.swift; sourceTree = "<group>"; };
+		EDEFB5671D99965700AE45EC /* FirebaseUploads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUploads.swift; sourceTree = "<group>"; };
+		EDF63FF51DBEB7C300838954 /* FAQContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQContactViewController.swift; sourceTree = "<group>"; };
+		EDF63FF71DBEB99500838954 /* PrivacyTOSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTOSViewController.swift; sourceTree = "<group>"; };
+		EDF63FFC1DBED56C00838954 /* PrivacyPolicy_Oct242016_.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PrivacyPolicy_Oct242016_.html; sourceTree = "<group>"; };
+		EDFD95B81D4FCEFA007CB80D /* MeetVideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetVideoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +110,90 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6C93BBEC2F4BF3EBA241E9E /* Pods_butterfly2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		428A6C644648BC7FBD63699A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				56243998E18F752DD604A208 /* Pods-butterfly2.debug.xcconfig */,
+				68E7639395300BE5BBA7DF0C /* Pods-butterfly2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A3587C201E3135CEBF8D89D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D99771D1E5261BC101BF20F6 /* Pods_butterfly2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED0795F71D4A8C8500FA206E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				ED0795F81D4A8CA600FA206E /* LoginViewController.swift */,
+				ED0795FA1D4A8CEE00FA206E /* CreateAccountViewController.swift */,
+				ED0795FE1D4A8D3900FA206E /* HomeViewController.swift */,
+				ED0796091D4A97CE00FA206E /* AVCamPreviewView.swift */,
+				ED0795FC1D4A8D2200FA206E /* CamViewController.swift */,
+				EDC3080D1D87604C000A1C16 /* SendMeetCamViewController.swift */,
+				EDFD95B81D4FCEFA007CB80D /* MeetVideoTableViewController.swift */,
+				EDC64C421D88AF0E007A2C16 /* IntroTableViewController.swift */,
+				ED93CE841D8B5847006A53BE /* MatchesTableViewController.swift */,
+				ED93CE821D8B5275006A53BE /* ChatViewController.swift */,
+				ED0694411DADFCB100384BFB /* SettingsViewController.swift */,
+				EDF63FF51DBEB7C300838954 /* FAQContactViewController.swift */,
+				EDF63FF71DBEB99500838954 /* PrivacyTOSViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		ED0796021D4A8D6100FA206E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED0796001D4A8D5900FA206E /* User.swift */,
+				ED93CE861D8B5E4F006A53BE /* ChatUserCell.swift */,
+				ED37ED5E1D90D61400FF707C /* ChatsMeta.swift */,
+				ED75A3E31D91D6C100906379 /* ChatsMessage.swift */,
+				ED9125011DB2B3E70038B546 /* MeetMedia.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		ED0796051D4A8D9000FA206E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				ED0796031D4A8D8500FA206E /* FacebookSDKMethods.swift */,
+				ED86E5C71D810E4F00628CB5 /* GeoFire.swift */,
+				ED86E5C91D81315F00628CB5 /* Helper.swift */,
+				ED93CE881D8B79E9006A53BE /* FirebaseMethods.swift */,
+				EDEFB5671D99965700AE45EC /* FirebaseUploads.swift */,
+				EDE906C31DB7F8AC003EE699 /* NotificationMethods.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		ED0796081D4A8DB700FA206E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				ED0796061D4A8DA500FA206E /* Constants.swift */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		ED0FD0E61D4A894B00761730 = {
 			isa = PBXGroup;
 			children = (
 				ED0FD0F11D4A894B00761730 /* butterfly2 */,
 				ED0FD0F01D4A894B00761730 /* Products */,
+				428A6C644648BC7FBD63699A /* Pods */,
+				A3587C201E3135CEBF8D89D0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +209,68 @@
 			isa = PBXGroup;
 			children = (
 				ED0FD0F21D4A894B00761730 /* AppDelegate.swift */,
-				ED0FD0F41D4A894B00761730 /* ViewController.swift */,
+				EDE906C71DB80A89003EE699 /* AppDelegateExtensionNotifications.swift */,
+				ED0796081D4A8DB700FA206E /* Constants */,
+				ED0796051D4A8D9000FA206E /* Data */,
+				ED0796021D4A8D6100FA206E /* Models */,
+				ED0795F71D4A8C8500FA206E /* ViewControllers */,
+				EDF63FFB1DBED55100838954 /* HTML */,
 				ED0FD0F61D4A894B00761730 /* Main.storyboard */,
-				ED0FD0F91D4A894B00761730 /* Assets.xcassets */,
+				EDB83C501D9C6C7F00133451 /* Assets.xcassets */,
 				ED0FD0FB1D4A894B00761730 /* LaunchScreen.storyboard */,
 				ED0FD0FE1D4A894B00761730 /* Info.plist */,
+				ED07960B1D4A99D500FA206E /* GoogleService-Info.plist */,
+				ED3F82C81D8DBB4D00F58E83 /* Misc */,
+				ED86E5B01D80B8BE00628CB5 /* Header.h */,
+				ED86E5B11D80BABD00628CB5 /* Libraries */,
 			);
 			path = butterfly2;
+			sourceTree = "<group>";
+		};
+		ED3F82C81D8DBB4D00F58E83 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				ED3F82C91D8DBB6E00F58E83 /* currentPodversions */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		ED86E5B11D80BABD00628CB5 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				ED86E5B21D80BC4300628CB5 /* Geofire */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		ED86E5B21D80BC4300628CB5 /* Geofire */ = {
+			isa = PBXGroup;
+			children = (
+				ED86E5B81D80BC6800628CB5 /* GeoFire.m */,
+				ED86E5B91D80BC6800628CB5 /* GeoFire+Private.h */,
+				ED86E5BA1D80BC6800628CB5 /* GFBase32Utils.h */,
+				ED86E5BB1D80BC6800628CB5 /* GFBase32Utils.m */,
+				ED86E5BC1D80BC6800628CB5 /* GFGeoHash.h */,
+				ED86E5BD1D80BC6800628CB5 /* GFGeoHash.m */,
+				ED86E5BE1D80BC6800628CB5 /* GFGeoHashQuery.h */,
+				ED86E5BF1D80BC6800628CB5 /* GFGeoHashQuery.m */,
+				ED86E5C01D80BC6800628CB5 /* GFQuery.m */,
+				ED86E5C11D80BC6800628CB5 /* GFQuery+Private.h */,
+				ED86E5B31D80BC6100628CB5 /* GeoFire.h */,
+				ED86E5B41D80BC6100628CB5 /* GFCircleQuery.h */,
+				ED86E5B51D80BC6100628CB5 /* GFQuery.h */,
+				ED86E5B61D80BC6100628CB5 /* GFRegionQuery.h */,
+				ED86E5B71D80BC6100628CB5 /* GeoFire-Prefix.pch */,
+			);
+			name = Geofire;
+			sourceTree = "<group>";
+		};
+		EDF63FFB1DBED55100838954 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				EDF63FFC1DBED56C00838954 /* PrivacyPolicy_Oct242016_.html */,
+			);
+			name = HTML;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +280,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED0FD1011D4A894B00761730 /* Build configuration list for PBXNativeTarget "butterfly2" */;
 			buildPhases = (
+				B6ECAA3BAB7352D4E960AAC3 /* [CP] Check Pods Manifest.lock */,
 				ED0FD0EB1D4A894B00761730 /* Sources */,
 				ED0FD0EC1D4A894B00761730 /* Frameworks */,
 				ED0FD0ED1D4A894B00761730 /* Resources */,
+				C76A4FEEA0B65AEBFDAFD0B7 /* [CP] Embed Pods Frameworks */,
+				544052ECEA3C04D27643599A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -91,12 +303,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Alan Jaw";
 				TargetAttributes = {
 					ED0FD0EE1D4A894B00761730 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 28UA3Z9Z2E;
+						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -124,20 +342,101 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED0FD0FD1D4A894B00761730 /* LaunchScreen.storyboard in Resources */,
-				ED0FD0FA1D4A894B00761730 /* Assets.xcassets in Resources */,
+				EDF63FFD1DBED56C00838954 /* PrivacyPolicy_Oct242016_.html in Resources */,
+				ED07960C1D4A99D500FA206E /* GoogleService-Info.plist in Resources */,
 				ED0FD0F81D4A894B00761730 /* Main.storyboard in Resources */,
+				ED3F82CA1D8DBB6E00F58E83 /* currentPodversions in Resources */,
+				EDB83C511D9C6C7F00133451 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		544052ECEA3C04D27643599A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-butterfly2/Pods-butterfly2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6ECAA3BAB7352D4E960AAC3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C76A4FEEA0B65AEBFDAFD0B7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-butterfly2/Pods-butterfly2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ED0FD0EB1D4A894B00761730 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED0FD0F51D4A894B00761730 /* ViewController.swift in Sources */,
+				EDC3080E1D87604C000A1C16 /* SendMeetCamViewController.swift in Sources */,
+				EDE906C81DB80A89003EE699 /* AppDelegateExtensionNotifications.swift in Sources */,
+				ED0795FD1D4A8D2200FA206E /* CamViewController.swift in Sources */,
+				EDFD95B91D4FCEFA007CB80D /* MeetVideoTableViewController.swift in Sources */,
+				ED0795FB1D4A8CEE00FA206E /* CreateAccountViewController.swift in Sources */,
+				ED75A3E41D91D6C100906379 /* ChatsMessage.swift in Sources */,
+				ED0795F91D4A8CA600FA206E /* LoginViewController.swift in Sources */,
+				EDF63FF61DBEB7C300838954 /* FAQContactViewController.swift in Sources */,
+				ED0796041D4A8D8500FA206E /* FacebookSDKMethods.swift in Sources */,
+				ED93CE891D8B79E9006A53BE /* FirebaseMethods.swift in Sources */,
+				ED86E5CA1D81315F00628CB5 /* Helper.swift in Sources */,
+				ED86E5C21D80BC6800628CB5 /* GeoFire.m in Sources */,
+				EDF63FF81DBEB99500838954 /* PrivacyTOSViewController.swift in Sources */,
+				ED86E5C31D80BC6800628CB5 /* GFBase32Utils.m in Sources */,
+				EDC64C431D88AF0E007A2C16 /* IntroTableViewController.swift in Sources */,
+				ED37ED5F1D90D61400FF707C /* ChatsMeta.swift in Sources */,
+				ED93CE871D8B5E4F006A53BE /* ChatUserCell.swift in Sources */,
+				ED86E5C61D80BC6800628CB5 /* GFQuery.m in Sources */,
+				ED93CE851D8B5847006A53BE /* MatchesTableViewController.swift in Sources */,
+				EDE906C41DB7F8AC003EE699 /* NotificationMethods.swift in Sources */,
 				ED0FD0F31D4A894B00761730 /* AppDelegate.swift in Sources */,
+				ED9125021DB2B3E70038B546 /* MeetMedia.swift in Sources */,
+				ED86E5C51D80BC6800628CB5 /* GFGeoHashQuery.m in Sources */,
+				ED86E5C81D810E4F00628CB5 /* GeoFire.swift in Sources */,
+				ED07960A1D4A97CE00FA206E /* AVCamPreviewView.swift in Sources */,
+				ED0795FF1D4A8D3900FA206E /* HomeViewController.swift in Sources */,
+				ED0796011D4A8D5900FA206E /* User.swift in Sources */,
+				ED86E5C41D80BC6800628CB5 /* GFGeoHash.m in Sources */,
+				EDEFB5681D99965700AE45EC /* FirebaseUploads.swift in Sources */,
+				ED93CE831D8B5275006A53BE /* ChatViewController.swift in Sources */,
+				ED0796071D4A8DA500FA206E /* Constants.swift in Sources */,
+				ED0694421DADFCB100384BFB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,8 +476,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -222,8 +523,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -242,29 +545,44 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		ED0FD1021D4A894B00761730 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56243998E18F752DD604A208 /* Pods-butterfly2.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 28UA3Z9Z2E;
 				INFOPLIST_FILE = butterfly2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJK.butterfly2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = butterfly2/Header.h;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		ED0FD1031D4A894B00761730 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68E7639395300BE5BBA7DF0C /* Pods-butterfly2.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 28UA3Z9Z2E;
 				INFOPLIST_FILE = butterfly2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJK.butterfly2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = butterfly2/Header.h;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -287,6 +605,7 @@
 				ED0FD1031D4A894B00761730 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

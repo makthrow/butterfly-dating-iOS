@@ -1,0 +1,39 @@
+sep 17 2016
+
+Alans-iMac:butterfly2 airjaw$ pod install
+Analyzing dependencies
+Downloading dependencies
+Using Bolts (1.8.4)
+Using FBSDKCoreKit (4.15.1)
+Using FBSDKLoginKit (4.15.1)
+Using FBSDKShareKit (4.15.1)
+Using Firebase (3.6.0)
+Using FirebaseAnalytics (3.4.2)
+Using FirebaseAppIndexing (1.1.0)
+Using FirebaseAuth (3.0.5)
+Using FirebaseCrash (1.0.7)
+Using FirebaseDatabase (3.0.3)
+Using FirebaseDynamicLinks (1.3.0)
+Using FirebaseInstanceID (1.0.8)
+Using FirebaseInvites (1.2.1)
+Using FirebaseMessaging (1.2.0)
+Using FirebaseRemoteConfig (1.3.0)
+Using FirebaseStorage (1.0.3)
+Using Google-Mobile-Ads-SDK (7.11.0)
+Using GoogleAppUtilities (1.1.1)
+Using GoogleAuthUtilities (2.0.1)
+Using GoogleIPhoneUtilities (1.2.1)
+Using GoogleInterchangeUtilities (1.2.1)
+Using GoogleNetworkingUtilities (1.2.1)
+Using GoogleParsingUtilities (1.1.1)
+Using GooglePlusUtilities (1.1.1)
+Using GoogleSignIn (4.0.0)
+Using GoogleSymbolUtilities (1.1.1)
+Using GoogleUtilities (1.3.1)
+Using IQKeyboardManagerSwift (4.0.6)
+Using JSQMessagesViewController (7.3.4)
+Using JSQSystemSoundPlayer (2.0.1)
+Generating Pods project
+Integrating client project
+Sending stats
+Pod installation complete! There are 16 dependencies from the Podfile and 30 total pods installed.
