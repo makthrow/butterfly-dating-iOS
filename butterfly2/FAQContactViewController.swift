@@ -58,13 +58,17 @@ class FAQContactViewController: UIViewController , MFMailComposeViewControllerDe
                 
                 var contactDic: Dictionary<String, Any>
                 
+                var age = 0
+                if birthday != nil {
+                    age = calculateAgeFromDateString(birthdayString: birthday!)
+                }
                 contactDic = [
                     "message": self.textView.text,
                     "timestamp": Constants.firebaseServerValueTimestamp as AnyObject,
                     "name": name ?? "",
                     "gender": gender ?? "",
                     "email" : email ?? "",
-                    "age" : calculateAgeFromDateString(birthdayString: birthday!)
+                    "age" : age
                 ]
                 Constants.CONTACT_REF.childByAutoId().setValue(contactDic)
                 self.showSentNotification()

@@ -21,9 +21,6 @@ class MeetVideoTableViewController: UITableViewController {
     
     var overlayView = UIView()
     
-//    var lastVideoIndex: Int = 0
-//    var currentVideoIndex: Int = 0
-    
     var mediaIntroQueueList = [[String: Any]]()
     
     var selectedUserAtIndexPath: Int?
@@ -48,18 +45,11 @@ class MeetVideoTableViewController: UITableViewController {
         
         getUserFacebookInfoFor(userID: (Constants.userID), callback:  {
             dic in
-            print ("facebook user info dic in meetvideotablevc: ")
             if dic != nil {
                 let birthday = dic!["birthday"] as? String
                 let name = dic!["name"] as? String
                 let pictureURL = dic!["pictureURL"] as? String
                 let gender = dic!["gender"] as? String
-                
-                print (birthday!)
-                print (gender!)
-                print (name!)
-                print (pictureURL!)
-
             }
 
         })
@@ -83,19 +73,14 @@ class MeetVideoTableViewController: UITableViewController {
     func getLocalIntroductions() {
         
         // DOWNLOAD LIST OF VIDEOS and TITLES, based on location
-        // filters: 20 mi radius, timestamp within 24 hours, gender, age
+        // filters: 20 mi radius, timestamp within 24 hours, gender
         // gets list of videoIDs from media_location --- filtered by 50km radius
-//        print ("currentLocation: \(currentLocation)")
-        
         var mediaLocationKeysWithinRadius = [String]()
         
         if let center = currentLocation {
-//            print (center)
             let circleQuery = Constants.geoFireMedia?.query(at: center, withRadius: 50) // in km
 
             circleQuery?.observe(GFEventType.keyEntered, with: { (key: String?, location: CLLocation?) in
-//                print (key, location)
-                // add these keys to an array
                 mediaLocationKeysWithinRadius.append(key!)
             })
         }
@@ -106,11 +91,6 @@ class MeetVideoTableViewController: UITableViewController {
         let twentyFourHoursInMilliseconds:Double = 86400000
         let startTime = currentTimeInMilliseconds - twentyFourHoursInMilliseconds
         let endTime = currentTimeInMilliseconds
-//        
-//        print ("start time: \(startTime)")
-//        print ("current Time: \(Constants.currentTimeInMilliseconds)")
-        print ("end time: \(currentTimeInMilliseconds)")
-//        print ("timeinterval in hours: \((endTime - startTime) / 1000 / 3600)")
 
         // GENDER FILTER
         let defaults = UserDefaults.standard
@@ -306,37 +286,6 @@ class MeetVideoTableViewController: UITableViewController {
         avPlayerViewController.view.addSubview(overlayView);
         
     }
-    /*
-    func addContentOverlayViewWithThreeButtonsAtBottom() {
-        
-        overlayView.frame = CGRect(x: 0,y: avPlayerViewController.view.bounds.height - 150,width: avPlayerViewController.view.bounds.width, height: 200)
-        overlayView.isHidden = false
-        overlayView.backgroundColor = UIColor.clear
-        
-        let passButton = UIButton(frame:CGRect(x: 40,y: 0,width: 60,height: 60))
-        passButton.setTitle("Pass", for:UIControlState())
-        passButton.addTarget(self, action:#selector(MeetVideoTableViewController.closeVideo), for:.touchUpInside)
-        //        btnNext.layer.borderColor = UIColor ( red: 0.0, green: 0.0, blue: 1.0, alpha: 0.670476140202703 ).CGColor
-        //        btnNext.layer.borderWidth = 1.0
-        passButton.setImage(UIImage(named: "meet_overlay_pass"), for: UIControlState.normal)
-        overlayView.addSubview(passButton)
-        
-        let replayButton = UIButton(frame:CGRect(x: (avPlayerViewController.view.bounds.width/2)-30,y: 0,width: 60,height: 60))
-                replayButton.setTitle("Replay", for:UIControlState())
-        replayButton.addTarget(self, action:#selector(MeetVideoTableViewController.replayVideo), for:.touchUpInside)
-        replayButton.setImage(UIImage(named: "meet_overlay_replay2_64x64"), for: UIControlState.normal)
-        overlayView.addSubview(replayButton)
-
-        let meetButton = UIButton(frame:CGRect(x: avPlayerViewController.view.bounds.width - 100,y:0,width: 60,height: 60))
-        meetButton.setTitle("Meet", for:UIControlState())
-        meetButton.addTarget(self, action:#selector(MeetVideoTableViewController.sendMeet), for:.touchUpInside)
-        meetButton.setImage(UIImage(named: "meet_overlay_meet"), for: UIControlState.normal)
-        overlayView.addSubview(meetButton)
-        
-        avPlayerViewController.view.addSubview(overlayView);
-        
-    }
- */
     
     func sendMeet() {
         
@@ -365,23 +314,6 @@ class MeetVideoTableViewController: UITableViewController {
         return
 
     }
-    /*
-    func playNextInQueue() {
-        // code for queue (NOT IMPLEMENTED CURRENTLY)
-         if lastVideoIndex == currentVideoIndex {
-         overlayView.isHidden = true
-         
-         currentlyPlayingVideo = false
-         dismiss(animated: true, completion: nil)
-         return
-         }
-         
-         // code for queue player implementation
-         queuePlayer.advanceToNextItem()
-         currentVideoIndex += 1
-
-    }
-    */
     
     func replayVideo() {
         overlayView.isHidden = true

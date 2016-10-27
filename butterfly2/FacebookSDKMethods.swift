@@ -59,9 +59,13 @@ func getUserInfoFromFacebook() {
             
             // save basic settings in standard user defaults: age, gender, first name
             let defaults = UserDefaults.standard
-            if (first_name != nil && gender != nil && birthdayString != nil) {
+            if (first_name != nil) {
                 defaults.set(first_name!, forKey: "firstName")
+            }
+            if gender != nil {
                 defaults.set(gender!, forKey: "gender")
+            }
+            if birthdayString != nil {
                 let currentUserAge = calculateAgeFromDateString(birthdayString: birthdayString!)
                 defaults.set(currentUserAge, forKey: "age")
             }
@@ -71,7 +75,7 @@ func getUserInfoFromFacebook() {
 //            let genderFromDefaults = defaults.object(forKey: "gender") as? String
 //            print ("getuserfacebookinfo Defaults: \(nameFromDefaults), \(ageFromDefaults), \(genderFromDefaults)")
             // upload basic user info to Users table
-            uploadFBUserInfo(name: name!, birthday: birthdayString!, gender: gender!, first_name: first_name!, last_name: lastName!, pictureURL: urlString, email: email!)
+            uploadFBUserInfo(name: name!, birthday: birthdayString, gender: gender!, first_name: first_name!, last_name: lastName!, pictureURL: urlString, email: email!)
             
         }
         else { // facebookRequest.startWithCompletionHandler
