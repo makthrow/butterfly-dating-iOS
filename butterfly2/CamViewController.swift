@@ -117,10 +117,7 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
             
             if (error != nil) {
                 print(error)
-                let alert = UIAlertController(title: "Error", message: error!.localizedDescription
-                    , preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self.presentCameraMicAccessErrorAlert(error: error!)
             }
             
             if session.canAddInput(videoDeviceInput){
@@ -155,19 +152,10 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
             }
             
             if error != nil{
-                print(error)
-                let alert = UIAlertController(title: error!.localizedDescription, message: "Butterfly needs access to the microphone! You can allow access in Settings -> Butterfly -> Microphone"
-                    , preferredStyle: .alert)
-                
-                let action: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
-                    (action2: UIAlertAction) in
-                    self.dismiss(animated: true, completion: nil)
-                } )
-                
-                alert.addAction(action)
-                
-                self.present(alert, animated: true, completion: nil)
+                print (error)
+                self.presentCameraMicAccessErrorAlert(error: error!)
             }
+            
             if session.canAddInput(audioDeviceInput){
                 session.addInput(audioDeviceInput)
             }
@@ -204,6 +192,7 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         
+        self.checkDeviceAuthorizationStatus()
         getUserLocation()
         
         self.sessionQueue.async(execute: {
@@ -406,19 +395,7 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
             }else{
                 
                 DispatchQueue.main.async(execute: {
-                    let alert: UIAlertController = UIAlertController(
-                        title: "Butterfly needs access to the camera so we can show you off!",
-                        message: "Go to Settings -> Butterfly and Allow Access To Camera and Microphone",
-                        preferredStyle: UIAlertControllerStyle.alert);
-                    
-                    let action: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
-                        (action2: UIAlertAction) in
-                        self.dismiss(animated: true, completion: nil)
-                    } )
-                    
-                    alert.addAction(action);
-                    
-                    self.present(alert, animated: true, completion: nil);
+                    self.presentCameraMicAccessErrorAlert(error: nil)
                 })
                 
                 self.deviceAuthorized = false;
@@ -505,49 +482,6 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
             self.movieFileOutput!.stopRecording()
         })
     }
-
-     /*
-    @IBAction func snapStillImage(_ sender: AnyObject) {
-        print("snapStillImage")
-        self.sessionQueue.async(execute: {
-            // Update the orientation on the still image output video connection before capturing.
-            
-            let videoOrientation =  (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation
-            
-            self.stillImageOutput!.connection(withMediaType: AVMediaTypeVideo).videoOrientation = videoOrientation
-            
-            // Flash set to Auto for Still Capture
-            CamViewController.setFlashMode(AVCaptureFlashMode.auto, device: self.videoDeviceInput!.device)
-         
-            self.stillImageOutput!.captureStillImageAsynchronously(from: self.stillImageOutput!.connection(withMediaType: AVMediaTypeVideo), completionHandler: {
-                (imageDataSampleBuffer: CMSampleBuffer?, error: Error?) in
-                
-                if error == nil {
-                    let data:Data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
-                    let image:UIImage = UIImage( data: data)!
-                    
-                    let library:ALAssetsLibrary = ALAssetsLibrary()
-                    let orientation: ALAssetOrientation = ALAssetOrientation(rawValue: image.imageOrientation.rawValue)!
-                    library.writeImage(toSavedPhotosAlbum: image.cgImage, orientation: orientation, completionBlock: nil)
-                    
-                    // TODO: rewrite using library2 . new Photos framework
-                    
-                    print("save to album")
-                    self.fileToUploadDATA = data
-                    // upload image?
-                    
-                }else{
-                    //                    print("Did not capture still image")
-                    print(error)
-                }
-                
-                
-            })
-            
-            
-        })
-    }
- */
     
     @IBAction func changeCamera(_ sender: AnyObject) {
         
@@ -748,6 +682,34 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         
         alertController.addAction(okAction)
         topMostController().present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentCameraMicAccessErrorAlert (error: Error?) {
+        let alertController: UIAlertController = UIAlertController(
+            title: "Butterfly needs access to the camera and mic so we can show you off!",
+            message: "Go to Settings -> Butterfly and Allow Access To Camera and Microphone",
+            preferredStyle: UIAlertControllerStyle.alert);
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (alertAction) in
+            
+            // go directly to Butterfly settings
+            if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                self.dismiss(animated: true, completion: nil)
+
+                UIApplication.shared.openURL(appSettings)
+            }
+        }
+        
+        let action: UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: {
+            (action2: UIAlertAction) in
+            self.dismiss(animated: true, completion: nil)
+        } )
+        
+        alertController.addAction(action)
+        alertController.addAction(settingsAction)
+        
+        self.present(alertController, animated: true, completion: nil);
+
     }
 }
 

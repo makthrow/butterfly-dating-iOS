@@ -81,11 +81,8 @@ class SendMeetCamViewController: UIViewController, AVCaptureFileOutputRecordingD
         customRecordButton.center.x = self.view.center.x
         customRecordButton.addTarget(self, action: #selector(record), for: .touchDown)
         customRecordButton.addTarget(self, action: #selector(stop), for: UIControlEvents.touchUpInside)
-        
         self.view.addSubview(customRecordButton)
-
-        // check that toUserID is saved
-        print ("toUserID: \(toUserID)")
+        
         
         let session: AVCaptureSession = AVCaptureSession()
         self.session = session
@@ -93,14 +90,15 @@ class SendMeetCamViewController: UIViewController, AVCaptureFileOutputRecordingD
         self.previewView.session = session
         
         self.checkDeviceAuthorizationStatus()
-      
+        
         let sessionQueue: DispatchQueue = DispatchQueue(label: "session queue",attributes: [])
         
         self.sessionQueue = sessionQueue
         sessionQueue.async(execute: {
+            
             self.backgroundRecordId = UIBackgroundTaskInvalid
             
-            let videoDevice: AVCaptureDevice! = SendMeetCamViewController.deviceWithMediaType(AVMediaTypeVideo, preferringPosition: AVCaptureDevicePosition.front)
+            let videoDevice: AVCaptureDevice! = CamViewController.deviceWithMediaType(AVMediaTypeVideo, preferringPosition: AVCaptureDevicePosition.front) // start in reverse cam
             var error: NSError? = nil
             
             
@@ -117,10 +115,7 @@ class SendMeetCamViewController: UIViewController, AVCaptureFileOutputRecordingD
             
             if (error != nil) {
                 print(error)
-                let alert = UIAlertController(title: "Error", message: error!.localizedDescription
-                    , preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self.presentCameraMicAccessErrorAlert(error: error!)
             }
             
             if session.canAddInput(videoDeviceInput){
@@ -133,7 +128,6 @@ class SendMeetCamViewController: UIViewController, AVCaptureFileOutputRecordingD
                     // Note: As an exception to the above rule, it is not necessary to serialize video orientation changes on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
                     
                     let orientation: AVCaptureVideoOrientation =  AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)!
-                    
                     
                     (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation = orientation
                     
@@ -156,19 +150,10 @@ class SendMeetCamViewController: UIViewController, AVCaptureFileOutputRecordingD
             }
             
             if error != nil{
-                print(error)
-                let alert = UIAlertController(title: error!.localizedDescription, message: "Butterfly needs access to the microphone! You can allow access in Settings -> Butterfly -> Microphone"
-                    , preferredStyle: .alert)
-                
-                let action: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
-                    (action2: UIAlertAction) in
-                    self.dismiss(animated: true, completion: nil)
-                } )
-                
-                alert.addAction(action)
-                
-                self.present(alert, animated: true, completion: nil)
+                print (error)
+                self.presentCameraMicAccessErrorAlert(error: error!)
             }
+            
             if session.canAddInput(audioDeviceInput){
                 session.addInput(audioDeviceInput)
             }
@@ -201,15 +186,13 @@ class SendMeetCamViewController: UIViewController, AVCaptureFileOutputRecordingD
             
             
         })
-        
-        
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
+        
+        self.checkDeviceAuthorizationStatus()
+
         self.sessionQueue.async(execute: {
-            
-            
             
             self.addObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized", options: [.old , .new] , context: &SessionRunningAndDeviceAuthorizedContext_SendMeet)
             self.addObserver(self, forKeyPath: "stillImageOutput.capturingStillImage", options:[.old , .new], context: &CapturingStillImageContext_SendMeet)
@@ -425,19 +408,7 @@ class SendMeetCamViewController: UIViewController, AVCaptureFileOutputRecordingD
             }else{
                 
                 DispatchQueue.main.async(execute: {
-                    let alert: UIAlertController = UIAlertController(
-                        title: "Butterfly needs access to the camera so we can show you off!",
-                        message: "Go to Settings -> Butterfly and Allow Access To Camera and Microphone",
-                        preferredStyle: UIAlertControllerStyle.alert);
-                    
-                    let action: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
-                        (action2: UIAlertAction) in
-                        self.dismiss(animated: true, completion: nil)
-                    } )
-                    
-                    alert.addAction(action);
-
-                    self.present(alert, animated: true, completion: nil);
+                    self.presentCameraMicAccessErrorAlert(error: nil)
                 })
                 
                 self.deviceAuthorized = false;
@@ -762,6 +733,34 @@ class SendMeetCamViewController: UIViewController, AVCaptureFileOutputRecordingD
         
         alertController.addAction(okAction)
         topMostController().present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentCameraMicAccessErrorAlert (error: Error?) {
+        let alertController: UIAlertController = UIAlertController(
+            title: "Butterfly needs access to the camera and mic so we can show you off!",
+            message: "Go to Settings -> Butterfly and Allow Access To Camera and Microphone",
+            preferredStyle: UIAlertControllerStyle.alert);
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (alertAction) in
+            
+            // go directly to Butterfly settings
+            if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                self.dismiss(animated: true, completion: nil)
+
+                UIApplication.shared.openURL(appSettings)
+            }
+        }
+        
+        let action: UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: {
+            (action2: UIAlertAction) in
+            self.dismiss(animated: true, completion: nil)
+        } )
+        
+        alertController.addAction(settingsAction)
+        alertController.addAction(action);
+        
+        self.present(alertController, animated: true, completion: nil);
+        
     }
     
 }

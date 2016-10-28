@@ -223,7 +223,6 @@ class MeetVideoTableViewController: UITableViewController {
         if (currentlyPlayingVideo) {return}
         
         getDownloadURL(cellNumber) { (url) in
-            
             self.avPlayer = AVPlayer(url: url)
             self.avPlayerViewController.player = self.avPlayer
             self.avPlayerViewController.showsPlaybackControls = false
@@ -231,6 +230,8 @@ class MeetVideoTableViewController: UITableViewController {
             NotificationCenter.default.addObserver(self, selector: #selector(self.videoItemFinished(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.avPlayer?.currentItem)
             
             self.present(self.avPlayerViewController, animated: true) { () -> Void in
+//                self.addContentOverlayView() // think about adding this later
+
                 self.avPlayerViewController.player?.play()
             }
         }

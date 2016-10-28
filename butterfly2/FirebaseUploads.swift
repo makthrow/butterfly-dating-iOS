@@ -118,7 +118,7 @@ func setupMediaInfoToSave(_ title: String, mediaID: String, userID: String)-> Di
     var age = defaults.integer(forKey: "age")
     var gender = defaults.object(forKey: "gender") as? String
     
-    if !(name == nil || age == 0 || gender == nil) {
+    if (name != nil && gender != nil) { // age == 0  take out age for now until facebook approves birthday info
         
         videoInfoDic = [
             "mediaID": mediaID,
@@ -130,42 +130,42 @@ func setupMediaInfoToSave(_ title: String, mediaID: String, userID: String)-> Di
             "gender": gender!
         ]
     }
-
-    else {
-        // THIS IS REALLY CONVOLUTED CODE THAT SHOULD BE UNNECESSARY. ONLY HERE BECAUSE THERE'S CURRENTLY AN ISSUE WITH FACEBOOK ACCESS TOKEN NOT WORKING AND SOMETIMES THE NSDEFAULTS DON'T GET SET. HOPEFULLY THIS CODE IS NEVER CALLED
-        print ("*ERROR* ns defaults name, age, gender nil")
-        getUserFacebookInfoFor(userID: (Constants.userID), callback:  {
-            dic in
-            if dic != nil {
-                let birthday = dic!["birthday"] as? String
-                let name = dic!["name"] as? String
-                let pictureURL = dic!["pictureURL"] as? String
-                let gender = dic!["gender"] as? String
-                
-                // save basic settings in standard user defaults: age, gender, first name
-                let defaults = UserDefaults.standard
-                if (name != nil && gender != nil && birthday != nil) {
-                    
-                    defaults.set(name!, forKey: "firstName")
-                    defaults.set(gender!, forKey: "gender")
-                    let currentUserAge = calculateAgeFromDateString(birthdayString: birthday!)
-                    defaults.set(currentUserAge, forKey: "age")
-                    
-                    videoInfoDic = [
-                        "mediaID": mediaID,
-                        "timestamp": Constants.firebaseServerValueTimestamp,
-                        "userID": userID,
-                        "title": title,
-                        "age": age,
-                        "name": name!,
-                        "gender": gender!
-                    ]
-                    
-                }
-            }
-        })
-
-    }
+//
+//    else {
+//        // THIS IS REALLY CONVOLUTED CODE THAT SHOULD BE UNNECESSARY. ONLY HERE BECAUSE THERE'S CURRENTLY AN ISSUE WITH FACEBOOK ACCESS TOKEN NOT WORKING AND SOMETIMES THE NSDEFAULTS DON'T GET SET. HOPEFULLY THIS CODE IS NEVER CALLED
+//        print ("*ERROR* ns defaults name, age, gender nil")
+//        getUserFacebookInfoFor(userID: (Constants.userID), callback:  {
+//            dic in
+//            if dic != nil {
+//                let birthday = dic!["birthday"] as? String
+//                let name = dic!["name"] as? String
+//                let pictureURL = dic!["pictureURL"] as? String
+//                let gender = dic!["gender"] as? String
+//                
+//                // save basic settings in standard user defaults: age, gender, first name
+//                let defaults = UserDefaults.standard
+//                if (name != nil && gender != nil && birthday != nil) {
+//                    
+//                    defaults.set(name!, forKey: "firstName")
+//                    defaults.set(gender!, forKey: "gender")
+//                    let currentUserAge = calculateAgeFromDateString(birthdayString: birthday!)
+//                    defaults.set(currentUserAge, forKey: "age")
+//                    
+//                    videoInfoDic = [
+//                        "mediaID": mediaID,
+//                        "timestamp": Constants.firebaseServerValueTimestamp,
+//                        "userID": userID,
+//                        "title": title,
+//                        "age": age,
+//                        "name": name!,
+//                        "gender": gender!
+//                    ]
+//                    
+//                }
+//            }
+//        })
+//
+//    }
     
     return videoInfoDic
 }

@@ -134,6 +134,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Failed to find user's location: \(error.localizedDescription)")
+        showGetLocationErrorAlert(error: error)
     }
     
     
@@ -170,5 +171,27 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         else {
             self.tabBarController?.tabBar.items![2].badgeValue = nil
         }
+    }
+    func showGetLocationErrorAlert(error: Error) {
+        let alertController: UIAlertController = UIAlertController(
+            title: "Error accessing Location",
+            message: "Let us show you local butterflies! Turn on Location in Settings/Butterfly/Location.",
+            preferredStyle: UIAlertControllerStyle.alert);
+        
+        let action: UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: {
+            (action2: UIAlertAction) in
+        } )
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (alertAction) in
+            
+            // go directly to Butterfly settings
+            if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.openURL(appSettings)
+            }
+        }
+        alertController.addAction(settingsAction)
+        alertController.addAction(action);
+        
+        self.present(alertController, animated: true, completion: nil);
     }
 }
