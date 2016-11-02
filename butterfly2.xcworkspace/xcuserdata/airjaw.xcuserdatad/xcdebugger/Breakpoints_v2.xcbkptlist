@@ -1048,11 +1048,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/CamViewController.swift"
-            timestampString = "499317485.937925"
+            timestampString = "499804043.441307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
             landmarkName = "checkDeviceAuthorizationStatus()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1064,11 +1064,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/CamViewController.swift"
-            timestampString = "499317485.937925"
+            timestampString = "499804043.441307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
             landmarkName = "checkDeviceAuthorizationStatus()"
             landmarkType = "7">
          </BreakpointContent>

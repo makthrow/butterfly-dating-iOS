@@ -68,6 +68,8 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
     var recordButtonTimer: Timer!
     var isRecording: Bool = false
     var inProcessOfRecordingOrSaving: Bool = false
+    
+    var holdButtonLabel: UILabel!
 
     // MARK: Override methods
     
@@ -85,6 +87,14 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         customRecordButton.addTarget(self, action: #selector(stop), for: UIControlEvents.touchUpInside)
         self.view.addSubview(customRecordButton)
         
+        holdButtonLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 400, height: 30))
+        holdButtonLabel.center.y = self.view.bounds.height - 150
+        holdButtonLabel.center.x = self.view.center.x
+        holdButtonLabel.textAlignment = .center
+        
+        holdButtonLabel.text = "Hold for 1 second to record"
+        holdButtonLabel.textColor = UIColor.white
+        self.view.addSubview(holdButtonLabel)
         
         let session: AVCaptureSession = AVCaptureSession()
         self.session = session
@@ -586,6 +596,8 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         // only start video recording after 1 second of hold down button. this prevents recording on accidental taps. DO NOT change this unless you have good reason to.
         if recordButtonSeconds >= 1 {
             
+            holdButtonLabel.isHidden = true
+            
             progress = progress + (CGFloat(0.05) / maxDuration)
             customRecordButton.setProgress(progress)
 
@@ -612,6 +624,8 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         
         stopMovieRecord()
         isRecording = false
+        
+        holdButtonLabel.isHidden = false
     }
 
     // MARK: ALERTS
