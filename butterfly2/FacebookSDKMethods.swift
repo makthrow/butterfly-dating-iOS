@@ -29,10 +29,6 @@ func getUserInfoFromFacebook() {
             let lastName = r["last_name"] as? String
             let email = r["email"] as? String
             
-//            // BIRTHDAY: need to ask fb for birthday
-//            var dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "MM/dd/yyyy"
-//            let birthday = dateFormatter.date(from: (r["birthday"]! as! String))
             let birthdayString = r["birthday"] as? String
             
             // get the URL of a larger picture
@@ -75,7 +71,7 @@ func getUserInfoFromFacebook() {
 //            let genderFromDefaults = defaults.object(forKey: "gender") as? String
 //            print ("getuserfacebookinfo Defaults: \(nameFromDefaults), \(ageFromDefaults), \(genderFromDefaults)")
             // upload basic user info to Users table
-            uploadFBUserInfo(name: name!, birthday: birthdayString, gender: gender!, first_name: first_name!, last_name: lastName!, pictureURL: urlString, email: email!)
+            uploadFBUserInfo(name: name!, birthday: birthdayString!, gender: gender!, first_name: first_name!, last_name: lastName!, pictureURL: urlString, email: email!)
             
         }
         else { // facebookRequest.startWithCompletionHandler

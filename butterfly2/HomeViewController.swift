@@ -33,6 +33,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         if let user = FIRAuth.auth()?.currentUser {
             getUserInfoFromFacebook()
+            setUserAdminStatusToDefaults()
+            
             for profile in user.providerData {
                 let providerID = profile.providerID
                 let uid = profile.uid;  // Provider-specific UID
@@ -175,7 +177,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func showGetLocationErrorAlert(error: Error) {
         let alertController: UIAlertController = UIAlertController(
             title: "Error accessing Location",
-            message: "Let us show you local butterflies! Turn on Location in Settings/Butterfly/Location.",
+            message: "Let us show you local butterflies! Turn on Location in Settings/Butterfly/Location",
             preferredStyle: UIAlertControllerStyle.alert);
         
         let action: UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: {
@@ -194,4 +196,5 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         self.present(alertController, animated: true, completion: nil);
     }
+
 }

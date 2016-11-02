@@ -66,7 +66,12 @@ class MeetVideoTableViewController: UITableViewController {
             defaults.set(false, forKey: "needToUpdateMatches")
         }
         
-        getLocalIntroductions()
+        if !getUserAdminStatusFromDefaults() {
+            getLocalIntroductions()
+        }
+        else {
+            getIntroductionsForAdmin()
+        }
         avPlayerViewController.showsPlaybackControls = false
     }
     
@@ -157,6 +162,93 @@ class MeetVideoTableViewController: UITableViewController {
                         self.mediaIntroQueueList = newItems
                         self.tableView.reloadData()
                     }
+                }
+            }
+        })
+    }
+    
+    func getIntroductionsForAdmin() {
+        
+        // special query only available for admins/staff
+        
+        // DOWNLOAD LIST OF VIDEOS and TITLES
+        // filters: no geographical radius, timestamp within 72 hours
+
+        var mediaLocationKeysWithinRadius = [String]()
+        
+        if let center = currentLocation {
+            let circleQuery = Constants.geoFireMedia?.query(at: center, withRadius: 50) // in km
+            
+            circleQuery?.observe(GFEventType.keyEntered, with: { (key: String?, location: CLLocation?) in
+                mediaLocationKeysWithinRadius.append(key!)
+            })
+        }
+        
+        // timeIntervalSince1970 takes seconds, while the timestamp from firebase is in milliseconds
+        let currentTimeInMilliseconds = Date().timeIntervalSince1970 * 1000
+        let twentyFourHoursInMilliseconds:Double = 86400000
+        let startTime = currentTimeInMilliseconds - (twentyFourHoursInMilliseconds * 3)
+        let endTime = currentTimeInMilliseconds
+        
+        // GENDER FILTER
+        let defaults = UserDefaults.standard
+        let showMen = defaults.bool(forKey: "men")
+        let showWomen = defaults.bool(forKey: "women")
+        
+        let media72HourQuery = Constants.MEDIA_INFO_REF
+            .queryOrdered(byChild: "timestamp")
+            .queryStarting(atValue: startTime)
+            .queryEnding(atValue: endTime)
+        media72HourQuery.observe(FIRDataEventType.value, with: { snapshot in
+            
+            var newItems = [[String: Any]]()
+            let snapDic = snapshot.value as? NSDictionary
+            if snapDic != nil {
+                
+                for child in snapDic! {
+                    
+                    let childDic = child.value as? NSDictionary
+                    let title  = childDic?["title"] as? String
+                    let userID = childDic?["userID"] as? String
+                    let mediaID = childDic?["mediaID"] as? String
+                    let timestamp = childDic?["timestamp"] as? Double
+                    let age = childDic?["age"] as? Int
+                    let name = childDic?["name"] as? String
+                    let gender = childDic?["gender"] as? String
+                    
+                    if showMen == true && showWomen == true {
+                        // show all users
+                    }
+                    else if showMen == false && showWomen == false {
+                        // show all users
+                    }
+                    else if showMen == false && showWomen == true {
+                        if gender == "male" {
+                            continue // exit loop for this childDic
+                        }
+                    }
+                    else if showMen == true && showWomen == false {
+                        if gender == "female" {
+                            continue // exit loop for this childDic
+                        }
+                    }
+                    
+                    var mediaInfoDic: Dictionary<String, Any>?
+
+                        mediaInfoDic = [
+                            "mediaID": mediaID!,
+                            "timestamp": timestamp!,
+                            "userID": userID!,
+                            "title": title!,
+                            "age": age,
+                            "name": name,
+                            "gender": gender
+                        ]
+                        
+                        newItems.append(mediaInfoDic!)
+                        self.mediaIntroQueueList = newItems
+                        self.tableView.reloadData()
+    
                 }
             }
         })
@@ -326,7 +418,13 @@ class MeetVideoTableViewController: UITableViewController {
         
         mediaIntroQueueList.removeAll()
         getUserLocation()
-        getLocalIntroductions()
+        
+        if !getUserAdminStatusFromDefaults() {
+            getLocalIntroductions()
+        }
+        else {
+            getIntroductionsForAdmin()
+        }
 
         self.tableView.reloadData()
         refreshControl.endRefreshing()

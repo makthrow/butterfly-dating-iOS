@@ -214,7 +214,7 @@ func uploadImage(fileToUploadDATA: Data, mediaID: String) {
 }
 
 // name, gender, picture, birthday, first_name, last_name"
-func uploadFBUserInfo(name: String, birthday: String?, gender: String, first_name: String, last_name: String, pictureURL: String, email: String) {
+func uploadFBUserInfo(name: String, birthday: String, gender: String, first_name: String, last_name: String, pictureURL: String, email: String) {
     if let newFBUserInfoPost = setupFBUserInfoDic(name: name, birthday: birthday, gender: gender, first_name: first_name, last_name: last_name, pictureURL: pictureURL, email: email)
     {
         let userIDRef = Constants.databaseRef.child("users/\(Constants.userID)/")
@@ -225,7 +225,7 @@ func uploadFBUserInfo(name: String, birthday: String?, gender: String, first_nam
 
 }
 
-func setupFBUserInfoDic(name: String, birthday: String?, gender: String, first_name: String, last_name: String, pictureURL: String, email: String)-> Dictionary<String, Any>? {
+func setupFBUserInfoDic(name: String, birthday: String, gender: String, first_name: String, last_name: String, pictureURL: String, email: String)-> Dictionary<String, Any>? {
     var FBUserInfoDic: Dictionary<String, Any>?
     
     FBUserInfoDic = [

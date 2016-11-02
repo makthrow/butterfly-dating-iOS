@@ -684,3 +684,28 @@ func contactSent() {
     
 }
 
+func setUserAdminStatusToDefaults() {
+    let userIDRef = Constants.USERS_REF.child(Constants.userID)
+    
+    userIDRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        let snapDic = snapshot.value as? NSDictionary
+        
+        let adminBool = snapDic?["admin"] as? Bool
+        
+        let defaults = UserDefaults.standard
+        
+        if adminBool == nil || adminBool == false {
+            defaults.set(false, forKey: "admin")
+        }
+        else {
+            defaults.set(adminBool, forKey: "admin")
+        }
+
+    })
+}
+
+func getUserAdminStatusFromDefaults() -> Bool {
+    let defaults = UserDefaults.standard
+    return defaults.bool(forKey: "admin")
+}
