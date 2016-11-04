@@ -131,12 +131,12 @@ class MeetVideoTableViewController: UITableViewController {
                         // show all users
                     }
                     else if showMen == false && showWomen == true {
-                        if gender == "male" {
+                        if gender == "male" && userID != Constants.userID { // always show user's own intro
                             continue // exit loop for this childDic
                         }
                     }
                     else if showMen == true && showWomen == false {
-                        if gender == "female" {
+                        if gender == "female" && userID != Constants.userID { // always show user's own intro
                             continue // exit loop for this childDic
                         }
                     }
@@ -223,16 +223,16 @@ class MeetVideoTableViewController: UITableViewController {
                         // show all users
                     }
                     else if showMen == false && showWomen == true {
-                        if gender == "male" {
+                        if gender == "male" && userID != Constants.userID { // always show user's own intro {
                             continue // exit loop for this childDic
                         }
                     }
                     else if showMen == true && showWomen == false {
-                        if gender == "female" {
+                        if gender == "female" && userID != Constants.userID {// always show user's own intro {
                             continue // exit loop for this childDic
                         }
                     }
-                    
+            
                     var mediaInfoDic: Dictionary<String, Any>?
 
                         mediaInfoDic = [
