@@ -24,7 +24,8 @@ struct Constants {
     static let ToSendMeetCamVC = "toSendMeetCamVC"
     static let ToLoginVC = "ToLoginViewController"
     static let ToFAQContactVC = "ToFAQContactViewController"
-    static let ToPrivacyTOSVC = "ToPrivacyTOSViewController"
+    static let privacyToHTMLVC = "privacyToHTMLVC"
+    static let eulaToHTMLVC = "eulaToHTMLVC"
     
     //USER
     static let userID = (FIRAuth.auth()?.currentUser?.uid)!

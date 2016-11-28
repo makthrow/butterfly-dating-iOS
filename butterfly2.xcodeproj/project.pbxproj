@@ -23,6 +23,8 @@
 		ED0FD0FD1D4A894B00761730 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED0FD0FB1D4A894B00761730 /* LaunchScreen.storyboard */; };
 		ED37ED5F1D90D61400FF707C /* ChatsMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED37ED5E1D90D61400FF707C /* ChatsMeta.swift */; };
 		ED3F82CA1D8DBB6E00F58E83 /* currentPodversions in Resources */ = {isa = PBXBuildFile; fileRef = ED3F82C91D8DBB6E00F58E83 /* currentPodversions */; };
+		ED7239E61DEC96F800C45840 /* EULA_11_28_2016.html in Resources */ = {isa = PBXBuildFile; fileRef = ED7239E51DEC96F800C45840 /* EULA_11_28_2016.html */; };
+		ED7239EA1DEC9BE900C45840 /* HTMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7239E91DEC9BE900C45840 /* HTMLViewController.swift */; };
 		ED75A3E41D91D6C100906379 /* ChatsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED75A3E31D91D6C100906379 /* ChatsMessage.swift */; };
 		ED86E5C21D80BC6800628CB5 /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5B81D80BC6800628CB5 /* GeoFire.m */; };
 		ED86E5C31D80BC6800628CB5 /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5BB1D80BC6800628CB5 /* GFBase32Utils.m */; };
@@ -43,7 +45,6 @@
 		EDE906C81DB80A89003EE699 /* AppDelegateExtensionNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE906C71DB80A89003EE699 /* AppDelegateExtensionNotifications.swift */; };
 		EDEFB5681D99965700AE45EC /* FirebaseUploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEFB5671D99965700AE45EC /* FirebaseUploads.swift */; };
 		EDF63FF61DBEB7C300838954 /* FAQContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF63FF51DBEB7C300838954 /* FAQContactViewController.swift */; };
-		EDF63FF81DBEB99500838954 /* PrivacyTOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF63FF71DBEB99500838954 /* PrivacyTOSViewController.swift */; };
 		EDF63FFD1DBED56C00838954 /* PrivacyPolicy_Oct242016_.html in Resources */ = {isa = PBXBuildFile; fileRef = EDF63FFC1DBED56C00838954 /* PrivacyPolicy_Oct242016_.html */; };
 		EDFD95B91D4FCEFA007CB80D /* MeetVideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFD95B81D4FCEFA007CB80D /* MeetVideoTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,8 @@
 		ED0FD0FE1D4A894B00761730 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED37ED5E1D90D61400FF707C /* ChatsMeta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsMeta.swift; sourceTree = "<group>"; };
 		ED3F82C91D8DBB6E00F58E83 /* currentPodversions */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = currentPodversions; sourceTree = "<group>"; };
+		ED7239E51DEC96F800C45840 /* EULA_11_28_2016.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EULA_11_28_2016.html; sourceTree = "<group>"; };
+		ED7239E91DEC9BE900C45840 /* HTMLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLViewController.swift; sourceTree = "<group>"; };
 		ED75A3E31D91D6C100906379 /* ChatsMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsMessage.swift; sourceTree = "<group>"; };
 		ED86E5B01D80B8BE00628CB5 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		ED86E5B31D80BC6100628CB5 /* GeoFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
@@ -100,7 +103,6 @@
 		EDE906C71DB80A89003EE699 /* AppDelegateExtensionNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateExtensionNotifications.swift; sourceTree = "<group>"; };
 		EDEFB5671D99965700AE45EC /* FirebaseUploads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseUploads.swift; sourceTree = "<group>"; };
 		EDF63FF51DBEB7C300838954 /* FAQContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQContactViewController.swift; sourceTree = "<group>"; };
-		EDF63FF71DBEB99500838954 /* PrivacyTOSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTOSViewController.swift; sourceTree = "<group>"; };
 		EDF63FFC1DBED56C00838954 /* PrivacyPolicy_Oct242016_.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PrivacyPolicy_Oct242016_.html; sourceTree = "<group>"; };
 		EDFD95B81D4FCEFA007CB80D /* MeetVideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetVideoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,7 +151,7 @@
 				ED93CE821D8B5275006A53BE /* ChatViewController.swift */,
 				ED0694411DADFCB100384BFB /* SettingsViewController.swift */,
 				EDF63FF51DBEB7C300838954 /* FAQContactViewController.swift */,
-				EDF63FF71DBEB99500838954 /* PrivacyTOSViewController.swift */,
+				ED7239E91DEC9BE900C45840 /* HTMLViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -268,6 +270,7 @@
 		EDF63FFB1DBED55100838954 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
+				ED7239E51DEC96F800C45840 /* EULA_11_28_2016.html */,
 				EDF63FFC1DBED56C00838954 /* PrivacyPolicy_Oct242016_.html */,
 			);
 			name = HTML;
@@ -346,6 +349,7 @@
 				ED07960C1D4A99D500FA206E /* GoogleService-Info.plist in Resources */,
 				ED0FD0F81D4A894B00761730 /* Main.storyboard in Resources */,
 				ED3F82CA1D8DBB6E00F58E83 /* currentPodversions in Resources */,
+				ED7239E61DEC96F800C45840 /* EULA_11_28_2016.html in Resources */,
 				EDB83C511D9C6C7F00133451 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,7 +421,7 @@
 				ED93CE891D8B79E9006A53BE /* FirebaseMethods.swift in Sources */,
 				ED86E5CA1D81315F00628CB5 /* Helper.swift in Sources */,
 				ED86E5C21D80BC6800628CB5 /* GeoFire.m in Sources */,
-				EDF63FF81DBEB99500838954 /* PrivacyTOSViewController.swift in Sources */,
+				ED7239EA1DEC9BE900C45840 /* HTMLViewController.swift in Sources */,
 				ED86E5C31D80BC6800628CB5 /* GFBase32Utils.m in Sources */,
 				EDC64C431D88AF0E007A2C16 /* IntroTableViewController.swift in Sources */,
 				ED37ED5F1D90D61400FF707C /* ChatsMeta.swift in Sources */,

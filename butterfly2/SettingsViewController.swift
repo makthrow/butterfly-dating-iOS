@@ -90,7 +90,24 @@ class SettingsViewController: UIViewController {
         self.performSegue(withIdentifier: Constants.ToFAQContactVC, sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.eulaToHTMLVC {
+            let navVC = segue.destination as? UINavigationController
+            let vc =  navVC?.topViewController as! HTMLViewController
+            vc.vcType = "eula"
+        }
+        if segue.identifier == Constants.privacyToHTMLVC {
+            let navVC = segue.destination as? UINavigationController
+            let vc = navVC?.topViewController as! HTMLViewController
+            
+            vc.vcType = "privacyTOS"
+        }
+        
+    }
     @IBAction func privacyTOSButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: Constants.ToPrivacyTOSVC, sender: self)
+        self.performSegue(withIdentifier: Constants.privacyToHTMLVC, sender: self)
+    }
+    @IBAction func eulaButton(_ sender: UIButton) {
+        self.performSegue(withIdentifier: Constants.eulaToHTMLVC, sender: self)
     }
 }
