@@ -223,10 +223,16 @@ class IntroTableViewController: UITableViewController {
         passButton.addTarget(self, action:#selector(dismissVideo), for:.touchUpInside)
         //        btnNext.layer.borderColor = UIColor ( red: 0.0, green: 0.0, blue: 1.0, alpha: 0.670476140202703 ).CGColor
         //        btnNext.layer.borderWidth = 1.0
-        passButton.setImage(UIImage(named: "meet_overlay_pass"), for: UIControlState.normal)
+        passButton.setImage(UIImage(named: "Meet_Cancel_75"), for: UIControlState.normal)
         overlayView.addSubview(passButton)
         
-        let replayButton = UIButton(frame:CGRect(x: 0,y: 0,width: avPlayerViewController.view.bounds.width,height: avPlayerViewController.view.bounds.height - 150))
+        let reportButton = UIButton(frame:CGRect(x: avPlayerViewController.view.bounds.width-70, y: 20, width: 80, height: 80 ))
+        reportButton.setTitle("", for: UIControlState())
+        reportButton.setImage(UIImage(named: "meet_Flag_2_50"), for: .normal)
+        reportButton.addTarget(self, action:#selector(reportVideo), for: .touchUpInside)
+        overlayView.addSubview(reportButton)
+        
+        let replayButton = UIButton(frame:CGRect(x: 0,y: 100,width: avPlayerViewController.view.bounds.width, height: avPlayerViewController.view.bounds.height - 260))
         replayButton.setTitle("", for:UIControlState())
         replayButton.addTarget(self, action:#selector(replayVideo), for:.touchUpInside)
         overlayView.addSubview(replayButton)
@@ -234,7 +240,7 @@ class IntroTableViewController: UITableViewController {
         let meetButton = UIButton(frame:CGRect(x: avPlayerViewController.view.bounds.width - 100,y:avPlayerViewController.view.bounds.height - 150,width: 60,height: 60))
         meetButton.setTitle("Meet", for:UIControlState())
         meetButton.addTarget(self, action:#selector(meetPerson), for:.touchUpInside)
-        meetButton.setImage(UIImage(named: "meet_overlay_meet"), for: UIControlState.normal)
+        meetButton.setImage(UIImage(named: "Meet_Ok_75"), for: UIControlState.normal)
         overlayView.addSubview(meetButton)
         
         avPlayerViewController.view.addSubview(overlayView);
@@ -274,6 +280,23 @@ class IntroTableViewController: UITableViewController {
                 }
             }
         }
+    }
+
+    
+    func reportVideo() {
+
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let reportAction = UIAlertAction(title: "Report this User",
+                                       style: .default) { [unowned self](action: UIAlertAction) -> Void in
+        }
+    
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+        }
+        alertController.addAction(reportAction)
+        alertController.addAction(cancelAction)
+        topMostController().present(alertController, animated: true, completion: nil)
+
     }
     
     func showMeetPersonAlert() {

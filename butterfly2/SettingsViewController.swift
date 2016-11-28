@@ -91,9 +91,14 @@ class SettingsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        var destination = segue.destination as? UIViewController
+
         if segue.identifier == Constants.eulaToHTMLVC {
-            let navVC = segue.destination as? UINavigationController
-            let vc =  navVC?.topViewController as! HTMLViewController
+            if let navCon = destination as? UINavigationController {
+                destination = navCon.visibleViewController
+            }
+            let vc =  destination as! HTMLViewController
             vc.vcType = "eula"
         }
         if segue.identifier == Constants.privacyToHTMLVC {
