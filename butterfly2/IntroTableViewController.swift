@@ -226,13 +226,17 @@ class IntroTableViewController: UITableViewController {
         passButton.setImage(UIImage(named: "Meet_Cancel_75"), for: UIControlState.normal)
         overlayView.addSubview(passButton)
         
-        let reportButton = UIButton(frame:CGRect(x: avPlayerViewController.view.bounds.width-70, y: 20, width: 80, height: 80 ))
+        let bottomMiddleRect = CGRect(x: (avPlayerViewController.view.bounds.width/2) - 30, y:avPlayerViewController.view.bounds.height - 70, width: 70, height: 70)
+//        let topRightRect = CGRect(x: avPlayerViewController.view.bounds.width-70, y: 20, width: 80, height: 80 )
+        
+        let reportButton = UIButton(frame:bottomMiddleRect)
         reportButton.setTitle("", for: UIControlState())
-        reportButton.setImage(UIImage(named: "meet_Flag_2_50"), for: .normal)
+        reportButton.setImage(UIImage(named: "meet_Flag_2_25"), for: .normal)
         reportButton.addTarget(self, action:#selector(reportVideo), for: .touchUpInside)
         overlayView.addSubview(reportButton)
         
-        let replayButton = UIButton(frame:CGRect(x: 0,y: 100,width: avPlayerViewController.view.bounds.width, height: avPlayerViewController.view.bounds.height - 260))
+        
+        let replayButton = UIButton(frame:CGRect(x: 0,y: 10,width: avPlayerViewController.view.bounds.width, height: avPlayerViewController.view.bounds.height - 190))
         replayButton.setTitle("", for:UIControlState())
         replayButton.addTarget(self, action:#selector(replayVideo), for:.touchUpInside)
         overlayView.addSubview(replayButton)
