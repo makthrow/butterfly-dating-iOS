@@ -25,6 +25,7 @@
 		ED3F82CA1D8DBB6E00F58E83 /* currentPodversions in Resources */ = {isa = PBXBuildFile; fileRef = ED3F82C91D8DBB6E00F58E83 /* currentPodversions */; };
 		ED7239E61DEC96F800C45840 /* EULA_11_28_2016.html in Resources */ = {isa = PBXBuildFile; fileRef = ED7239E51DEC96F800C45840 /* EULA_11_28_2016.html */; };
 		ED7239EA1DEC9BE900C45840 /* HTMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7239E91DEC9BE900C45840 /* HTMLViewController.swift */; };
+		ED7239EE1DED3ACF00C45840 /* ReportUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7239ED1DED3ACF00C45840 /* ReportUserViewController.swift */; };
 		ED75A3E41D91D6C100906379 /* ChatsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED75A3E31D91D6C100906379 /* ChatsMessage.swift */; };
 		ED86E5C21D80BC6800628CB5 /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5B81D80BC6800628CB5 /* GeoFire.m */; };
 		ED86E5C31D80BC6800628CB5 /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5BB1D80BC6800628CB5 /* GFBase32Utils.m */; };
@@ -72,6 +73,7 @@
 		ED3F82C91D8DBB6E00F58E83 /* currentPodversions */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = currentPodversions; sourceTree = "<group>"; };
 		ED7239E51DEC96F800C45840 /* EULA_11_28_2016.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EULA_11_28_2016.html; sourceTree = "<group>"; };
 		ED7239E91DEC9BE900C45840 /* HTMLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLViewController.swift; sourceTree = "<group>"; };
+		ED7239ED1DED3ACF00C45840 /* ReportUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUserViewController.swift; sourceTree = "<group>"; };
 		ED75A3E31D91D6C100906379 /* ChatsMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsMessage.swift; sourceTree = "<group>"; };
 		ED86E5B01D80B8BE00628CB5 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		ED86E5B31D80BC6100628CB5 /* GeoFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				ED93CE841D8B5847006A53BE /* MatchesTableViewController.swift */,
 				ED93CE821D8B5275006A53BE /* ChatViewController.swift */,
 				ED0694411DADFCB100384BFB /* SettingsViewController.swift */,
+				ED7239ED1DED3ACF00C45840 /* ReportUserViewController.swift */,
 				EDF63FF51DBEB7C300838954 /* FAQContactViewController.swift */,
 				ED7239E91DEC9BE900C45840 /* HTMLViewController.swift */,
 			);
@@ -414,6 +417,7 @@
 				ED0795FD1D4A8D2200FA206E /* CamViewController.swift in Sources */,
 				EDFD95B91D4FCEFA007CB80D /* MeetVideoTableViewController.swift in Sources */,
 				ED0795FB1D4A8CEE00FA206E /* CreateAccountViewController.swift in Sources */,
+				ED7239EE1DED3ACF00C45840 /* ReportUserViewController.swift in Sources */,
 				ED75A3E41D91D6C100906379 /* ChatsMessage.swift in Sources */,
 				ED0795F91D4A8CA600FA206E /* LoginViewController.swift in Sources */,
 				EDF63FF61DBEB7C300838954 /* FAQContactViewController.swift in Sources */,

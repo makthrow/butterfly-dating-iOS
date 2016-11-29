@@ -180,38 +180,7 @@ class IntroTableViewController: UITableViewController {
 //        print ("video ended")
         addContentOverlayView()
     }
-    /*
-    func addContentOverlayViewWithThreeButtonsAtBottom() {
-        
-//        overlayView.frame = CGRect(x: 0,y: 200,width: avPlayerViewController.view.bounds.width, height: 100)
-        overlayView.frame = CGRect(x: 0,y: avPlayerViewController.view.bounds.height - 150,width: avPlayerViewController.view.bounds.width, height: 200)
-        overlayView.isHidden = false
-        overlayView.backgroundColor = UIColor.clear
-        
-        let passButton = UIButton(frame:CGRect(x: 40,y: 0,width: 60,height: 60))
-        passButton.setTitle("Pass", for:UIControlState())
-        passButton.addTarget(self, action:#selector(dismissVideo), for:.touchUpInside)
-        //        btnNext.layer.borderColor = UIColor ( red: 0.0, green: 0.0, blue: 1.0, alpha: 0.670476140202703 ).CGColor
-        //        btnNext.layer.borderWidth = 1.0
-        passButton.setImage(UIImage(named: "meet_overlay_pass"), for: UIControlState.normal)
-        overlayView.addSubview(passButton)
-        
-        let replayButton = UIButton(frame:CGRect(x: (avPlayerViewController.view.bounds.width/2)-30,y: 0,width: 60,height: 60))
-        replayButton.setTitle("Replay", for:UIControlState())
-        replayButton.addTarget(self, action:#selector(replayVideo), for:.touchUpInside)
-        replayButton.setImage(UIImage(named: "meet_overlay_replay2_64x64"), for: UIControlState.normal)
-        overlayView.addSubview(replayButton)
-        
-        let meetButton = UIButton(frame:CGRect(x: avPlayerViewController.view.bounds.width - 100,y:0,width: 60,height: 60))
-        meetButton.setTitle("Meet", for:UIControlState())
-        meetButton.addTarget(self, action:#selector(meetPerson), for:.touchUpInside)
-        meetButton.setImage(UIImage(named: "meet_overlay_meet"), for: UIControlState.normal)
-        overlayView.addSubview(meetButton)
-        
-        avPlayerViewController.view.addSubview(overlayView);
-        
-    }
-    */
+
     func addContentOverlayView() {
         
         overlayView.frame = CGRect(x: 0,y: 0,width: avPlayerViewController.view.bounds.width, height: avPlayerViewController.view.bounds.height)
@@ -232,7 +201,7 @@ class IntroTableViewController: UITableViewController {
         let reportButton = UIButton(frame:bottomMiddleRect)
         reportButton.setTitle("", for: UIControlState())
         reportButton.setImage(UIImage(named: "meet_Flag_2_25"), for: .normal)
-        reportButton.addTarget(self, action:#selector(reportVideo), for: .touchUpInside)
+        reportButton.addTarget(self, action:#selector(showReportAction), for: .touchUpInside)
         overlayView.addSubview(reportButton)
         
         
@@ -287,12 +256,14 @@ class IntroTableViewController: UITableViewController {
     }
 
     
-    func reportVideo() {
+    func showReportAction() {
 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let reportAction = UIAlertAction(title: "Report this User",
                                        style: .default) { [unowned self](action: UIAlertAction) -> Void in
+
+                                        self.reportUser()
         }
     
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
@@ -300,6 +271,26 @@ class IntroTableViewController: UITableViewController {
         alertController.addAction(reportAction)
         alertController.addAction(cancelAction)
         topMostController().present(alertController, animated: true, completion: nil)
+
+    }
+    
+    func reportUser() {
+        
+//        DispatchQueue.main.async(execute: {
+//            [unowned self] in
+//            self.performSegue(withIdentifier: Constants.InboxToReportVC, sender: self)
+//        })
+//        OperationQueue.main.addOperation {
+//            [weak self] in
+//            self?.performSegue(withIdentifier: Constants.InboxToReportVC, sender: self)
+//        }
+        
+        let reportUserVC:ReportUserViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReportUser") as! ReportUserViewController
+        
+        reportUserVC.userIDToReport = userIDFromMatch(selectedUserAtIndexPath!)
+
+        topMostController().present(reportUserVC, animated: false, completion: nil)
+
 
     }
     

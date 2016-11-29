@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="butterfly_heart_ios" translatesAutoresizingMaskIntoConstraints="NO" id="s3h-oV-aF0">
-                                <rect key="frame" x="37" y="137" width="300" height="294"/>
+                                <rect key="frame" x="37" y="136.5" width="300" height="294"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="294" id="dQn-Ux-ODv"/>
                                 </constraints>
@@ -462,6 +462,9 @@
                             </fragment>
                         </attributedString>
                     </refreshControl>
+                    <connections>
+                        <segue destination="WYU-mM-xfw" kind="show" identifier="InboxToReportVC" id="Hvd-Px-yR6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUo-sZ-xPM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -749,7 +752,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kgg-LG-2eZ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k6Z-EG-K3G">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="k6Z-EG-K3G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -828,7 +831,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="butterfly_heart_ios" translatesAutoresizingMaskIntoConstraints="NO" id="re2-yW-9Tp">
-                                <rect key="frame" x="-325" y="121" width="1025" height="190"/>
+                                <rect key="frame" x="-324.5" y="121" width="1024" height="190"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.20393716540000001" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
@@ -868,7 +871,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OX0-nf-zjn" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="thy-ln-Yny">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="thy-ln-Yny">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -886,7 +889,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="adT-6Q-QPM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GhM-nY-8su">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GhM-nY-8su">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1008,6 +1011,81 @@
             </objects>
             <point key="canvasLocation" x="3473" y="794"/>
         </scene>
+        <!--Report User View Controller-->
+        <scene sceneID="0d5-td-22E">
+            <objects>
+                <viewController storyboardIdentifier="ReportUser" id="WYU-mM-xfw" customClass="ReportUserViewController" customModule="butterfly2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uCu-bi-x5Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="S8T-mp-9wf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Usl-nG-Bsx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H74-hs-L5m">
+                                <rect key="frame" x="16" y="318" width="343" height="30"/>
+                                <state key="normal" title="Inappropriate Content"/>
+                                <connections>
+                                    <action selector="inappropriateContentButton:" destination="WYU-mM-xfw" eventType="touchUpInside" id="aRx-up-HWx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="442-WF-qUE">
+                                <rect key="frame" x="16" y="356" width="343" height="30"/>
+                                <state key="normal" title="Spam or Fake User"/>
+                                <connections>
+                                    <action selector="spamOrFakeUserButton:" destination="WYU-mM-xfw" eventType="touchUpInside" id="1Ud-Kk-ygS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yho-86-RS6">
+                                <rect key="frame" x="16" y="394" width="343" height="30"/>
+                                <state key="normal" title="Other"/>
+                                <connections>
+                                    <action selector="otherButton:" destination="WYU-mM-xfw" eventType="touchUpInside" id="95S-aU-Vbi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Report User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6N-4a-ZsJ">
+                                <rect key="frame" x="120" y="167" width="134" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="report_75" translatesAutoresizingMaskIntoConstraints="NO" id="nAp-yh-LT4">
+                                <rect key="frame" x="148" y="79" width="79" height="80"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iml-AJ-M1Z">
+                                <rect key="frame" x="16" y="432" width="343" height="80"/>
+                                <color key="backgroundColor" red="0.88084307831530906" green="0.8903670265440865" blue="0.92084390862944165" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="WYU-mM-xfw" eventType="touchUpInside" id="uLW-Zm-HVM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="A6N-4a-ZsJ" firstAttribute="centerX" secondItem="nAp-yh-LT4" secondAttribute="centerX" id="1nj-fM-Fti"/>
+                            <constraint firstItem="A6N-4a-ZsJ" firstAttribute="top" secondItem="nAp-yh-LT4" secondAttribute="bottom" constant="8" id="3tI-XA-8bi"/>
+                            <constraint firstItem="nAp-yh-LT4" firstAttribute="top" secondItem="uCu-bi-x5Z" secondAttribute="bottom" constant="15" id="CQT-7l-VOU"/>
+                            <constraint firstItem="H74-hs-L5m" firstAttribute="top" secondItem="A6N-4a-ZsJ" secondAttribute="bottom" constant="106" id="Ipv-yg-h1m"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="442-WF-qUE" secondAttribute="leading" id="MJf-1b-H4m"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Iml-AJ-M1Z" secondAttribute="leading" id="hfR-XF-IEP"/>
+                            <constraint firstItem="442-WF-qUE" firstAttribute="top" secondItem="H74-hs-L5m" secondAttribute="bottom" constant="8" id="oE7-OL-giq"/>
+                            <constraint firstItem="yho-86-RS6" firstAttribute="top" secondItem="442-WF-qUE" secondAttribute="bottom" constant="8" id="qPT-Nq-Hm7"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="H74-hs-L5m" secondAttribute="leading" id="sil-Wd-Ml9"/>
+                            <constraint firstItem="nAp-yh-LT4" firstAttribute="centerX" secondItem="Usl-nG-Bsx" secondAttribute="centerX" id="u7k-WM-ime"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Iml-AJ-M1Z" secondAttribute="trailing" id="uea-KK-MNz"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="yho-86-RS6" secondAttribute="leading" id="v96-tm-WdU"/>
+                            <constraint firstItem="Iml-AJ-M1Z" firstAttribute="top" secondItem="yho-86-RS6" secondAttribute="bottom" constant="8" id="wJt-5j-QyA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ShG-sY-J3P"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OO4-YR-Kty" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3200.8000000000002" y="1506.296851574213"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Switch Camera-50" width="50" height="50"/>
@@ -1016,6 +1094,7 @@
         <image name="heart" width="24" height="24"/>
         <image name="mail32x32" width="32" height="32"/>
         <image name="profile-header" width="29" height="29"/>
+        <image name="report_75" width="64" height="64"/>
         <image name="xcross" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>

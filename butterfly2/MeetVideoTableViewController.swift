@@ -366,12 +366,10 @@ class MeetVideoTableViewController: UITableViewController {
         overlayView.addSubview(passButton)
         
         let bottomMiddleRect = CGRect(x: (avPlayerViewController.view.bounds.width/2) - 30, y:avPlayerViewController.view.bounds.height - 70, width: 70, height: 70)
-        //        let topRightRect = CGRect(x: avPlayerViewController.view.bounds.width-70, y: 20, width: 80, height: 80 )
-        
         let reportButton = UIButton(frame:bottomMiddleRect)
         reportButton.setTitle("", for: UIControlState())
         reportButton.setImage(UIImage(named: "meet_Flag_2_25"), for: .normal)
-        reportButton.addTarget(self, action:#selector(reportVideo), for: .touchUpInside)
+        reportButton.addTarget(self, action:#selector(showReportAction), for: .touchUpInside)
         overlayView.addSubview(reportButton)
         
         let replayButton = UIButton(frame:CGRect(x: 0,y: 10,width: avPlayerViewController.view.bounds.width, height: avPlayerViewController.view.bounds.height - 190))
@@ -440,12 +438,15 @@ class MeetVideoTableViewController: UITableViewController {
     }
     
     
-    func reportVideo() {
+    func showReportAction() {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let reportAction = UIAlertAction(title: "Report this User",
                                          style: .default) { [unowned self](action: UIAlertAction) -> Void in
+                                            
+                                            self.reportUser()
+                                            
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
@@ -453,6 +454,10 @@ class MeetVideoTableViewController: UITableViewController {
         alertController.addAction(reportAction)
         alertController.addAction(cancelAction)
         topMostController().present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func reportUser() {
         
     }
     

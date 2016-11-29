@@ -26,6 +26,7 @@ struct Constants {
     static let ToFAQContactVC = "ToFAQContactViewController"
     static let privacyToHTMLVC = "privacyToHTMLVC"
     static let eulaToHTMLVC = "eulaToHTMLVC"
+    static let InboxToReportVC = "InboxToReportVC"
     
     //USER
     static let userID = (FIRAuth.auth()?.currentUser?.uid)!
