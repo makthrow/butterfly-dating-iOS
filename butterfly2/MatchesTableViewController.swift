@@ -69,13 +69,17 @@ class MatchesTableViewController: UITableViewController {
 
         var withUserName  = chatsMeta[(indexPath as NSIndexPath).row].withUserName
         
+        let fontHelveticaBoldSize20 = UIFont(name: "Helvetica-Bold", size: 20.0)
+        let fontHelveticaSize20 = UIFont(name: "Helvetica", size: 20.0)
+
+        
         // You've MATCHED! Code
         if lastSenderID == "none" {
             if (unread == true) {
-                cell.nameLabel.font = UIFont(name: "Helvetica-Bold", size: 20.0)
+                cell.nameLabel.font = fontHelveticaBoldSize20
             }
             else {
-                cell.nameLabel.font = UIFont(name: "Helvetica", size: 20.0)
+                cell.nameLabel.font = fontHelveticaSize20
             }
             
             cell.nameLabel.textColor = UIColor.red
@@ -86,19 +90,19 @@ class MatchesTableViewController: UITableViewController {
         else {
             if (unread == true) {
                 if (lastSenderID != Constants.userID) {
-                    cell.nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+                    cell.nameLabel.font = fontHelveticaBoldSize20
                     cell.nameLabel.textColor = UIColor.purple
                     cell.nameLabel.text = "\(withUserName): \(lastMsg)"
                 }
             }
             else {
                 if lastSenderID == Constants.userID {
-                    cell.nameLabel.font = UIFont.systemFont(ofSize: 16)
+                    cell.nameLabel.font = fontHelveticaSize20
                     cell.nameLabel.textColor = UIColor.black
                     cell.nameLabel.text = "You: \(lastMsg)"
                 }
                 else {
-                    cell.nameLabel.font = UIFont.systemFont(ofSize: 16)
+                    cell.nameLabel.font = fontHelveticaSize20
                     cell.nameLabel.textColor = UIColor.black
                     cell.nameLabel.text = "\(withUserName): \(lastMsg)"
                 }
