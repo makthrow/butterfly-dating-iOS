@@ -195,8 +195,6 @@ class IntroTableViewController: UITableViewController {
         overlayView.addSubview(passButton)
         
         let bottomMiddleRect = CGRect(x: (avPlayerViewController.view.bounds.width/2) - 30, y:avPlayerViewController.view.bounds.height - 70, width: 70, height: 70)
-//        let topRightRect = CGRect(x: avPlayerViewController.view.bounds.width-70, y: 20, width: 80, height: 80 )
-        
         let reportButton = UIButton(frame:bottomMiddleRect)
         reportButton.setTitle("", for: UIControlState())
         reportButton.setImage(UIImage(named: "meet_Flag_2_25"), for: .normal)

@@ -379,12 +379,9 @@ class MeetVideoTableViewController: UITableViewController {
         reportButton.setImage(UIImage(named: "meet_Flag_2_25"), for: .normal)
         reportButton.addTarget(self, action:#selector(showReportAction), for: .touchUpInside)
         let toUserID = mediaIntroQueueList[selectedUserAtIndexPath!]["userID"] as! String
-        if toUserID == Constants.userID {
-            reportButton.isHidden = true
+        if toUserID != Constants.userID {
+            overlayView.addSubview(reportButton)
         }
-        overlayView.addSubview(reportButton)
-        
-
         
         let replayButton = UIButton(frame:CGRect(x: 0,y: 10,width: avPlayerViewController.view.bounds.width, height: avPlayerViewController.view.bounds.height - 190))
         replayButton.setTitle("", for:UIControlState())
@@ -398,8 +395,6 @@ class MeetVideoTableViewController: UITableViewController {
         overlayView.addSubview(meetButton)
         
         avPlayerViewController.view.addSubview(overlayView);
-        
-        
         
     }
     
