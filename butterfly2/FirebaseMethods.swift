@@ -371,12 +371,21 @@ func getMeetMedia(_ callBack: @escaping ([MeetMedia]) -> ()) {
      If our user base ever gets large, the list of A is bound to be vastly large than the list of B, not to mention the potential privacy issues of downloading personal intros not meant to be seen by the current user to every user's phone.
      Another PRO to using method B is that we will probably eventually prune the database list by deleting older entries than 24 hours. So our filter here will still work, and we won't have to filter by the latest 24 hours in the iOS code.
      
-     Therefore we have chosen option B.
+     Therefore we have chosen option B
      
      */
     // NEW UPDATE OCT 14
     // MEET_MEDIA has been renamed to meet_media_for_userID, and the structure has been changed to be based on /userID/meet_media_ID
     // this allows for faster database calls because we can index on the userID
+    
+    
+    
+    // Nov 29 added filter for blocked IDs
+    var blockList = [String]()
+    getBlockList({
+        list in
+        blockList = list
+    })
     
     
     // timeIntervalSince1970 takes seconds, while the timestamp from firebase is in milliseconds
@@ -413,8 +422,11 @@ func getMeetMedia(_ callBack: @escaping ([MeetMedia]) -> ()) {
                 let unsent_notification = childDic?["unsent_notification"] as? Bool
                 
                 let newMeetMedia = MeetMedia(fromUserID: fromUserID!, mediaID: mediaID!, mediaType: mediaType!, timestamp: timestamp!, title: title!, toUserID: toUserID!, unread: unread!, unsent_notification: unsent_notification!)
-
-                fetchedMeetMedia.append(newMeetMedia)
+                
+                //blockedUser filter
+                if !blockList.contains(fromUserID!) {
+                    fetchedMeetMedia.append(newMeetMedia)
+                }
                 
             }
 
@@ -461,6 +473,7 @@ func updateChatMetaNotifiedFor(_ chatMetaID: String) {
     chatMetaIDRef.updateChildValues(dic)
 }
 
+
 func observeChatActiveStatusFor(chatID: String, callback: @escaping (Bool) -> ()) {
     let userIDRef = Constants.USERS_REF.child(Constants.userID)
     // delete entry in /users/userID/chats -> chatID
@@ -505,6 +518,74 @@ func checkIfMatched(currentUserID: String, withUserID: String, callback: @escapi
         callback(exists)
     })
 }
+
+// MARK: Reports
+
+func reportUserInDatabase(type: Int, userIDToReport: String, text: String) {
+    // types: "inappropriateContent" (1), "spamOrFakeUser" (2), "harassment" (3), "other" (4)
+    
+    // reportedUsers
+    //   userID:
+    //      types: 1
+    //      fromUser:
+    //      toUser (not necessary? it's the key)
+    //      text: ""
+    let reportRef = Constants.REPORTED_USERS_REF.child(userIDToReport).childByAutoId()
+
+    let dic: [String : Any] = [
+        "type": type,
+        "timestamp": Constants.firebaseServerValueTimestamp,
+        "fromUserID": Constants.userID,
+        "text": text
+    ]
+    
+    reportRef.setValue(dic)
+
+}
+
+func blockUser(userIDToBlock: String) {
+    //   users/userID/blockedUserIDs:
+    //          userID1: true, userID2:true
+    let blockedUserIDsRef = Constants.USERS_REF.child(Constants.userID).child("/blockedUserIDs")
+    
+    let dic: [String : Any] = [
+        userIDToBlock: "true"
+    ]
+    
+    blockedUserIDsRef.setValue(dic)
+    
+    // add block for the reporting user too
+    let reportingUserIDRef = Constants.USERS_REF.child(userIDToBlock).child("/blockedUserIDs")
+
+    let dic2: [String : Any] = [
+        Constants.userID: "true"
+    ]
+    
+    reportingUserIDRef.setValue(dic2)
+    
+}
+
+
+func getBlockList(_ callBack: @escaping ([String]) -> ()) {
+    let blockedUsersRef = Constants.USERS_REF.child(Constants.userID).child("blockedUserIDs")
+    
+    blockedUsersRef.observe(FIRDataEventType.value, with: { snapshot in
+        
+        var blockedUsers = [String]()
+        
+        let snapDic = snapshot.value as? NSDictionary
+        
+        if snapDic != nil {
+            blockedUsers = snapDic!.allKeys as! [String]
+            print (snapDic!.allKeys)
+            for child in (snapDic!.allKeys) {
+                print("child: \(child)")
+            }
+        }
+        callBack(blockedUsers)
+    })
+}
+
 
 
 func convertTimestampInMillisecondsToDate(timestamp: Double) -> String {

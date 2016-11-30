@@ -312,11 +312,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/MeetVideoTableViewController.swift"
-            timestampString = "499738979.200158"
+            timestampString = "502160776.377633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "getLocalIntroductions()"
             landmarkType = "7">
          </BreakpointContent>
@@ -344,11 +344,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/MeetVideoTableViewController.swift"
-            timestampString = "499738979.200158"
+            timestampString = "502160776.377633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
             landmarkName = "playVideoAtCell(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -360,11 +360,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/MeetVideoTableViewController.swift"
-            timestampString = "499738979.200158"
+            timestampString = "502160776.377633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "getLocalIntroductions()"
             landmarkType = "7">
          </BreakpointContent>
@@ -392,11 +392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/MeetVideoTableViewController.swift"
-            timestampString = "499738979.200158"
+            timestampString = "502160776.377633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "getLocalIntroductions()"
             landmarkType = "7">
          </BreakpointContent>
@@ -408,11 +408,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/MeetVideoTableViewController.swift"
-            timestampString = "499738979.200158"
+            timestampString = "502160776.377633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "getLocalIntroductions()"
             landmarkType = "7">
          </BreakpointContent>
@@ -424,11 +424,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/MeetVideoTableViewController.swift"
-            timestampString = "499738979.200158"
+            timestampString = "502160776.377633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "getLocalIntroductions()"
             landmarkType = "7">
          </BreakpointContent>
@@ -440,11 +440,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/MeetVideoTableViewController.swift"
-            timestampString = "499738979.200158"
+            timestampString = "502160776.377633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "getLocalIntroductions()"
             landmarkType = "7">
          </BreakpointContent>
@@ -456,27 +456,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/MeetVideoTableViewController.swift"
-            timestampString = "499738979.200158"
+            timestampString = "502160776.377633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "getLocalIntroductions()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "butterfly2/MeetVideoTableViewController.swift"
-            timestampString = "499738979.200158"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "getLocalIntroductions()"
             landmarkType = "7">
          </BreakpointContent>
@@ -520,7 +504,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/IntroTableViewController.swift"
-            timestampString = "498594153.354547"
+            timestampString = "502159928.451507"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "161"
@@ -568,11 +552,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/FirebaseMethods.swift"
-            timestampString = "499024652.935736"
+            timestampString = "502160647.61968"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
+            startingLineNumber = "448"
+            endingLineNumber = "448"
             landmarkName = "updateMeetMediaReadFor(_:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -664,7 +648,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/IntroTableViewController.swift"
-            timestampString = "498594153.354547"
+            timestampString = "502159928.451507"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
@@ -872,11 +856,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/FirebaseMethods.swift"
-            timestampString = "499024652.935736"
+            timestampString = "502160647.61968"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "474"
-            endingLineNumber = "474"
+            startingLineNumber = "487"
+            endingLineNumber = "487"
             landmarkName = "observeChatActiveStatusFor(chatID:callback:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -888,11 +872,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/FirebaseMethods.swift"
-            timestampString = "499024652.935736"
+            timestampString = "502160647.61968"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "475"
-            endingLineNumber = "475"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
             landmarkName = "observeChatActiveStatusFor(chatID:callback:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -1000,11 +984,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/MeetVideoTableViewController.swift"
-            timestampString = "499738979.200158"
+            timestampString = "502160776.377633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
             landmarkName = "getDownloadURL(_:callback:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1112,11 +1096,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/FirebaseMethods.swift"
-            timestampString = "499738941.010213"
+            timestampString = "502172248.284131"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "699"
-            endingLineNumber = "699"
+            startingLineNumber = "780"
+            endingLineNumber = "780"
             landmarkName = "setUserAdminStatusToDefaults()"
             landmarkType = "9">
          </BreakpointContent>
@@ -1230,6 +1214,133 @@
             startingLineNumber = "108"
             endingLineNumber = "108"
             landmarkName = "prepare(for:sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "butterfly2/ReportUserViewController.swift"
+            timestampString = "502148192.681663"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "otherButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "butterfly2/MeetVideoTableViewController.swift"
+            timestampString = "502160829.251906"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "getLocalIntroductions()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "butterfly2/MeetVideoTableViewController.swift"
+            timestampString = "502160940.397719"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "getLocalIntroductions()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "butterfly2.MeetVideoTableViewController.getLocalIntroductions () -&gt; ()"
+                  moduleName = "butterfly2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/airjaw/Dropbox/dev/butterfly2/butterfly2/MeetVideoTableViewController.swift"
+                  timestampString = "502160940.727231"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "butterfly2.MeetVideoTableViewController.(getLocalIntroductions () -&gt; ()).(closure #1)"
+                  moduleName = "butterfly2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/airjaw/Dropbox/dev/butterfly2/butterfly2/MeetVideoTableViewController.swift"
+                  timestampString = "502160940.73038"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "butterfly2.MeetVideoTableViewController.(getLocalIntroductions () -&gt; ()).(closure #3)"
+                  moduleName = "butterfly2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/airjaw/Dropbox/dev/butterfly2/butterfly2/MeetVideoTableViewController.swift"
+                  timestampString = "502160940.732687"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "butterfly2/MeetVideoTableViewController.swift"
+            timestampString = "502160964.720118"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "449"
+            endingLineNumber = "449"
+            landmarkName = "handleRefresh(refreshControl:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "butterfly2/MeetVideoTableViewController.swift"
+            timestampString = "502161006.305498"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "getLocalIntroductions()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

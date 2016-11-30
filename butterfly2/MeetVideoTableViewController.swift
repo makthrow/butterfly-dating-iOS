@@ -66,12 +66,13 @@ class MeetVideoTableViewController: UITableViewController {
             defaults.set(false, forKey: "needToUpdateMatches")
         }
         
-        if !getUserAdminStatusFromDefaults() {
-            getLocalIntroductions()
-        }
-        else {
-            getIntroductionsForAdmin()
-        }
+//        if !getUserAdminStatusFromDefaults() {
+//            getLocalIntroductions()
+//        }
+//        else {
+//            getIntroductionsForAdmin()
+//        }
+        getLocalIntroductions()
         avPlayerViewController.showsPlaybackControls = false
     }
     
@@ -89,6 +90,13 @@ class MeetVideoTableViewController: UITableViewController {
                 mediaLocationKeysWithinRadius.append(key!)
             })
         }
+        
+        // Nov 29 added filter for blocked IDs
+        var blockList = [String]()
+        getBlockList({
+            list in
+            blockList = list
+        })
         
         // timeIntervalSince1970 takes seconds, while the timestamp from firebase is in milliseconds
         let currentTimeInMilliseconds = Date().timeIntervalSince1970 * 1000
@@ -146,7 +154,7 @@ class MeetVideoTableViewController: UITableViewController {
                     //  key is found in the array of local mediaID from circleQuery
 //                    print ("mediaLocationKeysWithinRadius: \(mediaLocationKeysWithinRadius)")
                     
-                    if mediaLocationKeysWithinRadius.contains(mediaID!) {
+                    if mediaLocationKeysWithinRadius.contains(mediaID!) && !blockList.contains(userID!){
                         
                         mediaInfoDic = [
                             "mediaID": mediaID!,
@@ -157,7 +165,7 @@ class MeetVideoTableViewController: UITableViewController {
                             "name": name,
                             "gender": gender
                         ]
-                        
+
                         newItems.append(mediaInfoDic!)
                         self.mediaIntroQueueList = newItems
                         self.tableView.reloadData()
@@ -364,13 +372,19 @@ class MeetVideoTableViewController: UITableViewController {
         //        btnNext.layer.borderWidth = 1.0
         passButton.setImage(UIImage(named: "Meet_Cancel_75"), for: UIControlState.normal)
         overlayView.addSubview(passButton)
-        
+
         let bottomMiddleRect = CGRect(x: (avPlayerViewController.view.bounds.width/2) - 30, y:avPlayerViewController.view.bounds.height - 70, width: 70, height: 70)
         let reportButton = UIButton(frame:bottomMiddleRect)
         reportButton.setTitle("", for: UIControlState())
         reportButton.setImage(UIImage(named: "meet_Flag_2_25"), for: .normal)
         reportButton.addTarget(self, action:#selector(showReportAction), for: .touchUpInside)
+        let toUserID = mediaIntroQueueList[selectedUserAtIndexPath!]["userID"] as! String
+        if toUserID == Constants.userID {
+            reportButton.isHidden = true
+        }
         overlayView.addSubview(reportButton)
+        
+
         
         let replayButton = UIButton(frame:CGRect(x: 0,y: 10,width: avPlayerViewController.view.bounds.width, height: avPlayerViewController.view.bounds.height - 190))
         replayButton.setTitle("", for:UIControlState())
@@ -384,6 +398,8 @@ class MeetVideoTableViewController: UITableViewController {
         overlayView.addSubview(meetButton)
         
         avPlayerViewController.view.addSubview(overlayView);
+        
+        
         
     }
     
@@ -426,13 +442,14 @@ class MeetVideoTableViewController: UITableViewController {
         mediaIntroQueueList.removeAll()
         getUserLocation()
         
-        if !getUserAdminStatusFromDefaults() {
-            getLocalIntroductions()
-        }
-        else {
-            getIntroductionsForAdmin()
-        }
+//        if !getUserAdminStatusFromDefaults() {
+//            getLocalIntroductions()
+//        }
+//        else {
+//            getIntroductionsForAdmin()
+//        }
 
+        getLocalIntroductions()
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
@@ -458,9 +475,20 @@ class MeetVideoTableViewController: UITableViewController {
     }
     
     func reportUser() {
+        let reportUserVC:ReportUserViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReportUser") as! ReportUserViewController
+        
+        reportUserVC.userIDToReport = userIDFromMatch(selectedUserAtIndexPath!)
+        
+        topMostController().present(reportUserVC, animated: false, completion: nil)
         
     }
     
+    func userIDFromMatch(_ selectedUserAtIndexPath: Int) -> String {
+        let userID = mediaIntroQueueList[selectedUserAtIndexPath]["userID"] as! String
+        return userID
+    }
+    
+    //MARK: Alerts
     
     func showMeetErrorAlert(reason: String?) {
         let title = "Error"

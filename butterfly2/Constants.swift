@@ -78,6 +78,9 @@ struct Constants {
     // TABLE: "CONTACT"
     static let CONTACT_REF = databaseRef.child("contact")
     
+    // TABLE: "REPORTED_USERS"
+    static let REPORTED_USERS_REF = databaseRef.child("reported_users")
+    
     // Geofire
     static let geoFireUsers = GeoFire(firebaseRef: USER_LOCATIONS_REF)
     static let geoFireMedia = GeoFire(firebaseRef: MEDIA_LOCATION_REF)

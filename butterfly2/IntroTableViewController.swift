@@ -46,6 +46,7 @@ class IntroTableViewController: UITableViewController {
     var currentVideoIndex: Int = 0
     
     var meetMedia = [MeetMedia]()
+    var blockedUserList:[String] = []
     
     var selectedUserAtIndexPath: Int?
     
@@ -76,7 +77,6 @@ class IntroTableViewController: UITableViewController {
             self.meetMedia = meetMedia
             self.tableView.reloadData()
         })
-
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -177,7 +177,6 @@ class IntroTableViewController: UITableViewController {
     }
 
     func videoItemFinished (_ notification: Notification) {
-//        print ("video ended")
         addContentOverlayView()
     }
 
@@ -276,21 +275,11 @@ class IntroTableViewController: UITableViewController {
     
     func reportUser() {
         
-//        DispatchQueue.main.async(execute: {
-//            [unowned self] in
-//            self.performSegue(withIdentifier: Constants.InboxToReportVC, sender: self)
-//        })
-//        OperationQueue.main.addOperation {
-//            [weak self] in
-//            self?.performSegue(withIdentifier: Constants.InboxToReportVC, sender: self)
-//        }
-        
         let reportUserVC:ReportUserViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReportUser") as! ReportUserViewController
         
         reportUserVC.userIDToReport = userIDFromMatch(selectedUserAtIndexPath!)
 
         topMostController().present(reportUserVC, animated: false, completion: nil)
-
 
     }
     
