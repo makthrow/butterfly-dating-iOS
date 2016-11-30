@@ -281,11 +281,13 @@ class MeetVideoTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "videoIntroCell", for: indexPath)
         
         // custom purple
-//        cell.textLabel?.textColor = UIColor(red: 52/255, green: 0/255, blue: 127/255, alpha: 1)
-        cell.textLabel?.textColor = UIColor.white
+        let purpleUIColor = UIColor(red: 52/255, green: 0/255, blue: 127/255, alpha: 1)
+        
+        cell.textLabel?.textColor = purpleUIColor
+
         cell.textLabel?.highlightedTextColor = UIColor.white
         
-        cell.textLabel?.font = UIFont(name: "Noteworthy", size: 20.0)
+        cell.textLabel?.font = UIFont(name: "Helvetica", size: 20.0)
 //        cell.textLabel?.backgroundColor = UIColor(red: 52/255, green: 0/255, blue: 127/255, alpha: 1)
         let title = mediaIntroQueueList[(indexPath as NSIndexPath).section]["title"] as? String
         let name = mediaIntroQueueList[(indexPath as NSIndexPath).section]["name"] as? String
@@ -294,8 +296,7 @@ class MeetVideoTableViewController: UITableViewController {
         if userID == Constants.userID {
             // this is the user's own introduction video.
             cell.textLabel?.text = "You: \(title ?? "")"
-            cell.textLabel?.textColor = UIColor.yellow
-            cell.textLabel?.font = UIFont(name: "Noteworthy-Bold", size: 20.0)
+            cell.textLabel?.textColor = UIColor.red
 
         }
         else {
@@ -421,6 +422,8 @@ class MeetVideoTableViewController: UITableViewController {
     
     func closeVideo() {
         overlayView.isHidden = true
+        
+        overlayView.removeFromSuperview()
 
         currentlyPlayingVideo = false
         dismiss(animated: true, completion: nil)

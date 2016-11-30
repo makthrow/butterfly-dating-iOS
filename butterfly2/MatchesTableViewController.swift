@@ -72,10 +72,10 @@ class MatchesTableViewController: UITableViewController {
         // You've MATCHED! Code
         if lastSenderID == "none" {
             if (unread == true) {
-                cell.nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+                cell.nameLabel.font = UIFont(name: "Helvetica-Bold", size: 20.0)
             }
             else {
-                cell.nameLabel.font = UIFont.systemFont(ofSize: 16)
+                cell.nameLabel.font = UIFont(name: "Helvetica", size: 20.0)
             }
             
             cell.nameLabel.textColor = UIColor.red

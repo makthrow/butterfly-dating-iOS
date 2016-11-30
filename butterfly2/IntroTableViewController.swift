@@ -109,13 +109,15 @@ class IntroTableViewController: UITableViewController {
         if (unread) {
 //            cell.textLabel?.textColor = UIColor(red: 200/255, green: 21/255, blue: 137/255, alpha: 1)
             
-            cell.textLabel?.textColor = UIColor.white
+            cell.textLabel?.textColor = UIColor.red
         }
         else {
-            cell.textLabel?.textColor = UIColor(red: 200/255, green: 149/255, blue: 186/255, alpha: 1)
+//            cell.textLabel?.textColor = UIColor(red: 200/255, green: 149/255, blue: 186/255, alpha: 1)
+            cell.textLabel?.textColor = UIColor.red
+
         }
 
-        cell.textLabel?.font = UIFont(name: "Noteworthy", size: 20.0)
+        cell.textLabel?.font = UIFont(name: "Helvetica", size: 20.0)
         cell.textLabel?.text = meetMedia[(indexPath as NSIndexPath).section].title
         
         return cell
