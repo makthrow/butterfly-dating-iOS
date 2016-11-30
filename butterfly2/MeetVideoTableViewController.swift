@@ -379,8 +379,10 @@ class MeetVideoTableViewController: UITableViewController {
         reportButton.setImage(UIImage(named: "meet_Flag_2_25"), for: .normal)
         reportButton.addTarget(self, action:#selector(showReportAction), for: .touchUpInside)
         let toUserID = mediaIntroQueueList[selectedUserAtIndexPath!]["userID"] as! String
-        if toUserID != Constants.userID {
-            overlayView.addSubview(reportButton)
+        overlayView.addSubview(reportButton)
+        
+        if toUserID == Constants.userID {
+            reportButton.isHidden = true
         }
         
         let replayButton = UIButton(frame:CGRect(x: 0,y: 10,width: avPlayerViewController.view.bounds.width, height: avPlayerViewController.view.bounds.height - 190))
@@ -452,20 +454,39 @@ class MeetVideoTableViewController: UITableViewController {
     
     func showReportAction() {
         
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let toUserID = mediaIntroQueueList[selectedUserAtIndexPath!]["userID"] as! String
         
-        let reportAction = UIAlertAction(title: "Report this User",
-                                         style: .default) { [unowned self](action: UIAlertAction) -> Void in
-                                            
-                                            self.reportUser()
-                                            
+        if toUserID == Constants.userID {
+            let title = "Error"
+            var message = "You Can't Report Yourself"
+
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Aww, OK...", style: .cancel) { (action) in
+                self.closeVideo()
+            }
+            alertController.addAction(okAction)
+            topMostController().present(alertController, animated: true, completion: nil)
+        }
+        else {
+            
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            let reportAction = UIAlertAction(title: "Report this User",
+                                             style: .default) { [unowned self](action: UIAlertAction) -> Void in
+                                                
+                                                self.reportUser()
+                                                
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            }
+            alertController.addAction(reportAction)
+            alertController.addAction(cancelAction)
+            topMostController().present(alertController, animated: true, completion: nil)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-        }
-        alertController.addAction(reportAction)
-        alertController.addAction(cancelAction)
-        topMostController().present(alertController, animated: true, completion: nil)
+
         
     }
     
