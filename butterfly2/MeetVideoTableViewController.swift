@@ -66,12 +66,12 @@ class MeetVideoTableViewController: UITableViewController {
             defaults.set(false, forKey: "needToUpdateMatches")
         }
         
-//        if !getUserAdminStatusFromDefaults() {
-//            getLocalIntroductions()
-//        }
-//        else {
-//            getIntroductionsForAdmin()
-//        }
+        if !getUserAdminStatusFromDefaults() {
+            getLocalIntroductions()
+        }
+        else {
+            getIntroductionsForAdmin()
+        }
         getLocalIntroductions()
         avPlayerViewController.showsPlaybackControls = false
     }
@@ -442,12 +442,12 @@ class MeetVideoTableViewController: UITableViewController {
         mediaIntroQueueList.removeAll()
         getUserLocation()
         
-//        if !getUserAdminStatusFromDefaults() {
-//            getLocalIntroductions()
-//        }
-//        else {
-//            getIntroductionsForAdmin()
-//        }
+        if !getUserAdminStatusFromDefaults() {
+            getLocalIntroductions()
+        }
+        else {
+            getIntroductionsForAdmin()
+        }
 
         getLocalIntroductions()
         self.tableView.reloadData()
