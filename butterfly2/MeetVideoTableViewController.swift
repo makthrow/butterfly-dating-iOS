@@ -72,7 +72,6 @@ class MeetVideoTableViewController: UITableViewController {
         else {
             getIntroductionsForAdmin()
         }
-        getLocalIntroductions()
         avPlayerViewController.showsPlaybackControls = false
     }
     
@@ -449,7 +448,6 @@ class MeetVideoTableViewController: UITableViewController {
             getIntroductionsForAdmin()
         }
 
-        getLocalIntroductions()
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }

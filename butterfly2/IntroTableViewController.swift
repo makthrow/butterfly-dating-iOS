@@ -372,7 +372,7 @@ class IntroTableViewController: UITableViewController {
 
     func showVideoErrorAlert() {
         let title = "Error"
-        var message = "We ran into an error showing this video"
+        let message = "We ran into an error showing this video"
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         

@@ -67,7 +67,7 @@ class MatchesTableViewController: UITableViewController {
         let unread = chatsMeta[(indexPath as NSIndexPath).row].unread
         let lastSenderID = chatsMeta[(indexPath as NSIndexPath).row].lastSender
 
-        var withUserName  = chatsMeta[(indexPath as NSIndexPath).row].withUserName
+        let withUserName  = chatsMeta[(indexPath as NSIndexPath).row].withUserName
         
         let fontHelveticaBoldSize20 = UIFont(name: "Helvetica-Bold", size: 20.0)
         let fontHelveticaSize20 = UIFont(name: "Helvetica", size: 20.0)

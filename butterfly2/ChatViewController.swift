@@ -57,7 +57,7 @@ class ChatViewController: JSQMessagesViewController {
     
     // Mark: JSQMessagesViewController required methods
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
-        var data = self.messages[indexPath.item]
+        let data = self.messages[indexPath.item]
         return data
     }
     
