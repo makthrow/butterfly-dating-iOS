@@ -476,9 +476,7 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
                 CamViewController.setFlashMode(AVCaptureFlashMode.off, device: self.videoDeviceInput!.device)
                 
                 let outputFilePath  =
-                    URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("movie.mov")
-                
-                //NSTemporaryDirectory().stringByAppendingPathComponent( "movie".stringByAppendingPathExtension("mov")!)
+                    URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("movie.mp4")
                 
                 self.movieFileOutput!.startRecording( toOutputFileURL: outputFilePath, recordingDelegate: self)
                 

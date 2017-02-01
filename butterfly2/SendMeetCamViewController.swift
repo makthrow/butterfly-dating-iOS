@@ -481,7 +481,7 @@ class SendMeetCamViewController: UIViewController, AVCaptureFileOutputRecordingD
                 CamViewController.setFlashMode(AVCaptureFlashMode.off, device: self.videoDeviceInput!.device)
                 
                 let outputFilePath  =
-                    URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("movie.mov")
+                    URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("movie.mp4")
                 
                 //NSTemporaryDirectory().stringByAppendingPathComponent( "movie".stringByAppendingPathExtension("mov")!)
                 
