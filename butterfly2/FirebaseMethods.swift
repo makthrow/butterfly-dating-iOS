@@ -31,7 +31,7 @@ func setupNewChatWith(_ matchedUserID: String) {
     let userChatsRef = userIDRef.child("chats")
     let newChatIDRef = userChatsRef.childByAutoId()
     let newChatID = newChatIDRef.key
-    newChatIDRef.setValue("true")
+    newChatIDRef.setValue(true)
     // new entry in /users/userID/chats_with_users  -> userID
     let userChatsWithUsersRef = userIDRef.child("chats_with_users")
     userChatsWithUsersRef.setValue(["\(matchedUserID)": true])
@@ -41,7 +41,7 @@ func setupNewChatWith(_ matchedUserID: String) {
     // new entry in /users/userID/chats -> chatID
     let withUserChatsRef = withUserIDRef.child("chats")
     let withUserNewChatIDRef = withUserChatsRef.child(newChatID) // be sure to use the same chatID from earlier
-    withUserNewChatIDRef.setValue("true")
+    withUserNewChatIDRef.setValue(true)
     // new entry in /users/userID/chats_with_users  -> userID
     let withUserChatsWithUsersRef = withUserIDRef.child("chats_with_users")
     withUserChatsWithUsersRef.setValue(["\(Constants.userID)": true])
@@ -549,7 +549,7 @@ func blockUser(userIDToBlock: String) {
     let blockedUserIDsRef = Constants.USERS_REF.child(Constants.userID).child("/blockedUserIDs")
     
     let dic: [String : Any] = [
-        userIDToBlock: "true"
+        userIDToBlock: true
     ]
     
     blockedUserIDsRef.setValue(dic)
@@ -558,7 +558,7 @@ func blockUser(userIDToBlock: String) {
     let reportingUserIDRef = Constants.USERS_REF.child(userIDToBlock).child("/blockedUserIDs")
 
     let dic2: [String : Any] = [
-        Constants.userID: "true"
+        Constants.userID: true
     ]
     
     reportingUserIDRef.setValue(dic2)
