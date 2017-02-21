@@ -34,7 +34,7 @@ func uploadVideoToMediaInfo(_ videoURL: URL, title: String) {
             print ("upload success")
                 
             // if SUCCESS in upload to FIREBASE STORAGE, upload video info to FIREBASE DATABASE
-            uploadVideoInfoToDatabase(title: title, mediaID: mediaID)
+            uploadMediaInfoToDatabase(title: title, mediaID: mediaID)
         }
     }
 }
@@ -67,22 +67,13 @@ func uploadVideoToMeetMedia(_ videoURL: URL, title: String, toUserID: String, cu
             
             // -----------FIREBASE DATABASE-----------
             //upload video info to Firebase real-time database (separate from the video file itself which goes to Firebase storage, with the title we generate above)
-            
-            // create and upload video info data
-            if let newVideoPost = setupMeetMediaToSave(mediaID: mediaID, userID: (Constants.userID), toUserID: toUserID, title: title, mediaType: currentMediaTypeToUpload) {
-                
-                let meetMediaUserRef = Constants.MEET_MEDIA_REF.child(toUserID)
-                let newVideoPostChild = meetMediaUserRef.child(mediaID)
-                
-                newVideoPostChild.setValue(newVideoPost)
-                
-            }
+            uploadMeetMediaInfoToDatabase(mediaID: mediaID, userID: Constants.userID, toUserID: toUserID, title: title, mediaType: currentMediaTypeToUpload)
             
         }
     }
 }
 
-func uploadVideoInfoToDatabase(title: String, mediaID: String) {
+func uploadMediaInfoToDatabase(title: String, mediaID: String) {
     
     getUserLocation()
     Constants.geoFireMedia?.setLocation(currentLocation, forKey: mediaID )
@@ -91,18 +82,18 @@ func uploadVideoInfoToDatabase(title: String, mediaID: String) {
     //upload video info to Firebase real-time database (separate from the video file itself which goes to Firebase storage, with the title we generate above)
     
     // create and upload video info data
-    if let newVideoPost = setupMediaInfoToSave(title, mediaID: mediaID, userID: (Constants.userID)) {
+    if let newMediaInfoPost = setupMediaInfoToSave(title, mediaID: mediaID, userID: (Constants.userID)) {
         
-        let newVideoPostChild = Constants.MEDIA_INFO_REF.child(mediaID)
+        let newMediaInfoChildRef = Constants.MEDIA_INFO_REF.child(mediaID)
         
-        newVideoPostChild.setValue(newVideoPost)
+        newMediaInfoChildRef.setValue(newMediaInfoPost)
         
     }
 }
 
 func setupMediaInfoToSave(_ title: String, mediaID: String, userID: String)-> Dictionary<String, Any>? {
     
-    var videoInfoDic: Dictionary<String, Any>?
+    var mediaInfoDic: Dictionary<String, Any>?
     /*
      video_info_table: {
      { videoID : unique ID}  referencing video
@@ -119,7 +110,7 @@ func setupMediaInfoToSave(_ title: String, mediaID: String, userID: String)-> Di
     
     if (name != nil && gender != nil) { // age == 0  take out age for now until facebook approves birthday info
         
-        videoInfoDic = [
+        mediaInfoDic = [
             "mediaID": mediaID,
             "timestamp": Constants.firebaseServerValueTimestamp,
             "userID": userID,
@@ -166,7 +157,20 @@ func setupMediaInfoToSave(_ title: String, mediaID: String, userID: String)-> Di
 //
 //    }
     
-    return videoInfoDic
+    return mediaInfoDic
+}
+
+func uploadMeetMediaInfoToDatabase(mediaID: String, userID: String, toUserID: String, title: String, mediaType: String) {
+    
+    // create and upload video info data
+    if let newMeetMedia = setupMeetMediaToSave(mediaID: mediaID, userID: (Constants.userID), toUserID: toUserID, title: title, mediaType: mediaType) {
+        
+        let meetMediaUserRef = Constants.MEET_MEDIA_REF.child(toUserID)
+        let newMeetMediaChildRef = meetMediaUserRef.child(mediaID)
+        
+        newMeetMediaChildRef.setValue(newMeetMedia)
+        
+    }
 }
 
 

@@ -1000,11 +1000,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/FirebaseUploads.swift"
-            timestampString = "499311718.026392"
+            timestampString = "509405453.960576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "setupMediaInfoToSave(_:mediaID:userID:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -1016,11 +1016,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/FirebaseUploads.swift"
-            timestampString = "499311718.678871"
+            timestampString = "509405453.960576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "setupMediaInfoToSave(_:mediaID:userID:)"
             landmarkType = "9">
          </BreakpointContent>
