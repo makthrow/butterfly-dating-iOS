@@ -53,8 +53,7 @@ func uploadVideoToMeetMedia(_ videoURL: URL, title: String, toUserID: String, cu
     
     // -----------FIREBASE STORAGE-----------
     // upload video file to Firebase storage
-    let mediaRef = Constants.storageRef.child("media")
-    let newMediaRef = mediaRef.child(mediaID)
+    let newMediaRef = Constants.storageMediaRef.child(mediaID)
     
     // NSURL for video
     let uploadTask = newMediaRef.putFile(videoURL, metadata: nil) { metadata, error in
