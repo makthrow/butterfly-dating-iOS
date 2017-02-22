@@ -220,7 +220,7 @@ func uploadImage(fileToUploadDATA: Data, mediaID: String) {
 func uploadFBUserInfo(name: String, birthday: String, gender: String, first_name: String, last_name: String, pictureURL: String, email: String) {
     if let newFBUserInfoPost = setupFBUserInfoDic(name: name, birthday: birthday, gender: gender, first_name: first_name, last_name: last_name, pictureURL: pictureURL, email: email)
     {
-        let userIDRef = Constants.databaseRef.child("users/\(Constants.userID)/")
+        let userIDRef = Constants.USERS_REF.child(Constants.userID)
         let userFacebookInfoRef = userIDRef.child("facebook_info")
         
         userFacebookInfoRef.setValue(newFBUserInfoPost)

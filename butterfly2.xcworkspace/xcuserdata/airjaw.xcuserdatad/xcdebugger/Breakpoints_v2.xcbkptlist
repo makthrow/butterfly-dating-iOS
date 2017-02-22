@@ -1096,11 +1096,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/FirebaseMethods.swift"
-            timestampString = "502172248.284131"
+            timestampString = "509495262.557272"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "780"
-            endingLineNumber = "780"
+            startingLineNumber = "781"
+            endingLineNumber = "781"
             landmarkName = "setUserAdminStatusToDefaults()"
             landmarkType = "9">
          </BreakpointContent>

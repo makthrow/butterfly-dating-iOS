@@ -38,7 +38,7 @@ func getUserInfoFromFacebook() {
             //                print (largerPicURL)
             do {
                 let data = try Data(contentsOf: largerPicURL!)
-                let profilePicStorageRef = Constants.storageFBProfilePicRef.child("\(Constants.userID).jpg")
+                let profilePicStorageRef = Constants.storageFBProfilePicRef.child(Constants.userID)
                 
                 let task = profilePicStorageRef.put(data, metadata: nil, completion: { (metaData, error) in
                     if (error != nil ) {

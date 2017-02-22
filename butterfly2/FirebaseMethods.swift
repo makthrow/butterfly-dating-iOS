@@ -607,7 +607,8 @@ func convertTimestampInMillisecondsToDate(timestamp: Double) -> String {
 // MARK: Facebook-Related
 
 func getFBProfilePicFor(userID: String, callback:@escaping (UIImage) -> ()) {
-    let fbPhotoRef = Constants.storageFBProfilePicRef.child("\(userID).jpg")
+
+    let fbPhotoRef = Constants.storageFBProfilePicRef.child(userID)
     fbPhotoRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
         print ("called getFBProfilePicFor: \(userID)")
         if (error != nil ) {
