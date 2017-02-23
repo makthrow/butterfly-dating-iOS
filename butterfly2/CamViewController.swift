@@ -139,7 +139,8 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
                     // Because AVCaptureVideoPreviewLayer is the backing layer for AVCamPreviewView and UIView can only be manipulated on main thread.
                     // Note: As an exception to the above rule, it is not necessary to serialize video orientation changes on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
                     
-                    let orientation: AVCaptureVideoOrientation =  AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)!
+                    // always keep the orientation portrait
+                    let orientation: AVCaptureVideoOrientation =  AVCaptureVideoOrientation.portrait
                     
                     (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation = orientation
                     

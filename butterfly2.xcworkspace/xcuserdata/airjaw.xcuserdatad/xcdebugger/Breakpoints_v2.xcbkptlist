@@ -1032,11 +1032,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/CamViewController.swift"
-            timestampString = "502257657.699042"
+            timestampString = "509504565.144019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "428"
-            endingLineNumber = "428"
+            startingLineNumber = "432"
+            endingLineNumber = "432"
             landmarkName = "capture(_:didFinishRecordingToOutputFileAt:fromConnections:error:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1048,11 +1048,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "butterfly2/CamViewController.swift"
-            timestampString = "502257657.699042"
+            timestampString = "509504565.144019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "427"
-            endingLineNumber = "427"
+            startingLineNumber = "431"
+            endingLineNumber = "431"
             landmarkName = "capture(_:didFinishRecordingToOutputFileAt:fromConnections:error:)"
             landmarkType = "7">
          </BreakpointContent>

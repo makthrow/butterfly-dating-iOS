@@ -514,7 +514,7 @@ func checkIfMatched(currentUserID: String, withUserID: String, callback: @escapi
     let chats_with_particular_user_ref = chats_with_users_ref.child(withUserID)
     
     chats_with_particular_user_ref.observeSingleEvent(of: .value, with: { (snapshot) in
-        var exists: Bool = snapshot.exists()
+        let exists: Bool = snapshot.exists()
         callback(exists)
     })
 }
