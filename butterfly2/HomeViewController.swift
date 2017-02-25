@@ -28,36 +28,12 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let loginManager = FBSDKLoginManager()
-        // Do any additional setup after loading the view.
         
         if let user = FIRAuth.auth()?.currentUser {
-            getUserInfoFromFacebook()
             setUserAdminStatusToDefaults()
-            
-            for profile in user.providerData {
-                let providerID = profile.providerID
-                let uid = profile.uid;  // Provider-specific UID
-                let name = profile.displayName
-                let email = profile.email
-                let photoURL = profile.photoURL
-                
-//                print (providerID)
-//                print (uid)
-//                print (name)
-//                print (email)
-//                print (photoURL)
-//                
-                // save Facebook info
-                // displayname, email, photoURL
-                
-            }
         } else {
             // No user is signed in.
         }
-        
-//        NotificationMethods().sendNotifications()
-        
     }
     
 

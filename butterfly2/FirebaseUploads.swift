@@ -94,21 +94,13 @@ func uploadMediaInfoToDatabase(title: String, mediaID: String) {
 func setupMediaInfoToSave(_ title: String, mediaID: String, userID: String)-> Dictionary<String, Any>? {
     
     var mediaInfoDic: Dictionary<String, Any>?
-    /*
-     video_info_table: {
-     { videoID : unique ID}  referencing video
-     {userID }:  ID of the user who created
-     {age: } age of user who created
-     { timestamp} : date/time created
-     {title} : user-entered title for video
-     */
     
     let defaults = UserDefaults.standard
     var name = defaults.object(forKey: "firstName") as? String
     var age = defaults.integer(forKey: "age")
     var gender = defaults.object(forKey: "gender") as? String
     
-    if (name != nil && gender != nil) { // age == 0  take out age for now until facebook approves birthday info
+    if (name != nil && gender != nil) { // TODO: age == 0  take out age for now until facebook approves birthday info
         
         mediaInfoDic = [
             "mediaID": mediaID,
@@ -120,42 +112,6 @@ func setupMediaInfoToSave(_ title: String, mediaID: String, userID: String)-> Di
             "gender": gender!
         ]
     }
-//
-//    else {
-//        // THIS IS REALLY CONVOLUTED CODE THAT SHOULD BE UNNECESSARY. ONLY HERE BECAUSE THERE'S CURRENTLY AN ISSUE WITH FACEBOOK ACCESS TOKEN NOT WORKING AND SOMETIMES THE NSDEFAULTS DON'T GET SET. HOPEFULLY THIS CODE IS NEVER CALLED
-//        print ("*ERROR* ns defaults name, age, gender nil")
-//        getUserFacebookInfoFor(userID: (Constants.userID), callback:  {
-//            dic in
-//            if dic != nil {
-//                let birthday = dic!["birthday"] as? String
-//                let name = dic!["name"] as? String
-//                let pictureURL = dic!["pictureURL"] as? String
-//                let gender = dic!["gender"] as? String
-//                
-//                // save basic settings in standard user defaults: age, gender, first name
-//                let defaults = UserDefaults.standard
-//                if (name != nil && gender != nil && birthday != nil) {
-//                    
-//                    defaults.set(name!, forKey: "firstName")
-//                    defaults.set(gender!, forKey: "gender")
-//                    let currentUserAge = calculateAgeFromDateString(birthdayString: birthday!)
-//                    defaults.set(currentUserAge, forKey: "age")
-//                    
-//                    videoInfoDic = [
-//                        "mediaID": mediaID,
-//                        "timestamp": Constants.firebaseServerValueTimestamp,
-//                        "userID": userID,
-//                        "title": title,
-//                        "age": age,
-//                        "name": name!,
-//                        "gender": gender!
-//                    ]
-//                    
-//                }
-//            }
-//        })
-//
-//    }
     
     return mediaInfoDic
 }
@@ -217,18 +173,17 @@ func uploadImage(fileToUploadDATA: Data, mediaID: String) {
 }
 
 // name, gender, picture, birthday, first_name, last_name"
-func uploadFBUserInfo(name: String, birthday: String, gender: String, first_name: String, last_name: String, pictureURL: String, email: String) {
-    if let newFBUserInfoPost = setupFBUserInfoDic(name: name, birthday: birthday, gender: gender, first_name: first_name, last_name: last_name, pictureURL: pictureURL, email: email)
+func uploadFBUserInfo(name: String, birthday: String, gender: String, first_name: String, last_name: String, pictureURL: String) {
+    if let newFBUserInfoPost = setupFBUserInfoDic(name: name, birthday: birthday, gender: gender, first_name: first_name, last_name: last_name, pictureURL: pictureURL)
     {
         let userIDRef = Constants.USERS_REF.child(Constants.userID)
         let userFacebookInfoRef = userIDRef.child("facebook_info")
         
         userFacebookInfoRef.setValue(newFBUserInfoPost)
     }
-
 }
 
-func setupFBUserInfoDic(name: String, birthday: String, gender: String, first_name: String, last_name: String, pictureURL: String, email: String)-> Dictionary<String, Any>? {
+func setupFBUserInfoDic(name: String, birthday: String, gender: String, first_name: String, last_name: String, pictureURL: String)-> Dictionary<String, Any>? {
     var FBUserInfoDic: Dictionary<String, Any>?
     
     FBUserInfoDic = [
@@ -237,8 +192,7 @@ func setupFBUserInfoDic(name: String, birthday: String, gender: String, first_na
         "birthday": birthday,
         "first_name" : first_name,
         "last_name" : last_name,
-        "pictureURL" : pictureURL,
-        "email" : email
+        "pictureURL" : pictureURL
     ]
     return FBUserInfoDic
 }

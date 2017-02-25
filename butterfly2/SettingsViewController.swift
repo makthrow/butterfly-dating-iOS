@@ -35,7 +35,7 @@ class SettingsViewController: UIViewController {
         
         let name = defaults.object(forKey: "firstName") as? String
         let age = defaults.integer(forKey: "age")
-        if name != nil {
+        if name != nil && age != 0 { // integerForKey returns 0 if not set
             nameLabel.text = "\(name!), \(age)"
         }
     }
