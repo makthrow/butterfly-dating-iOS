@@ -93,4 +93,7 @@ struct Constants {
     static let NewMessage = "New Message"
  
     static let PrivacyTOS_String = ""
+    
+    // COLORS
+    // #34007F PURPLE
 }
