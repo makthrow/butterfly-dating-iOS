@@ -118,19 +118,21 @@ func setupMediaInfoToSave(_ title: String, mediaID: String, userID: String)-> Di
 
 func uploadMeetMediaInfoToDatabase(mediaID: String, userID: String, toUserID: String, title: String, mediaType: String) {
     
+    let defaults = UserDefaults.standard
+    let userGender = defaults.string(forKey: "gender")
+    
     // create and upload video info data
-    if let newMeetMedia = setupMeetMediaToSave(mediaID: mediaID, userID: (Constants.userID), toUserID: toUserID, title: title, mediaType: mediaType) {
+    if let newMeetMedia = setupMeetMediaToSave(mediaID: mediaID, userID: (Constants.userID), toUserID: toUserID, title: title, mediaType: mediaType, userGender: userGender!) {
         
         let meetMediaUserRef = Constants.MEET_MEDIA_REF.child(toUserID)
         let newMeetMediaChildRef = meetMediaUserRef.child(mediaID)
         
         newMeetMediaChildRef.setValue(newMeetMedia)
-        
     }
 }
 
 
-func setupMeetMediaToSave(mediaID: String, userID: String, toUserID: String, title: String, mediaType: String)-> Dictionary<String, Any>? {
+func setupMeetMediaToSave(mediaID: String, userID: String, toUserID: String, title: String, mediaType: String, userGender: String)-> Dictionary<String, Any>? {
     
     var mediaInfoDic: Dictionary<String, Any>?
     /*
@@ -142,6 +144,7 @@ func setupMeetMediaToSave(mediaID: String, userID: String, toUserID: String, tit
      title
      timestamp
      unread: true
+     gender
      */
     
     mediaInfoDic = [
@@ -152,7 +155,8 @@ func setupMeetMediaToSave(mediaID: String, userID: String, toUserID: String, tit
         "toUserID": toUserID,
         "title": title,
         "unread": true,
-        "unsent_notification": true
+        "unsent_notification": true,
+        "gender": userGender
     ]
     
     return mediaInfoDic

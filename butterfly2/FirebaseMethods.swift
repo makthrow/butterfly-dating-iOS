@@ -396,6 +396,11 @@ func getMeetMedia(_ callBack: @escaping ([MeetMedia]) -> ()) {
     
     let meetMediaUserRef = Constants.MEET_MEDIA_REF.child("\(Constants.userID)")
     
+    // GENDER FILTER
+    let defaults = UserDefaults.standard
+    let showMen = defaults.bool(forKey: "men")
+    let showWomen = defaults.bool(forKey: "women")
+    
     let media48HourQuery = meetMediaUserRef
         .queryOrdered(byChild: "timestamp")
         .queryStarting(atValue: currentTimeInMilliseconds - (Constants.twentyFourHoursInMilliseconds * 2))
@@ -420,6 +425,26 @@ func getMeetMedia(_ callBack: @escaping ([MeetMedia]) -> ()) {
                 let mediaType = childDic?["mediaType"] as? String
                 let unread = childDic?["unread"] as? Bool
                 let unsent_notification = childDic?["unsent_notification"] as? Bool
+                let gender = childDic?["gender"] as? String
+                
+                // if gender = "none", then just have them appear for everyone
+                if showMen == true && showWomen == true {
+                    // show all users
+                }
+                else if showMen == false && showWomen == false {
+                    // show all users
+                }
+                else if showMen == false && showWomen == true {
+                    if gender == "male" {
+                        continue // exit loop for this childDic
+                    }
+                }
+                else if showMen == true && showWomen == false {
+                    if gender == "female" {
+                        continue // exit loop for this childDic
+                    }
+                }
+
                 
                 let newMeetMedia = MeetMedia(fromUserID: fromUserID!, mediaID: mediaID!, mediaType: mediaType!, timestamp: timestamp!, title: title!, toUserID: toUserID!, unread: unread!, unsent_notification: unsent_notification!)
                 

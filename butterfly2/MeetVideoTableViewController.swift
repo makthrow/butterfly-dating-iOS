@@ -109,7 +109,6 @@ class MeetVideoTableViewController: UITableViewController {
         let showMen = defaults.bool(forKey: "men")
         let showWomen = defaults.bool(forKey: "women")
         
-        
         let media24HourQuery = Constants.MEDIA_INFO_REF
             .queryOrdered(byChild: "timestamp")
             .queryStarting(atValue: startTime)
@@ -179,7 +178,7 @@ class MeetVideoTableViewController: UITableViewController {
         // special query only available for admins/staff
         
         // DOWNLOAD LIST OF VIDEOS and TITLES
-        // filters: no geographical radius, timestamp within 72 hours
+        // filters: no geographical radius, timestamp within 1 month
 
         var mediaLocationKeysWithinRadius = [String]()
         
@@ -194,7 +193,7 @@ class MeetVideoTableViewController: UITableViewController {
         // timeIntervalSince1970 takes seconds, while the timestamp from firebase is in milliseconds
         let currentTimeInMilliseconds = Date().timeIntervalSince1970 * 1000
         let twentyFourHoursInMilliseconds:Double = 86400000
-        let startTime = currentTimeInMilliseconds - (twentyFourHoursInMilliseconds * 3)
+        let startTime = currentTimeInMilliseconds - (twentyFourHoursInMilliseconds * 31)
         let endTime = currentTimeInMilliseconds
         
         // GENDER FILTER

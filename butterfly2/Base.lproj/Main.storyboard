@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="butterfly_heart_ios" translatesAutoresizingMaskIntoConstraints="NO" id="s3h-oV-aF0">
-                                <rect key="frame" x="37" y="137" width="300" height="294"/>
+                                <rect key="frame" x="37" y="136.5" width="300" height="294"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="294" id="dQn-Ux-ODv"/>
                                 </constraints>
@@ -759,7 +759,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kgg-LG-2eZ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k6Z-EG-K3G">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="k6Z-EG-K3G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -878,7 +878,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OX0-nf-zjn" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="thy-ln-Yny">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="thy-ln-Yny">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -896,7 +896,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="adT-6Q-QPM" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GhM-nY-8su">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GhM-nY-8su">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

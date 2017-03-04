@@ -54,6 +54,10 @@ func getUserInfoFromFacebook(presentingViewController: UIViewController) {
             if gender != nil {
                 defaults.set(gender!, forKey: "gender")
             }
+            else {
+                defaults.set("none", forKey: "gender") // set a default if facebook doesn't specify
+            }
+            
             if birthdayString != nil {
                 let currentUserAge = calculateAgeFromDateString(birthdayString: birthdayString!)
                 defaults.set(currentUserAge, forKey: "age")
