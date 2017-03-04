@@ -1,5 +1,6 @@
+source 'https://github.com/CocoaPods/Specs.git'
 # Uncomment this line to define a global platform for your project
-# platform :ios, '8.0'
+platform :ios, '10.0'
 # Uncomment this line if you're using Swift
 use_frameworks!
 
@@ -21,6 +22,8 @@ pod 'FBSDKLoginKit'
 pod 'FBSDKShareKit'
 pod 'JSQMessagesViewController'
 pod 'RecordButton'
+pod 'Material'
+pod 'SwipeableTabBarController'
 
 end
 

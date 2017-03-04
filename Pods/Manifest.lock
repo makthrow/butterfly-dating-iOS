@@ -124,7 +124,11 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - Material (2.5.2):
+    - Material/Core (= 2.5.2)
+  - Material/Core (2.5.2)
   - RecordButton (1.0.0)
+  - SwipeableTabBarController (1.0.3)
 
 DEPENDENCIES:
   - FBSDKCoreKit
@@ -143,7 +147,9 @@ DEPENDENCIES:
   - Firebase/Storage
   - IQKeyboardManagerSwift
   - JSQMessagesViewController
+  - Material
   - RecordButton
+  - SwipeableTabBarController
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -176,8 +182,10 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: b3015e819559ca76381f87a0833f44d178564603
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  Material: 00ae261fa04dd3f3f8584d07e44ac658fa1bc6fd
   RecordButton: 53e5cea9112aa2f09dccf83e55d3c4645197b58a
+  SwipeableTabBarController: 00170f5f71aacce9af2e58414f4b1f9362fd31b5
 
-PODFILE CHECKSUM: 49445ffcf69c53605caeaba3372a992929bc0d5a
+PODFILE CHECKSUM: b6a2bd598cb61e2a31ba2d0c984ecbacc78045f9
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0
