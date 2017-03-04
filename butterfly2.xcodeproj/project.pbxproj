@@ -27,6 +27,7 @@
 		ED7239EA1DEC9BE900C45840 /* HTMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7239E91DEC9BE900C45840 /* HTMLViewController.swift */; };
 		ED7239EE1DED3ACF00C45840 /* ReportUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7239ED1DED3ACF00C45840 /* ReportUserViewController.swift */; };
 		ED75A3E41D91D6C100906379 /* ChatsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED75A3E31D91D6C100906379 /* ChatsMessage.swift */; };
+		ED86B0491E6AB497007F1BDF /* SwipeableTabBarControllerSub.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED86B0481E6AB497007F1BDF /* SwipeableTabBarControllerSub.swift */; };
 		ED86E5C21D80BC6800628CB5 /* GeoFire.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5B81D80BC6800628CB5 /* GeoFire.m */; };
 		ED86E5C31D80BC6800628CB5 /* GFBase32Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5BB1D80BC6800628CB5 /* GFBase32Utils.m */; };
 		ED86E5C41D80BC6800628CB5 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = ED86E5BD1D80BC6800628CB5 /* GFGeoHash.m */; };
@@ -75,6 +76,7 @@
 		ED7239E91DEC9BE900C45840 /* HTMLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLViewController.swift; sourceTree = "<group>"; };
 		ED7239ED1DED3ACF00C45840 /* ReportUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportUserViewController.swift; sourceTree = "<group>"; };
 		ED75A3E31D91D6C100906379 /* ChatsMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsMessage.swift; sourceTree = "<group>"; };
+		ED86B0481E6AB497007F1BDF /* SwipeableTabBarControllerSub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeableTabBarControllerSub.swift; sourceTree = "<group>"; };
 		ED86E5B01D80B8BE00628CB5 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		ED86E5B31D80BC6100628CB5 /* GeoFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoFire.h; sourceTree = "<group>"; };
 		ED86E5B41D80BC6100628CB5 /* GFCircleQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GFCircleQuery.h; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				ED7239ED1DED3ACF00C45840 /* ReportUserViewController.swift */,
 				EDF63FF51DBEB7C300838954 /* FAQContactViewController.swift */,
 				ED7239E91DEC9BE900C45840 /* HTMLViewController.swift */,
+				ED86B0481E6AB497007F1BDF /* SwipeableTabBarControllerSub.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				EDC3080E1D87604C000A1C16 /* SendMeetCamViewController.swift in Sources */,
 				EDE906C81DB80A89003EE699 /* AppDelegateExtensionNotifications.swift in Sources */,
 				ED0795FD1D4A8D2200FA206E /* CamViewController.swift in Sources */,
+				ED86B0491E6AB497007F1BDF /* SwipeableTabBarControllerSub.swift in Sources */,
 				EDFD95B91D4FCEFA007CB80D /* MeetVideoTableViewController.swift in Sources */,
 				ED0795FB1D4A8CEE00FA206E /* CreateAccountViewController.swift in Sources */,
 				ED7239EE1DED3ACF00C45840 /* ReportUserViewController.swift in Sources */,
