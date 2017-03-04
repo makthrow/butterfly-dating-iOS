@@ -113,8 +113,6 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
             let videoDevice: AVCaptureDevice! = CamViewController.deviceWithMediaType(AVMediaTypeVideo, preferringPosition: AVCaptureDevicePosition.front) // start in reverse cam
             var error: NSError? = nil
             
-            
-            
             var videoDeviceInput: AVCaptureDeviceInput?
             do {
                 videoDeviceInput = try AVCaptureDeviceInput(device: videoDevice)
@@ -203,6 +201,8 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         self.checkDeviceAuthorizationStatus()
         getUserLocation()
         
@@ -252,6 +252,8 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
                 self.removeObserver(self, forKeyPath: "movieFileOutput.recording", context: &RecordingContext)
             }
         })
+        self.tabBarController?.tabBar.isHidden = false
+        self.stop()
     }
     
     override func didReceiveMemoryWarning() {
@@ -572,7 +574,7 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         
     }
     @IBAction func backButton(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        tabBarController?.selectedViewController = tabBarController?.viewControllers?[1]
     }
 
     func countSecondsOfButtonPressed () {
@@ -585,7 +587,6 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         recordButtonTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(countSecondsOfButtonPressed), userInfo: nil, repeats: true)
   
         self.progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
-        
     }
     
     func updateProgress() {
@@ -617,6 +618,7 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
     func stop() {
         self.progressTimer.invalidate()
         progress = 0
+        customRecordButton.setProgress(progress)
         
         recordButtonTimer.invalidate()
         recordButtonSeconds = 0
@@ -643,7 +645,7 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             self.fileToUploadURL = nil
             self.inProcessOfRecordingOrSaving = false
-
+            self.stop()
         }
         
         alertController.addTextField {
@@ -662,7 +664,7 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         
         let cancelSaveAction = UIAlertAction(title: "Don't Save", style: .cancel) { (action) -> Void in
             self.inProcessOfRecordingOrSaving = false
-            self.dismiss(animated: true, completion: nil)
+//            self.dismiss(animated: true, completion: nil)
         }
         let saveAction = UIAlertAction(title: "Save to Phone",
                                         style: .default) { [unowned self](action: UIAlertAction) -> Void in
@@ -678,7 +680,7 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         let alertController = UIAlertController(title: "Successfully Saved to Phone", message: nil, preferredStyle: .alert)
 
         let okAction = UIAlertAction(title: "OK", style: .cancel) { (action) -> Void in
-            self.dismiss(animated: true, completion: nil)
+//            self.dismiss(animated: true, completion: nil)
             self.inProcessOfRecordingOrSaving = false
         }
 
