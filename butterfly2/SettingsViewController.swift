@@ -33,6 +33,8 @@ class SettingsViewController: UIViewController {
         mensSwitch.addTarget(self, action: #selector(valueChanged), for: UIControlEvents.valueChanged)
         womensSwitch.addTarget(self, action: #selector(valueChanged), for: UIControlEvents.valueChanged)
         
+        changeSwitchColors()
+        
         let name = defaults.object(forKey: "firstName") as? String
         let age = defaults.integer(forKey: "age")
         if name != nil && age != 0 { // integerForKey returns 0 if not set
@@ -53,12 +55,25 @@ class SettingsViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    func changeSwitchColors () {
+        if mensSwitch.isOn {
+            mensSwitch.onTintColor = UIColor.red
+        }
+        
+        if womensSwitch.isOn {
+            womensSwitch.onTintColor = UIColor.red
+        }
+    }
+    
     func valueChanged(sender: AnyObject) {
         let defaults = UserDefaults.standard
+        
+        changeSwitchColors()
 
         if sender as! NSObject == mensSwitch {
             defaults.set(mensSwitch.isOn, forKey: "men")
             print ("mens switch: \(mensSwitch.isOn)")
+            
         }
         else if sender as! NSObject == womensSwitch {
             defaults.set(womensSwitch.isOn, forKey: "women")
