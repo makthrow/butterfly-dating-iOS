@@ -28,14 +28,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let user = FIRAuth.auth()?.currentUser {
-            setUserAdminStatusToDefaults()
-        } else {
-            // No user is signed in.
-        }
     }
-    
 
     override func viewWillAppear(_ animated: Bool) {
     

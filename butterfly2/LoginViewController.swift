@@ -12,8 +12,6 @@ import Firebase
 import FBSDKCoreKit
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
-    
-    let tabBarVC: UIViewController! = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
 
     @IBOutlet weak var logoImageView: UIImageView!
     
@@ -85,6 +83,12 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     print ("FBSDKAccessToken: \(FBSDKAccessToken.current().tokenString!)")
                     FIRAuth.auth()?.signIn(with: credential) { (user, error) in
                         getUserInfoFromFacebook(presentingViewController: self)
+                        
+                        if let user = FIRAuth.auth()?.currentUser {
+                            setUserAdminStatusToDefaults()
+                        } else {
+                            // No user is signed in.
+                        }
                     }
                 }
             }
