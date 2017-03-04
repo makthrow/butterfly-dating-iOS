@@ -124,11 +124,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         setupChatsMetaUnreadListener()
         // new intros: meet_media_for_userID
         setupMeetMediaUnreadListener()
-
         updateTabBars()
-        
     }
-
     
     func updateTabBars() {
     

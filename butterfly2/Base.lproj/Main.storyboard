@@ -161,7 +161,7 @@
             </objects>
             <point key="canvasLocation" x="-89" y="-625"/>
         </scene>
-        <!--Cam View Controller-->
+        <!--Cam-->
         <scene sceneID="gGo-rd-bGf">
             <objects>
                 <viewController id="u7i-fB-9f8" customClass="CamViewController" customModule="butterfly2" customModuleProvider="target" sceneMemberID="viewController">
@@ -222,6 +222,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="NJU-aS-xWh" secondAttribute="trailing" constant="-20" id="e85-jK-z8Y"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Cam" image="ic_photo_camera" id="O8x-M0-T3q"/>
                     <connections>
                         <outlet property="backButton" destination="Ipm-P3-4Nc" id="Laf-ZG-OcR"/>
                         <outlet property="cameraButton" destination="tCr-9o-vVH" id="Soh-PG-EHP"/>
@@ -562,7 +563,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLC-Pa-xia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="292" y="260"/>
+            <point key="canvasLocation" x="412" y="98"/>
         </scene>
         <!--Chat-->
         <scene sceneID="fe9-9x-IVB">
@@ -1012,6 +1013,7 @@
         <image name="butterfly_heart_ios" width="1024" height="1024"/>
         <image name="chat-button" width="22" height="19"/>
         <image name="heart" width="24" height="24"/>
+        <image name="ic_photo_camera" width="24" height="24"/>
         <image name="intro_camera_button_100" width="96" height="96"/>
         <image name="mail32x32" width="32" height="32"/>
         <image name="profile-header" width="29" height="29"/>
