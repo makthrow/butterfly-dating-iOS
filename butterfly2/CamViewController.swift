@@ -106,6 +106,7 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         let sessionQueue: DispatchQueue = DispatchQueue(label: "session queue",attributes: [])
         
         self.sessionQueue = sessionQueue
+        
         sessionQueue.async(execute: {
 
             self.backgroundRecordId = UIBackgroundTaskInvalid
@@ -232,8 +233,6 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
             self.session?.startRunning()
             
         })
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -252,8 +251,6 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
                 self.removeObserver(self, forKeyPath: "movieFileOutput.recording", context: &RecordingContext)
             }
         })
-        self.tabBarController?.tabBar.isHidden = false
-        self.stop()
     }
     
     override func didReceiveMemoryWarning() {
@@ -353,8 +350,6 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         })
     }
     
-    
-    
     class func setFlashMode(_ flashMode: AVCaptureFlashMode, device: AVCaptureDevice){
         
         if device.hasFlash && device.isFlashModeSupported(flashMode) {
@@ -369,7 +364,6 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
                 print(error)
             }
         }
-        
     }
     
     func runStillImageCaptureAnimation(){
@@ -482,8 +476,6 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
                     URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("movie.mp4")
                 
                 self.movieFileOutput!.startRecording( toOutputFileURL: outputFilePath, recordingDelegate: self)
-                
-                
             }
         })
     }
@@ -515,8 +507,6 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
                 preferredPosition = AVCaptureDevicePosition.back
                 
             }
-            
-            
             
             let device:AVCaptureDevice = CamViewController.deviceWithMediaType(AVMediaTypeVideo, preferringPosition: preferredPosition)
             
@@ -584,6 +574,8 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
     
     // Mark: RECORD BUTTON
     func record() {
+        self.setTabBarSwipe(enabled: false)
+
         recordButtonTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(countSecondsOfButtonPressed), userInfo: nil, repeats: true)
   
         self.progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
@@ -627,6 +619,9 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         isRecording = false
         
         holdButtonLabel.isHidden = false
+        
+        self.setTabBarSwipe(enabled: true)
+
     }
 
     // MARK: ALERTS

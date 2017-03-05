@@ -51,6 +51,8 @@ class MeetVideoTableViewController: UITableViewController, CLLocationManagerDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        self.tabBarController?.tabBar.isHidden = false
+
         getUserFacebookInfoFor(userID: (Constants.userID), callback:  {
             dic in
             if dic != nil {
