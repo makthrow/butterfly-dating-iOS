@@ -12,13 +12,13 @@
 
 @objc open class RecordButton : UIButton {
     
-    open var buttonColor: UIColor! = UIColor.blue  {
+    open var buttonColor: UIColor! = .blue{
         didSet {
             circleLayer.backgroundColor = buttonColor.cgColor
             circleBorder.borderColor = buttonColor.cgColor
         }
     }
-    open var progressColor: UIColor!  = UIColor.red {
+    open var progressColor: UIColor!  = .red {
         didSet {
             gradientMaskLayer.colors = [progressColor.cgColor, progressColor.cgColor]
         }
@@ -65,7 +65,13 @@
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        
+        self.addTarget(self, action: #selector(RecordButton.didTouchDown), for: .touchDown)
+        self.addTarget(self, action: #selector(RecordButton.didTouchUp), for: .touchUpInside)
+        self.addTarget(self, action: #selector(RecordButton.didTouchUp), for: .touchUpOutside)
+        
+        self.drawButton()
     }
     
     

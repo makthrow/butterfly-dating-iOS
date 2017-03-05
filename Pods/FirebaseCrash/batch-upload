@@ -107,11 +107,11 @@ xcdebug "INFO_PLIST = ${INFO_PLIST:="$(find . -name Info.plist | head -n1)"}"
 if [[ -f "${SERVICE_PLIST}" ]]; then
     xcdebug "FIREBASE_API_KEY = ${FIREBASE_API_KEY:="$(/usr/libexec/PlistBuddy -c 'print API_KEY' "${SERVICE_PLIST}")"}"
     xcdebug "FIREBASE_APP_ID = ${FIREBASE_APP_ID:="$(/usr/libexec/PlistBuddy -c 'print GOOGLE_APP_ID' "${SERVICE_PLIST}")"}"
+    xcdebug "FCR_BUNDLE_ID = ${FCR_BUNDLE_ID:="$(/usr/libexec/PlistBuddy -c 'print BUNDLE_ID' "${SERVICE_PLIST}")"}"
 fi
 
 if [[ -f "${INFO_PLIST}" ]]; then
     xcdebug "FCR_PROD_VERS = ${FCR_PROD_VERS:="$(/usr/libexec/PlistBuddy -c 'print CFBundleShortVersionString' "${INFO_PLIST}" 2>/dev/null)"}"
-    xcdebug "FCR_BUNDLE_ID = ${FCR_BUNDLE_ID:="$(/usr/libexec/PlistBuddy -c 'print CFBundleIdentifier' "${INFO_PLIST}" 2>/dev/null)"}"
 fi
 
 var_check FCR_PROD_VERS FCR_BUNDLE_ID
@@ -158,11 +158,15 @@ extract_symbols_and_upload () {
 
     [[ "${EXECUTABLE}" ]] || return 1
 
-    : "${SWIFT_DEMANGLE:="$(xcrun --find swift-demangle 2>/dev/null | head -n1)"}"
-
+    if [[ -x "${SWIFT_DEMANGLE:=$(xcrun --find swift-demangle 2>/dev/null)}" ]];
+    then
+        SWIFT_DEMANGLE_COMMAND="${SWIFT_DEMANGLE} -simplified"
+    else
+        SWIFT_DEMANGLE_COMMAND=/bin/cat
+    fi
     fcr_mktemp SYMBOL_FILE
 
-    "${DUMP_SYMS:="$(script_dir)/dump_syms"}" -a "${ARCH}" ${DWARF_COMPANION:+-g "${DWARF_COMPANION}"} "${EXECUTABLE}" | "${SWIFT_DEMANGLE:=cat}" >|"${SYMBOL_FILE}" || return $?
+    "${DUMP_SYMS:="$(script_dir)/dump_syms"}" -a "${ARCH}" ${DWARF_COMPANION:+-g "${DWARF_COMPANION}"} "${EXECUTABLE}" | ${SWIFT_DEMANGLE_COMMAND} >|"${SYMBOL_FILE}" || return $?
 
     fcr_upload_files "${SYMBOL_FILE}" || return $?
 }

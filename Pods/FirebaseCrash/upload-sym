@@ -31,12 +31,12 @@ outside of an Xcode build.
 Here is an example Run Script Phase you can add to your project
 to invoke this script:
 
-    "\${PODS_ROOT}/FirebaseCrashReporting/upload-sym" \\
+    "\${PODS_ROOT}/FirebaseCrash/upload-sym" \\
         "\${HOME}/Library/Developer/My Project-1fad0d0767b42e.json"
 
 To avoid stopping the build should the upload fail,
 
-    "\${PODS_ROOT}/FirebaseCrashReporting/upload-sym" -w \\
+    "\${PODS_ROOT}/FirebaseCrash/upload-sym" -w \\
         "\${HOME}/Library/Developer/My Project-1fad0d0767b42e.json"
     exit 0 # claim success no matter what
 
@@ -170,7 +170,9 @@ fi
 # Support legacy account file cache before giving up
 
 if [[ ! -f "${SERVICE_ACCOUNT_FILE}" ]]; then
-    xcwarning "No service account JSON file specified on command line."
+    xcwarning "Unable to find service account JSON file: ${SERVICE_ACCOUNT_FILE}"
+        "Please ensure you've followed the steps at:"
+        "https://firebase.google.com/docs/crash/ios#upload_symbol_files"
 
     xcdebug "Trying to extract JSON file from cache."
 
@@ -211,9 +213,10 @@ if ((VERBOSE >= 2)); then
 fi
 
 # Create and upload symbol files for each architecture
-
-if [[ ! -x "${SWIFT_DEMANGLE:="$(xcrun --find swift-demangle 2>/dev/null)"}" ]]; then
-    SWIFT_DEMANGLE=/bin/cat
+if [[ -x "${SWIFT_DEMANGLE:=$(xcrun --find swift-demangle 2>/dev/null)}" ]]; then
+    SWIFT_DEMANGLE_COMMAND="${SWIFT_DEMANGLE} -simplified"
+else
+    SWIFT_DEMANGLE_COMMAND=/bin/cat
 fi
 
 for ARCH in ${ARCHS?:}; do
@@ -248,7 +251,11 @@ for ARCH in ${ARCHS?:}; do
         fi
     fi
 
-    "${FCR_DUMP_SYMS}" -a "${ARCH}" -g "${DSYM_BUNDLE}" "${EXECUTABLE}" >"${SCRATCH}" 2> >(sed -e 's/^/warning: dump_syms: /' | grep -v 'failed to demangle' >&2)
+    if ((VERBOSE >= 2)); then
+        "${FCR_DUMP_SYMS}" -a "${ARCH}" -g "${DSYM_BUNDLE}" "${EXECUTABLE}" >"${SCRATCH}" 2> >(sed -e 's/^/warning: dump_syms: /' | grep -v 'failed to demangle' >&2)
+    else
+        "${FCR_DUMP_SYMS}" -a "${ARCH}" -g "${DSYM_BUNDLE}" "${EXECUTABLE}" >"${SCRATCH}" 2>/dev/null
+    fi
 
     STATUS=$?
     if ((STATUS)); then
@@ -256,7 +263,7 @@ for ARCH in ${ARCHS?:}; do
         exit ${STATUS}
     fi
 
-    "${SWIFT_DEMANGLE}" <"${SCRATCH}" >|"${!SYMBOL_FILE}" || exit 1
+    ${SWIFT_DEMANGLE_COMMAND} <"${SCRATCH}" >|"${!SYMBOL_FILE}" || exit 1
 
     if ((VERBOSE >= 2)); then
         xcnote "${EXECUTABLE##*/} (architecture ${ARCH}) symbol dump follows (first 20 lines):"

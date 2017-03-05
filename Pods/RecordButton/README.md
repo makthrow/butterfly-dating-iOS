@@ -27,7 +27,7 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 
-pod "RecordButton", :git => "https://github.com/samuelbeek/RecordButton.git"
+pod "RecordButton"
 
 ```
 
@@ -99,7 +99,8 @@ Finally add these functions to your ViewController
     }
     
 ```
-
+## Support/Issues 
+If you have any questions, please don't hesitate to create an issue. 
 
 ## To Do 
 * Add Carthage Support
