@@ -567,6 +567,9 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
         tabBarController?.selectedViewController = tabBarController?.viewControllers?[1]
     }
 
+    @IBAction func settingsButton(_ sender: UIButton) {
+        
+    }
     func countSecondsOfButtonPressed () {
         recordButtonSeconds = recordButtonSeconds + (CGFloat(0.05))
         print ("record button pressed for: \(recordButtonSeconds) seconds")
