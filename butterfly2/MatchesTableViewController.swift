@@ -137,14 +137,16 @@ class MatchesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        let chat = chatsMeta[(indexPath as NSIndexPath).row]
         
-        
-        if editingStyle == .delete {
-            showConfirmDeleteNotificationFor(indexPath: indexPath, chat: chat)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
+        // moved this code to the Chat Itself
+//        let chat = chatsMeta[(indexPath as NSIndexPath).row]
+//        
+//        
+//        if editingStyle == .delete {
+//            showConfirmDeleteNotificationFor(indexPath: indexPath, chat: chat)
+//        } else if editingStyle == .insert {
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -165,25 +167,5 @@ class MatchesTableViewController: UITableViewController {
             }
         }
     }
-    
-    func showConfirmDeleteNotificationFor(indexPath: IndexPath, chat: ChatsMeta) {
-        let alertController = UIAlertController(title: "Delete Chat", message: "Are you sure you want to close this chat? You can still match with this user later", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-            
-        }
-        let deleteAction = UIAlertAction(title: "Close this Chat",
-                                       style: .default) { [unowned self](action: UIAlertAction) -> Void in
-                                        self.deleteChatAt(indexPath: indexPath, chat: chat)
-        }
-        
-        alertController.addAction(cancelAction)
-        alertController.addAction(deleteAction)
-        topMostController().present(alertController, animated: true, completion: nil)
-    }
 
-    func deleteChatAt(indexPath: IndexPath, chat: ChatsMeta) {
-        chatsMeta.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .fade)
-        deleteChatFor(chatID: chat.key, matchedUserID: chat.withUserID)
-    }
 }

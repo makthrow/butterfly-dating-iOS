@@ -251,6 +251,8 @@ class MeetVideoTableViewController: UITableViewController, CLLocationManagerDele
                             continue // exit loop for this childDic
                         }
                     }
+                    
+                    // potentially add Block Filter?
             
                     var mediaInfoDic: Dictionary<String, Any>?
 

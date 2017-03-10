@@ -25,6 +25,7 @@ class ChatViewController: JSQMessagesViewController {
         super.viewDidLoad()
 
         setupBackButton()
+        setupReportAndDeleteButtons()
         // Set sender information: you’ll need to set initial values for senderId and senderDisplayName so the JSQMessagesViewController can uniquely identify the sender of the messages
         self.senderId = Constants.userID
         self.senderDisplayName = "Me"
@@ -166,6 +167,17 @@ class ChatViewController: JSQMessagesViewController {
         let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = backButton
     }
+    
+    func setupReportAndDeleteButtons() {
+        let deleteImage   = UIImage(named: "ic_delete_forever")!
+        let reportImage = UIImage(named: "ic_report_problem")!
+        
+        let deleteButton = UIBarButtonItem(image: deleteImage, style: .plain, target: self, action: #selector(deleteButtonTapped))
+        let reportButton = UIBarButtonItem(image: reportImage, style: .plain, target: self, action: #selector(reportButtonTapped))
+        navigationItem.rightBarButtonItems = [reportButton, deleteButton]
+    }
+
+    
     func backButtonTapped() {
         dismiss(animated: true, completion: nil)
     }
@@ -179,6 +191,43 @@ class ChatViewController: JSQMessagesViewController {
         alertController.addAction(okAction)
         topMostController().present(alertController, animated: true, completion: nil)
 
+    }
+    
+    func reportButtonTapped() {
+        reportUser()
+    }
+    func deleteButtonTapped() {
+        showConfirmDeleteNotification()
+    }
+    
+    
+    func showConfirmDeleteNotification() {
+        let alertController = UIAlertController(title: "Delete Chat", message: "Are you sure you want to close this chat? You can still match with this user later", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            
+        }
+        let deleteAction = UIAlertAction(title: "Close this Chat",
+                                         style: .default) { [unowned self](action: UIAlertAction) -> Void in
+                                            self.deleteCurrentChat()
+                                            self.backButtonTapped()
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        topMostController().present(alertController, animated: true, completion: nil)
+    }
+    
+    func deleteCurrentChat() {
+        deleteChatFor(chatID: chatID!, matchedUserID: withUserID!)
+    }
+    
+    func reportUser() {
+        let reportUserVC:ReportUserViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReportUser") as! ReportUserViewController
+        
+        reportUserVC.userIDToReport = withUserID!
+        
+        topMostController().present(reportUserVC, animated: false, completion: nil)
+        
     }
 
 }

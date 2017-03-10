@@ -573,20 +573,12 @@ func blockUser(userIDToBlock: String) {
     //          userID1: true, userID2:true
     let blockedUserIDsRef = Constants.USERS_REF.child(Constants.userID).child("/blockedUserIDs")
     
-    let dic: [String : Any] = [
-        userIDToBlock: true
-    ]
-    
-    blockedUserIDsRef.setValue(dic)
+    blockedUserIDsRef.child(userIDToBlock).setValue(true)
     
     // add block for the reporting user too
     let reportingUserIDRef = Constants.USERS_REF.child(userIDToBlock).child("/blockedUserIDs")
 
-    let dic2: [String : Any] = [
-        Constants.userID: true
-    ]
-    
-    reportingUserIDRef.setValue(dic2)
+    reportingUserIDRef.child(Constants.userID).setValue(true)
     
 }
 
