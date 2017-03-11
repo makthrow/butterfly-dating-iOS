@@ -127,12 +127,12 @@ class ChatViewController: JSQMessagesViewController {
         
         let message = messages[indexPath.item]
         
+        cell.textView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blue]
         if message.senderId == senderId {
             cell.textView.textColor = UIColor.black
         }
         else {
             cell.textView.textColor = UIColor.red
-            
         }
         return cell
     }
