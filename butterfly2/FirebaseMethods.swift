@@ -34,7 +34,8 @@ func setupNewChatWith(_ matchedUserID: String) {
     newChatIDRef.setValue(true)
     // new entry in /users/userID/chats_with_users  -> userID
     let userChatsWithUsersRef = userIDRef.child("chats_with_users")
-    userChatsWithUsersRef.setValue(["\(matchedUserID)": true])
+    userChatsWithUsersRef.child(matchedUserID).setValue(true)
+//    userChatsWithUsersRef.updateChildValues(["\(matchedUserID)": true])
     
     // WITH USER - create new entries
     let withUserIDRef = Constants.USERS_REF.child(matchedUserID)
@@ -44,7 +45,8 @@ func setupNewChatWith(_ matchedUserID: String) {
     withUserNewChatIDRef.setValue(true)
     // new entry in /users/userID/chats_with_users  -> userID
     let withUserChatsWithUsersRef = withUserIDRef.child("chats_with_users")
-    withUserChatsWithUsersRef.setValue(["\(Constants.userID)": true])
+    withUserChatsWithUsersRef.child(Constants.userID).setValue(true)
+//    withUserChatsWithUsersRef.updateChildValues(["\(Constants.userID)": true])
     
     createChatsMembersFor(newChatID, user1: (Constants.userID), user2: matchedUserID)
     
@@ -87,8 +89,6 @@ func deleteChatFor(chatID: String, matchedUserID: String) {
     // delete entry in /users/userID/chats_with_users  -> userID
     let matchedUserChatsWithUsersRef = matchedUserIDRef.child("chats_with_users")
     matchedUserChatsWithUsersRef.child(Constants.userID).removeValue()
-    
-    
     
     // REMOVE new entries in chats_members
     let chatsMembersRef = Constants.CHATS_MEMBERS_REF
