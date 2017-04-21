@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         loginButton.delegate = self
         loginButton.center.y = self.view.bounds.height - 60
         loginButton.center.x = self.view.center.x
-        loginButton.readPermissions = ["public_profile","user_friends", "user_education_history", "user_birthday"]
+        loginButton.readPermissions = ["public_profile","user_friends", "user_birthday"]
         
         self.view.addSubview(loginButton)
     }
