@@ -106,8 +106,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func verifyFacebookPermissionsGranted(result: FBSDKLoginManagerLoginResult) -> Bool {
         if result.declinedPermissions.contains("user_birthday") ||
-            result.declinedPermissions.contains("user_friends") ||
-            result.declinedPermissions.contains("user_education_history")
+            result.declinedPermissions.contains("user_friends")
         {
             return false
         }
