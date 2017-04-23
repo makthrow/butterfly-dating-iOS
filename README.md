@@ -11,3 +11,5 @@ If users both like each other, a chat is opened up.
 
 This app also features a custom camera, which is the only way to upload content, 
 which ensures that all users are human.
+
+website URL is joinbutterfly.com
