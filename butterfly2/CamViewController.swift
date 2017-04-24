@@ -24,7 +24,6 @@ var RecordingContext = "RecordingContext"
 class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate  {
     
     // MARK: property
-    
     var sessionQueue: DispatchQueue!
     var session: AVCaptureSession?
     var videoDeviceInput: AVCaptureDeviceInput?
@@ -48,12 +47,6 @@ class CamViewController: UIViewController, AVCaptureFileOutputRecordingDelegate 
     var uploadMediaTitle: String?
     
     @IBOutlet weak var previewView: AVCamPreviewView!
-    
-//    // TAKE PICTURE
-//    @IBOutlet weak var snapButton: UIButton!
-//    
-//    // RECORD VIDEO
-//    @IBOutlet weak var recordButton: UIButton!
     
     // REVERSE CAM
     @IBOutlet weak var cameraButton: UIButton!

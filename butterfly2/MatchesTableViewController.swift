@@ -119,9 +119,6 @@ class MatchesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        performSegue(withIdentifier: "ShowChatMessages", sender: indexPath)
-//        
-//        tableView.deselectRow(at: indexPath, animated: true)
         let chatVc = ChatViewController()
         let chat = chatsMeta[(indexPath as NSIndexPath).row]
         
@@ -137,16 +134,6 @@ class MatchesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        // moved this code to the Chat Itself
-//        let chat = chatsMeta[(indexPath as NSIndexPath).row]
-//        
-//        
-//        if editingStyle == .delete {
-//            showConfirmDeleteNotificationFor(indexPath: indexPath, chat: chat)
-//        } else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

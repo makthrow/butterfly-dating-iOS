@@ -11,7 +11,6 @@ import UserNotifications
 
 // NOTE: READ THIS: ***** notifications not working currently. seems to be a bug in the new UserNotifications
 
-
 class NotificationMethods:NSObject, UNUserNotificationCenterDelegate {
     
     override init() {
@@ -22,7 +21,6 @@ class NotificationMethods:NSObject, UNUserNotificationCenterDelegate {
             // Fallback on earlier versions
         }
     }
-
     
     func newMeetMediaNotificationFor(meetMediaID: String) {
         // send when you receive a meet_media
@@ -90,33 +88,4 @@ class NotificationMethods:NSObject, UNUserNotificationCenterDelegate {
     func removeAppIconContentBadge() {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-
-//
-//    @available(iOS 10.0, *)
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//        let content = notification.request.content
-//        // Process notification content
-//        print ("Will present notificaton")
-//        
-//        completionHandler([.alert, .sound]) // Display notification as regular alert and play sound
-//    }
-//    
-//    @available(iOS 10.0, *)
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-//        let actionIdentifier = response.actionIdentifier
-//        print ("didReceive")
-//        switch actionIdentifier {
-//        case UNNotificationDismissActionIdentifier: // Notification was dismissed by user
-//            // Do something
-//            completionHandler()
-//        case UNNotificationDefaultActionIdentifier: // App was opened from notification
-//            // Do something
-//            completionHandler()
-//        default:
-//            completionHandler()
-//        }
-//    }
-//    
-    
-    
 }

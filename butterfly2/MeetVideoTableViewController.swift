@@ -27,7 +27,6 @@ class MeetVideoTableViewController: UITableViewController, CLLocationManagerDele
     
     var currentlyPlayingVideo: Bool = false // setting this bool avoids an exception with presenting video player modally over each other on multiple user taps.
     
-    
     var locationManager: CLLocationManager!
     var locationStatus : NSString = "Not Started"
     var locationFixAchieved : Bool = false
@@ -103,7 +102,6 @@ class MeetVideoTableViewController: UITableViewController, CLLocationManagerDele
             })
         }
         
-        // Nov 29 added filter for blocked IDs
         var blockList = [String]()
         getBlockList({
             list in
@@ -163,7 +161,6 @@ class MeetVideoTableViewController: UITableViewController, CLLocationManagerDele
                     var mediaInfoDic: Dictionary<String, Any>?
                     // continue filter list by geographical radius:
                     //  key is found in the array of local mediaID from circleQuery
-//                    print ("mediaLocationKeysWithinRadius: \(mediaLocationKeysWithinRadius)")
                     
                     if mediaLocationKeysWithinRadius.contains(mediaID!) && !blockList.contains(userID!){
                         
@@ -187,9 +184,7 @@ class MeetVideoTableViewController: UITableViewController, CLLocationManagerDele
     }
     
     func getIntroductionsForAdmin() {
-        
         // special query only available for admins/staff
-        
         // DOWNLOAD LIST OF VIDEOS and TITLES
         // filters: no geographical radius, timestamp within 1 month
 
@@ -252,8 +247,6 @@ class MeetVideoTableViewController: UITableViewController, CLLocationManagerDele
                         }
                     }
                     
-                    // potentially add Block Filter?
-            
                     var mediaInfoDic: Dictionary<String, Any>?
 
                         mediaInfoDic = [
@@ -301,7 +294,6 @@ class MeetVideoTableViewController: UITableViewController, CLLocationManagerDele
         cell.textLabel?.highlightedTextColor = UIColor.white
         
         cell.textLabel?.font = UIFont(name: "Helvetica", size: 20.0)
-//        cell.textLabel?.backgroundColor = UIColor(red: 52/255, green: 0/255, blue: 127/255, alpha: 1)
         let title = mediaIntroQueueList[(indexPath as NSIndexPath).section]["title"] as? String
         let name = mediaIntroQueueList[(indexPath as NSIndexPath).section]["name"] as? String
         let userID = mediaIntroQueueList[(indexPath as NSIndexPath).section]["userID"] as? String
@@ -382,8 +374,6 @@ class MeetVideoTableViewController: UITableViewController, CLLocationManagerDele
         let passButton = UIButton(frame:CGRect(x: 40,y: avPlayerViewController.view.bounds.height - 150,width: 60,height: 60))
         passButton.setTitle("Pass", for:UIControlState())
         passButton.addTarget(self, action:#selector(MeetVideoTableViewController.closeVideo), for:.touchUpInside)
-        //        btnNext.layer.borderColor = UIColor ( red: 0.0, green: 0.0, blue: 1.0, alpha: 0.670476140202703 ).CGColor
-        //        btnNext.layer.borderWidth = 1.0
         passButton.setImage(UIImage(named: "Meet_Cancel_75"), for: UIControlState.normal)
         overlayView.addSubview(passButton)
 
@@ -551,8 +541,8 @@ class MeetVideoTableViewController: UITableViewController, CLLocationManagerDele
         
     }
     
-    // background code: location, notifications, listeners
-    
+    // Mark: Background code
+    // location, notifications, listeners
     
     func initLocationManager() {
         locationManager = CLLocationManager()

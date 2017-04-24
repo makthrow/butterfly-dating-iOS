@@ -31,10 +31,8 @@ class CreateAccountViewController: UIViewController {
                     // Enter the app.
                     self.performSegue(withIdentifier: "NewUserLoggedIn", sender: nil)
                 }
-
             }
         }
-            
             
         else {
             signupErrorAlert(":(", message: "no email, password, or username.")
@@ -49,8 +47,6 @@ class CreateAccountViewController: UIViewController {
     
     
     func signupErrorAlert(_ title: String, message: String) {
-        
-        // Called upon signup error to let the user know signup didn't work.
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)

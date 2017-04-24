@@ -129,52 +129,6 @@ func createChatsMembersFor(_ chatID: String, user1: String, user2: String) {
     ]
     newChatsMembersRef.setValue(chatsMembersDic)
 }
-/* not using this currently because we need to find user name for each userID. just easier to do it one at a time
-func createChatsMetaForBothUsers(_ chatID: String, lastMessage: String?, currentUserID: String, withUser matchedUserID: String) {
-    // **Note** THIS CREATES TWO CHATS_META entries!! one for each user in the chat.
-    // updates entry with same key as the one in /users/userID/chats
-    // the user who chooses to match has the code that creates both users' chats_meta entries.
-    // the chatID is the same one because we generate it once in setupNewChatWith() and use it twice.
-    
-    // create for current user
-    let chatsMetaCurrentUserRef = Constants.CHATS_META_REF.child(currentUserID)
-    let currentUserNewChatMetaRef = chatsMetaCurrentUserRef.child(chatID)
-    
-    var currentUserChatsMetaDic: Dictionary<String, Any>
-    
-    if lastMessage != nil {
-        
-        currentUserChatsMetaDic = [
-            "key": chatID as AnyObject,
-            "withUserID": matchedUserID as AnyObject,
-            "lastMessage": lastMessage! as AnyObject,
-            "timestamp": Constants.firebaseServerValueTimestamp as AnyObject,
-            "unread" : true,
-            "lastSender": "none"
-        ]
-        currentUserNewChatMetaRef.setValue(currentUserChatsMetaDic)
-    }
-    
-    // create for the other user
-    let chatsMetaWithUserRef = Constants.CHATS_META_REF.child(matchedUserID)
-    let withUserNewChatMetaRef = chatsMetaWithUserRef.child(chatID)
-
-    var withUserChatsMetaDic: Dictionary<String, Any>
-
-    if lastMessage != nil {
-        
-        withUserChatsMetaDic = [
-            "key": chatID as AnyObject,
-            "withUserID": currentUserID as AnyObject,
-            "lastMessage": lastMessage! as AnyObject,
-            "timestamp": Constants.firebaseServerValueTimestamp as AnyObject,
-            "unread" : true,
-            "lastSender": "none"
-        ]
-        withUserNewChatMetaRef.setValue(withUserChatsMetaDic)
-    }
-}
- */
 
 func createChatsMetaFor(_ chatID: String, lastMessage: String?, userID: String, withUser matchedUserID: String) {
     let chatsMetaUserRef = Constants.CHATS_META_REF.child(userID)
@@ -332,21 +286,6 @@ func updateChatsMetaLastMessageReadFor(_ chatID: String) {
     ]
     chatsMetaIDRef.updateChildValues(chatsMetaDic)
 }
-
-//func fetchChatsMessagesFor(chatID: String, callback: @escaping ([ChatsMessage]) -> ()) {
-//    let latestChatsMessageQuery = Constants.CHATS_MESSAGES_REF.child(chatID).queryOrdered(byChild: "timestamp")
-//    
-//    latestChatsMessageQuery.observe(FIRDataEventType.value, with: { (snapshot: FIRDataSnapshot) in
-//        
-//        print ("latestChatsMessageQuery Snapshot: \(snapshot)")
-//        var messages = [ChatsMessage]()
-//        let enumerator = snapshot.children
-//        while let data = enumerator.nextObject() as? FIRDataSnapshot {
-//            messages.append(snapshotToMessage(snapshot: data))
-//        }
-//        callback(messages)
-//    })
-//}
 
 // MARK: meetMedia
 

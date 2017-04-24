@@ -104,15 +104,11 @@ class IntroTableViewController: UITableViewController {
         
         let unread = meetMedia[(indexPath as NSIndexPath).section].unread
         
-        // custom red: 200, 21, 137
-        // 200 149 186
         if (unread) {
-//            cell.textLabel?.textColor = UIColor(red: 200/255, green: 21/255, blue: 137/255, alpha: 1)
             
             cell.textLabel?.textColor = UIColor.red
         }
         else {
-//            cell.textLabel?.textColor = UIColor(red: 200/255, green: 149/255, blue: 186/255, alpha: 1)
             cell.textLabel?.textColor = UIColor.red
 
         }
@@ -289,13 +285,8 @@ class IntroTableViewController: UITableViewController {
         
         let chatAction = UIAlertAction(title: "Chat Now",
                                        style: .default) { [unowned self](action: UIAlertAction) -> Void in
-            // transition to chat tab , opening up new conversation with matched user
-//            
-//                                        for controller in (self.tabBarController?.viewControllers)! {
-//                                            if controller.isKindOfClass(MatchesTableViewController) {
-//                                                self.tabBarController?.selectedViewController = controller
-//                                            }
-//                                        }
+            // TODO: add transition to chat tab , opening up new conversation with matched user
+                             }
                                         self.tabBarController?.selectedIndex = 3
                                         self.dismissVideo()
         }

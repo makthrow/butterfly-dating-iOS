@@ -12,7 +12,6 @@ import FirebaseAuth
 func uploadVideoToMediaInfo(_ videoURL: URL, title: String) {
     
     // generate a timestamp
-    //        let videoTimeStamp: NSTimeInterval = NSDate().timeIntervalSince1970
     let videoTimeStamp = String(Int(round(Date().timeIntervalSince1970)))
     
     // combine the two to form a unique video ID of userID + timestamp
