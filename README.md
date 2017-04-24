@@ -1,5 +1,6 @@
 # butterfly-dating
-Butterfly Social / Dating app
+Butterfly Social / Dating app in iOS/Swift
+http://joinbutterfly.com
 
 This is a dating app with a mix of tinder and snapchat features.
 
@@ -12,7 +13,6 @@ If users both like each other, a chat is opened up.
 This app also features a custom camera, which is the only way to upload content, 
 which ensures that all users are human.
 
-website URL is http://joinbutterfly.com
 
 
 Technical Section
