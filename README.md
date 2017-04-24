@@ -13,3 +13,14 @@ This app also features a custom camera, which is the only way to upload content,
 which ensures that all users are human.
 
 website URL is http://joinbutterfly.com
+
+
+Technical Section
+
+Tools used:
+
+This App is 100% written in Swift 3.
+The backend utilizes Firebase Database and Firebase Storage.
+
+Incomplete:
+Notifications
